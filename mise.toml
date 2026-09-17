@@ -17,3 +17,7 @@ run = "pnpm build"
 [tasks.test]
 description = "Run puzzle and save-state tests"
 run = "pnpm test"
+
+[tasks.preview]
+description = "Serve the production build locally"
+run = "pnpm preview --port 4187 --strictPort"

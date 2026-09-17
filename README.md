@@ -18,7 +18,10 @@ mise run dev
 ```powershell
 mise run test
 mise run build
+mise run preview
 ```
+
+公開用ビルドのローカル確認URL: http://127.0.0.1:4187/
 
 `dist/` を静的ホスティングに配置できます。URLのルート `/` に配信してください。ユーザー登録、バックエンド、APIキーは不要です。
 
@@ -49,3 +52,5 @@ mise run build
 - `tests/engine.test.ts`: 機構の解法、進行条件、保存の回復。
 
 画像の由来と生成指示は `docs/assets.md`、解法は `docs/walkthrough.md` を参照してください。解法にはネタバレがあります。
+
+実施した検証と未検証の範囲は `docs/verification.md` に記録しています。

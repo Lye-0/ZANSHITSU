@@ -317,7 +317,7 @@ export default function App() {
           <p>振り返らない。</p>
           <div className="ending-record">
             {formatTime(game.elapsed)}
-            <span>残されたヒント　{Object.values(game.hints).reduce((a, b) => a + b, 0)}</span>
+            <span>見た手掛かり　{Object.values(game.hints).reduce((a, b) => a + b, 0)}</span>
           </div>
           <button
             className="text-button"

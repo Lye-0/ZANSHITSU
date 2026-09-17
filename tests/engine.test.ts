@@ -16,6 +16,15 @@ import {
 } from '../src/engine';
 
 describe('physical mechanisms', () => {
+  it('the twenty-move slide hint solves the more demanding initial arrangement', () => {
+    let values = [...PUZZLES['r3-slide'].initial];
+    for (const tile of [3, 1, 6, 3, 5, 7, 2, 4, 3, 5, 1, 8, 7, 1, 4, 2, 1, 4, 5, 6]) {
+      const next = slide(values, values.indexOf(tile));
+      expect(next).not.toBe(values);
+      values = next;
+    }
+    expect(values).toEqual(PUZZLES['r3-slide'].answer);
+  });
   it('conserves water, respects capacity, and can split eight into four and four', () => {
     let v = [8, 0, 0];
     for (const [a, b] of [

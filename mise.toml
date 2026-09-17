@@ -1,0 +1,19 @@
+[tools]
+node = "24.19.0"
+pnpm = "11.19.0"
+
+[tasks.install]
+description = "Install locked project dependencies"
+run = "pnpm install --frozen-lockfile"
+
+[tasks.dev]
+description = "Start the local game"
+run = "pnpm dev"
+
+[tasks.build]
+description = "Typecheck and build"
+run = "pnpm build"
+
+[tasks.test]
+description = "Run puzzle and save-state tests"
+run = "pnpm test"

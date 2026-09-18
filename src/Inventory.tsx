@@ -1,3 +1,4 @@
+import { publicAsset } from './publicAsset';
 import { ITEMS } from './data';
 import { Icon } from './Icons';
 export function Inventory({
@@ -32,7 +33,7 @@ export function Inventory({
               onDoubleClick={() => onInspect(id)}
             >
               <img
-                src={`/images/items/${id}/front.webp`}
+                src={publicAsset(`/images/items/${id}/front.webp`)}
                 alt=""
                 draggable={false}
                 width={47}
@@ -51,7 +52,11 @@ export function Inventory({
               aria-label={`${ITEMS[installedItem].name}の刻印を確認`}
               onClick={() => onInspect(installedItem, true)}
             >
-              <img src={`/images/items/${installedItem}/back.webp`} alt="" draggable={false} />
+              <img
+                src={publicAsset(`/images/items/${installedItem}/back.webp`)}
+                alt=""
+                draggable={false}
+              />
               <Icon name="expand" size={12} />
             </button>
           </div>

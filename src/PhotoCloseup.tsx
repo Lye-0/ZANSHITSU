@@ -1,3 +1,4 @@
+import { publicAsset } from './publicAsset';
 import { useState, type CSSProperties } from 'react';
 import { ITEMS, PUZZLES } from './data';
 import type { SceneNode } from './data';
@@ -85,11 +86,11 @@ export function Closeup({
     node.clue !== 'empty' &&
     (!node.gate || game.solved.includes(node.gate))
   )
-    photo = `/images/clues/${node.id}.webp`;
+    photo = publicAsset(`/images/clues/${node.id}.webp`);
   if (node.clue === 'tub' && !game.solved.includes('r2-drain'))
-    photo = '/images/clues/bathtub-full.webp';
+    photo = publicAsset('/images/clues/bathtub-full.webp');
   if (node.kind === 'take' && game.collected.includes(node.target!))
-    photo = '/images/rooms/02-washroom/states/wrench-taken.webp';
+    photo = publicAsset('/images/rooms/02-washroom/states/wrench-taken.webp');
   if (isScreen)
     photo = projectionPhoto(
       available === 'blank' ? 'blank' : available === 'frames' ? projection : 'score',
@@ -109,7 +110,7 @@ export function Closeup({
         {p?.id === 'r2-locker' && installed && (
           <img
             className="mirror-number-photo"
-            src="/images/components/markings/mirror-number.webp"
+            src={publicAsset('/images/components/markings/mirror-number.webp')}
             alt="鏡に刻まれた四つの数字"
           />
         )}
@@ -209,7 +210,9 @@ export function Closeup({
                 game.mounted.includes(id) ? onInspect(id) : selected === id && onInsert(p.id, id)
               }
             >
-              {game.mounted.includes(id) && <img src={`/images/items/${id}/front.webp`} alt="" />}
+              {game.mounted.includes(id) && (
+                <img src={publicAsset(`/images/items/${id}/front.webp`)} alt="" />
+              )}
             </button>
           ))}
         {node.kind === 'take' && !game.collected.includes(node.target!) && (
@@ -292,7 +295,7 @@ export function ItemCloseup({
   onFlip: () => void;
   onBack: () => void;
 }) {
-  const photo = `/images/items/${id}/${flipped ? 'back' : 'front'}.webp`;
+  const photo = publicAsset(`/images/items/${id}/${flipped ? 'back' : 'front'}.webp`);
   return (
     <section
       className="closeup-view photo-item"

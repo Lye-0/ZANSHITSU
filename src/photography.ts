@@ -1,3 +1,4 @@
+import { publicAsset } from './publicAsset';
 import { ROOMS } from './data';
 import type { SceneNode } from './data';
 import { STATE_PHOTO_IDS, statePhoto } from './mechanismPhotos';
@@ -8,7 +9,7 @@ export const viewPhoto = (
   face: number,
   state?: { solved: string[]; inventory: string[]; installed: string[]; opened?: string[] },
 ) => {
-  const base = `/images/rooms/${ROOM_FOLDERS[room]}`;
+  const base = publicAsset(`/images/rooms/${ROOM_FOLDERS[room]}`);
   if (room === 3 && face === 4 && state && !state.solved.includes('r4-power'))
     return base + '/states/ceiling-unlit.webp';
   if (room === 0 && face === 3 && state?.opened?.includes('r1-drawer'))
@@ -130,8 +131,10 @@ export const detailPhoto = (room: number, node: SceneNode) =>
   STATE_PHOTO_IDS.includes(node.id) || node.id.endsWith('-exit') || node.id === 'r4-sockets'
     ? statePhoto(node.id === 'r4-sockets' ? 'r4-exit' : node.id, 'base')
     : node.kind === 'clue' && node.clue !== 'empty' && !node.gate
-      ? `/images/clues/${node.id}.webp`
-      : `/images/rooms/${ROOM_FOLDERS[room]}/closeups/${CLOSEUP_FILES[node.id] ?? node.id}.webp`;
+      ? publicAsset(`/images/clues/${node.id}.webp`)
+      : publicAsset(
+          `/images/rooms/${ROOM_FOLDERS[room]}/closeups/${CLOSEUP_FILES[node.id] ?? node.id}.webp`,
+        );
 const OPEN_SHAPES: Record<string, Shape> = {
   'r1-drawer': { bounds: [41, 55, 19, 9], points: '9,0 91,0 100,48 100,100 0,100 0,48' },
   'r1-cabinet': {

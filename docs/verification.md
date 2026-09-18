@@ -87,3 +87,11 @@ agent-browserスキルでも390×844のブラウザを操作した。天井か�
 - 旧形式v1・既存v2の解錠済みセーブからも新しい鍵を取得できる回帰テストを追加。旧自動付与の移行で、新しい鍵を取得済み扱いにしない。
 - テスト46件・公開用ビルド成功、ブラウザのコンソールエラーなし。採用写真217点。旧白紙二点・旧空箱を除去し、生成元と検証画面は配信フォルダに残さない。
 - 検証画像は `C:/Users/kawau/Documents/Codex/zanshitsu-visual-review/room4-*` および `r4-*-before/after.png`。Wi-Fi用オリジンのユーザー保存は変更していない。
+
+## GitHub Pages公開準備（2026-09-19）
+
+- `main` のpushを起点にテスト→ビルド→Pages artifact→deployを実行。GitHub側のPages公開元を `workflow` に設定し、APIで読み戻して確認。まだpush・公開実行はしていない。
+- CIでも `mise.toml` のNode/pnpmを使用。Actionsの参照コミットを公式リポジトリで照合し固定した。
+- `pnpm build:pages` 成功。217枚すべてが `http://127.0.0.1:4188/ZANSHITSU/images/…` から200・image/webpで取得可能。
+- Playwright MCP（Edge）で390px幅の公開ビルドを実操作。引き出しの記号入力→解錠→開蓋→巻き鍵取得→持ち物拡大を確認。画像読込成功、誤った `/images/` 直下へのリクエストなし、コンソールエラーなし。
+- テスト48件成功。全写真のカタログがPagesのBASE_URLに追従する回帰テストを追加。開発用ルートとWi-Fi用URLの設定は維持。

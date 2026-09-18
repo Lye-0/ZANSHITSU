@@ -43,7 +43,26 @@ mise run preview
 
 公開用ビルドのローカル確認URL: http://127.0.0.1:4187/
 
-`dist/` を静的ホスティングに配置できます。URLのルート `/` に配信してください。ユーザー登録、バックエンド、APIキーは不要です。
+`dist/` を静的ホスティングに配置できます。通常のビルドはURLのルート `/` 用です。ユーザー登録、バックエンド、APIキーは不要です。
+
+### GitHub Pages
+
+`main` へのプッシュで `.github/workflows/pages.yml` が起動し、依存関係のインストール、テスト、Pages用ビルド、デプロイの順に実行します。テストまたはビルドが失敗した場合は公開しません。他のブランチへのプッシュでは公開しません。
+
+公開先: https://lye-0.github.io/ZANSHITSU/
+
+GitHubの **Settings → Pages → Build and deployment → Source** は **GitHub Actions** に設定します。個人用トークンや追加のSecretsは不要です。Node.jsとpnpmはCIでも `mise.toml` の指定を使用します。公開物は `dist/` だけで、ソースや解法ドキュメントをPages成果物に含めません。
+
+```powershell
+pnpm build:pages
+pnpm preview:pages
+```
+
+Pagesと同じパスでの確認URL: http://127.0.0.1:4188/ZANSHITSU/
+
+写真のURLは `src/publicAsset.ts` でViteの `BASE_URL` に合わせます。CSSとHTML内の参照はViteが変換します。CIの公開パスは `configure-pages` の出力から決め、ローカルのPagesモードでは `/ZANSHITSU/` を使います。CIの実行結果はリポジトリのActionsタブで確認できます。
+
+ローカル開発、Wi-Fi、GitHub Pagesではブラウザの保存先が異なり、進行は自動移行されません。
 
 ## 操作
 

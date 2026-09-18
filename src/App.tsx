@@ -1,3 +1,4 @@
+import { publicAsset } from './publicAsset';
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import { FACE_NAMES, ITEMS, PUZZLES, ROOMS, SCREEN_FRAME_CLUE } from './data';
@@ -410,14 +411,18 @@ export default function App() {
                 <div
                   className="scene-paper first-equation"
                   aria-hidden="true"
-                  style={{ backgroundImage: 'url(/images/clues/r1-equation.webp)' }}
+                  style={{
+                    backgroundImage: `url(${publicAsset('/images/clues/r1-equation.webp')})`,
+                  }}
                 />
               )}
               {game.face === 2 && game.room === 3 && (
                 <div
                   className="scene-paper last-equation"
                   aria-hidden="true"
-                  style={{ backgroundImage: 'url(/images/clues/r4-equations.webp)' }}
+                  style={{
+                    backgroundImage: `url(${publicAsset('/images/clues/r4-equations.webp')})`,
+                  }}
                 />
               )}
               {game.face === 0 && game.solved.includes(`r${game.room + 1}-exit`) && (
@@ -432,7 +437,7 @@ export default function App() {
                   }}
                   aria-hidden="true"
                 >
-                  <img src={`/images/clues/echo-${game.room}.webp`} alt="" />
+                  <img src={publicAsset(`/images/clues/echo-${game.room}.webp`)} alt="" />
                 </div>
               )}
               <Hotspots
@@ -660,8 +665,8 @@ export default function App() {
                           className="journal-photo"
                           src={
                             node.id === 'r4-sockets'
-                              ? '/images/mechanisms/r4-exit/base.webp'
-                              : `/images/clues/${node.id}.webp`
+                              ? publicAsset('/images/mechanisms/r4-exit/base.webp')
+                              : publicAsset(`/images/clues/${node.id}.webp`)
                           }
                           alt={node.label}
                         />

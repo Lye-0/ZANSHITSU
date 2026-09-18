@@ -1,3 +1,4 @@
+import { publicAsset } from './publicAsset';
 export const GLYPHS = ['○', '△', '□', '☾', '◇', '✳'];
 export type PuzzleKind =
   | 'sequence'
@@ -438,7 +439,7 @@ export const ROOMS = [
   {
     name: '待合室',
     roman: 'Ⅰ',
-    image: '/images/rooms/01-waiting/views/north.webp',
+    image: publicAsset('/images/rooms/01-waiting/views/north.webp'),
     tone: 'green',
     views: [
       [puzzle('r1-clock', '壁の時計', 17, 18, 21, 25), puzzle('r1-exit', '鉄扉', 40, 26, 23, 61)],
@@ -475,7 +476,7 @@ export const ROOMS = [
   {
     name: '洗面室',
     roman: 'Ⅱ',
-    image: '/images/rooms/02-washroom/views/north.webp',
+    image: publicAsset('/images/rooms/02-washroom/views/north.webp'),
     tone: 'blue',
     views: [
       [
@@ -507,7 +508,7 @@ export const ROOMS = [
   {
     name: '映写室',
     roman: 'Ⅲ',
-    image: '/images/rooms/03-projection/views/north.webp',
+    image: publicAsset('/images/rooms/03-projection/views/north.webp'),
     tone: 'amber',
     views: [
       [puzzle('r3-exit', '映写室の扉', 37, 20, 29, 70)],
@@ -528,7 +529,7 @@ export const ROOMS = [
   {
     name: '帰室',
     roman: 'Ⅳ',
-    image: '/images/rooms/04-return/views/north.webp',
+    image: publicAsset('/images/rooms/04-return/views/north.webp'),
     tone: 'green',
     views: [
       [

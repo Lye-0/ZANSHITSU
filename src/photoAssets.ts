@@ -1,3 +1,4 @@
+import { publicAsset } from './publicAsset';
 import { ITEMS, PUZZLES, ROOMS, type SceneNode } from './data';
 import { WATER_STATES } from './engine';
 import { detailPhoto, viewPhoto } from './photography';
@@ -12,12 +13,13 @@ export function photographPaths() {
       for (const node of ROOMS[room].views[face] as readonly SceneNode[]) {
         paths.add(detailPhoto(room, node));
         if (node.kind === 'clue' && node.clue !== 'empty' && node.id !== 'r4-sockets')
-          paths.add(`/images/clues/${node.id}.webp`);
+          paths.add(publicAsset(`/images/clues/${node.id}.webp`));
       }
     }
   }
   for (const id of Object.keys(ITEMS))
-    for (const side of ['front', 'back']) paths.add(`/images/items/${id}/${side}.webp`);
+    for (const side of ['front', 'back'])
+      paths.add(publicAsset(`/images/items/${id}/${side}.webp`));
   for (const id of STATE_PHOTO_IDS)
     for (const state of [
       'base',
@@ -50,10 +52,10 @@ export function photographPaths() {
     '02-washroom/states/wrench-taken.webp',
     '04-return/states/east-box-open.webp',
   ])
-    paths.add('/images/rooms/' + path);
-  paths.add('/images/clues/bathtub-full.webp');
-  paths.add('/images/components/markings/mirror-number.webp');
-  paths.add('/images/clues/r3-film-clue.webp');
-  paths.add('/images/rooms/04-return/states/ceiling-unlit.webp');
+    paths.add(publicAsset('/images/rooms/') + path);
+  paths.add(publicAsset('/images/clues/bathtub-full.webp'));
+  paths.add(publicAsset('/images/components/markings/mirror-number.webp'));
+  paths.add(publicAsset('/images/clues/r3-film-clue.webp'));
+  paths.add(publicAsset('/images/rooms/04-return/states/ceiling-unlit.webp'));
   return [...paths].sort();
 }

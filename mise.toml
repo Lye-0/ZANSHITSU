@@ -25,3 +25,11 @@ run = "pnpm test"
 [tasks.preview]
 description = "Serve the production build locally"
 run = "pnpm preview --port 4187 --strictPort"
+
+[tasks."build:pages"]
+description = "Build for GitHub Pages"
+run = "pnpm build:pages"
+
+[tasks."preview:pages"]
+description = "Preview the GitHub Pages project path"
+run = "pnpm preview:pages"

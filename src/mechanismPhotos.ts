@@ -1,3 +1,4 @@
+import { publicAsset } from './publicAsset';
 export type Rect = [number, number, number, number];
 export type MechanismPhoto = {
   controls: Rect;
@@ -124,5 +125,6 @@ export const STATE_PHOTO_IDS = [
   'r4-balance',
 ];
 export const componentPhoto = (group: string, name: string | number) =>
-  `/images/components/${group}/${name}.webp`;
-export const statePhoto = (id: string, state: string) => `/images/mechanisms/${id}/${state}.webp`;
+  publicAsset(`/images/components/${group}/${name}.webp`);
+export const statePhoto = (id: string, state: string) =>
+  publicAsset(`/images/mechanisms/${id}/${state}.webp`);

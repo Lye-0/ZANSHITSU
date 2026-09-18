@@ -182,6 +182,46 @@ describe('complete progression', () => {
 });
 
 describe('save recovery', () => {
+  it.each([1, 2])(
+    'previous version %s can collect the newly supplied box key and finish',
+    (version) => {
+      const before = {
+        ...freshGame(),
+        version,
+        started: true,
+        room: 3,
+        unlocked: 3,
+        solved: ['r4-power', 'r4-gears', 'r4-balance', 'r4-memory'],
+        opened: ['r4-memory'],
+        mounted: ['seal1', 'seal2', 'seal3', 'seal4'],
+        inventory: ['seal1', 'seal2', 'seal3', 'seal4'],
+      };
+      let s = parseSave(JSON.stringify(before))!;
+      expect(s.collected).not.toContain('exitKey');
+      expect(canAccess(s, PUZZLES['r4-exit'])).toBe(false);
+      s = take(s, 'exitKey');
+      expect(s.inventory).toContain('exitKey');
+      for (const seal of ['seal1', 'seal2', 'seal3', 'seal4']) s = install(s, 'r4-exit', seal);
+      s = install(s, 'r4-exit', 'exitKey');
+      const resumed = parseSave(JSON.stringify(s))!;
+      expect(resumed.inventory).not.toContain('exitKey');
+      expect(resumed.installed).toContain('r4-exit');
+      expect(take(resumed, 'exitKey')).toBe(resumed);
+      expect(leaveRoom(solve(resumed, 'r4-exit', [2, 6, 9, 4])).finished).toBe(true);
+    },
+  );
+  it('the final key is collected only from the unlocked open box in room four', () => {
+    const locked = { ...freshGame(), room: 3, unlocked: 3 };
+    expect(take(locked, 'exitKey')).toBe(locked);
+    const solved = { ...locked, solved: ['r4-memory'] };
+    expect(take(solved, 'exitKey')).toBe(solved);
+    const open = openContainer(solved, 'r4-memory');
+    expect(open.inventory).not.toContain('exitKey');
+    expect(take({ ...open, room: 2 }, 'exitKey').inventory).not.toContain('exitKey');
+    const taken = take(open, 'exitKey');
+    expect(taken.inventory).toEqual(['exitKey']);
+    expect(take(taken, 'exitKey')).toBe(taken);
+  });
   it('migrates automatically awarded legacy items without respawning used items', () => {
     const legacy = {
       ...freshGame(),

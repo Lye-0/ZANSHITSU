@@ -100,8 +100,13 @@ export const PHOTO_MECHANISMS: Record<string, MechanismPhoto> = {
     reward: [42, 52, 18, 16],
     openControls: [23, 32.7, 55, 7.7],
   },
-  'r4-memory': { controls: [12, 40, 74, 14], pull: [40, 69, 20, 16], reset: [13, 63, 7, 7] },
-  'r4-exit': { controls: [15, 44, 66, 13], pull: [43, 65, 47, 13] },
+  'r4-memory': {
+    controls: [12, 40, 74, 14],
+    pull: [40, 69, 20, 16],
+    reset: [13, 63, 7, 7],
+    reward: [18, 40, 62, 17],
+  },
+  'r4-exit': { controls: [15, 44, 66, 13], pull: [43, 65, 47, 13], fitting: [22, 64, 10, 13] },
 };
 export const STATE_PHOTO_IDS = [
   'r1-drawer',

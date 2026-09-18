@@ -65,6 +65,7 @@ export const ITEMS: Record<string, Item> = {
   },
   seal3: { id: 'seal3', name: '眼の銘板', icon: '○', back: '9' },
   seal4: { id: 'seal4', name: '角の銘板', icon: '△', back: '2' },
+  exitKey: { id: 'exitKey', name: '扉の鍵', icon: '⚿', description: '黒ずんだ鉄の鍵。' },
 };
 export const PUZZLES: Record<string, Puzzle> = Object.fromEntries(
   (
@@ -339,7 +340,7 @@ export const PUZZLES: Record<string, Puzzle> = Object.fromEntries(
         reward: 'seal4',
         motif: 'final-balance',
         hints: [
-          '棚の裏に、新しい式がある。',
+          '棚の裏の紙に、四つの式がある。',
           '○−△=2、□=○+△、◇+△=○、合計は10。',
           '○=3、△=1、□=4、◇=2。',
         ],
@@ -353,6 +354,7 @@ export const PUZZLES: Record<string, Puzzle> = Object.fromEntries(
         initial: [],
         glyphs: true,
         requires: ['r4-balance'],
+        reward: 'exitKey',
         hints: [
           '机に残った紙と、最初の部屋の額を。',
           '初めの四つに、紙の四つを続ける。',
@@ -368,11 +370,12 @@ export const PUZZLES: Record<string, Puzzle> = Object.fromEntries(
         initial: [0, 0, 0, 0],
         modulus: 10,
         requires: ['r4-memory'],
+        item: 'exitKey',
         motif: 'seals',
         hints: [
-          '四枚の銘板を裏返す。',
+          '小箱の鍵を扉へ。四枚の銘板を裏返す。',
           '扉の並びは、角・月・眼・滴。',
-          '△=2、☾=6、○=9、◇=4。2694。',
+          '角=2、月=6、眼=9、滴=4。2694。',
         ],
       },
     ] satisfies Puzzle[]
@@ -538,11 +541,11 @@ export const ROOMS = [
       ],
       [
         puzzle('r4-balance', '棚の四つの秤', 29, 22, 42, 56),
-        clue('r4-equations', '棚の裏の刻印', 'equations', 70, 60, 17, 17, 'r4-gears'),
+        clue('r4-equations', '棚の裏の紙', 'equations', 70, 60, 17, 17),
       ],
       [
         puzzle('r4-gears', '机の上の連動輪', 25, 18, 52, 35),
-        clue('r4-paper', '机の引き出しの紙', 'memory', 33, 66, 40, 20, 'r4-balance'),
+        clue('r4-paper', '机の引き出しの紙', 'memory', 33, 66, 40, 20),
         puzzle('r4-power', '電話の下の配電盤', 20, 49, 35, 18),
       ],
       [clue('echo-3', '天井の刻印', 'echo', 35, 36, 30, 25, 'r4-power')],

@@ -331,3 +331,31 @@ Edit this ceiling photograph with absolutely identical framing, camera, vent, co
 ### ceiling-restored
 
 Edit this lit ceiling photograph. Preserve EXACT camera, fluorescent light already ON, vent, concrete slabs, framing and soft green-brown illumination. Add a small physically scratched clue into the concrete at x28% y67%, entirely inside x21-35%, y60-75%. It consists of tiny Roman numeral IV at top, a concentric double-circle with central dot in the middle, and the digit 3 underneath. Readable worn charcoal-gray incised lines with naturally chipped concrete, not glowing, not a label or plaque, no rectangle or patch edge. Only this little marking changes. The clue must be part of the wall material, unobtrusive but visible under restored light.
+
+## 帰室：固定の手掛かり・小箱の鍵・眼の最終錠（2026-09-18）
+
+内蔵 image_gen を使用。採用先は `mechanisms/r4-memory/{reward,empty}.webp`、`mechanisms/r4-exit/{base,installed}.webp`、`items/exitKey/{front,back}.webp`。旧白紙・旧空箱は削除。透過PNGはアルファを保ったWebPへ変換。
+
+### Door
+
+Use case: precise-object-edit. Edit reference 1, a square photorealistic old escape-game door mechanism. Keep exact framing, camera, textures, four round sockets, four blank number rollers and lever positions. Replace ONLY the THIRD engraved symbol (circle at x57%,y18%) with a recessed almond-shaped EYE with central round pupil, matching the eye design on reference 2. Keep triangle, crescent and diamond unchanged. Also add one modest authentic antique keyhole in a tarnished brass oval escutcheon centred at x27%,y70%, about 8% of image wide and 11% high, in the unused metal area LEFT of the existing lever. Keyhole is clearly physically cut metal, key absent. All mechanisms stay same size/location; no text or numbers, no UI. Match subdued aged photographic lighting and surface wear.
+
+### Installed
+
+Use case: precise-object-edit. Reference 1 is edit target: photograph of final bronze door mechanism. Preserve exact square framing, camera, all four top symbols (triangle crescent EYE diamond), sockets, blank drums, lever, metal textures, lighting and every position. Reference 2 is the key to insert. Show this iron skeleton key now physically INSERTED into the keyhole at x27%, y68%, left of lever. Shaft goes into lock perpendicular to plate with appropriate foreshortening, only modest round bow and short shaft visible, bow hanging slightly down. Real contact shadow, no giant floating key, don't alter keyhole escutcheon. Everything except this inserted key remains identical. No extra symbols or text.
+
+### Box
+
+Use case: precise-object-edit. Reference image is edit target, open antique brass-trimmed wooden box. Keep exact square crop, camera, lid, hinges, front and lighting. In its currently empty felt-lined interior at x27% to73%, y43% to54%, place a single clearly visible antique dark iron skeleton key, lying horizontally: round hollow circular bow at LEFT, long straight shaft toward RIGHT, one square stepped tooth at right end pointing down. Key about 44% of frame wide and 9% high, midtone worn iron highlights, authentic contact shadow on interior floor; clearly separate from lid/front trim and visible on smartphone. Change nothing else, no other object, no text, no overlay, realistic photograph.
+
+### Empty
+
+Use case: precise-object-edit. Edit the provided box photograph: remove ONLY the iron key from the box interior and reconstruct the same aged dark brown felt floor beneath it. Empty open box. Preserve exact camera, crop, lighting, all edges, lid, hinges, highlights, front panel, wear, dimensions, colours and all other pixels as closely as possible. This is the after-pickup state of the identical game scene. No other changes.
+
+### Key
+
+Use case: product-mockup. Create inventory item photo of EXACT SAME antique iron skeleton key shown in reference box. Isolate only key on genuinely TRANSPARENT background, no box/felt, no opaque background. Single key horizontal, hollow round circular bow on LEFT, straight cylindrical long shaft extending RIGHT with collar next to bow and a single rectangular stepped tooth extending down at right end. Match exact shape, worn black-brown iron with muted metal highlights. Entire key inside frame with ample transparent margin, centred, fills 80% width. Square canvas, orthographic top view, photorealistic. No text, numbers, border or extra items.
+
+### KeyBack
+
+Use case: precise-object-edit. Inventory REVERSE SIDE photo of the exact antique iron key in reference: turn the key over to show its other face, maintaining a horizontal orientation with hollow round bow on LEFT and shaft extending RIGHT, rectangular stepped tooth now extends UP at right end. Same proportions, size, square framing, lighting, worn dark iron texture. Genuine transparent alpha background throughout, no opaque backdrop, no letters/numbers/markings or added objects. Render only the single key.

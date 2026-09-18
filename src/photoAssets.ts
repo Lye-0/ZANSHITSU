@@ -26,6 +26,9 @@ export function photographPaths() {
     ])
       paths.add(statePhoto(id, state));
   paths.add(statePhoto('r4-exit', 'base'));
+  paths.add(statePhoto('r4-exit', 'installed'));
+  paths.add(statePhoto('r4-memory', 'reward'));
+  paths.add(statePhoto('r4-memory', 'empty'));
   for (const state of WATER_STATES) paths.add(statePhoto('r2-water', `levels/${state.join('-')}`));
   for (const state of ['reward-detail', 'empty-detail']) paths.add(statePhoto('r2-water', state));
   for (const [group, names] of Object.entries({
@@ -45,7 +48,6 @@ export function photographPaths() {
     '01-waiting/states/south-cabinet-open.webp',
     '02-washroom/states/floor-empty.webp',
     '02-washroom/states/wrench-taken.webp',
-    '04-return/states/box-open.webp',
     '04-return/states/east-box-open.webp',
   ])
     paths.add('/images/rooms/' + path);

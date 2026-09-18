@@ -1,6 +1,6 @@
 # 採用写真の管理
 
-`public/images/` には採用したWebPだけを置く。現在215点。元PNG・候補・生成アトラス・検証画面は配信フォルダに含めない。
+`public/images/` には採用したWebPだけを置く。現在217点。元PNG・候補・生成アトラス・検証画面は配信フォルダに含めない。
 
 ```text
 public/images/
@@ -20,7 +20,7 @@ public/images/
     keys/                  # 6種類の刻印ボタン
     tiles/                 # 1〜8の小蓋
   clues/                   # 紙・壁・投影などに手掛かりが含まれる写真
-  items/<item>/            # 14種類の front / back
+  items/<item>/            # 15種類の front / back
   shared/                  # 未解放の紙など共用材質
 ```
 

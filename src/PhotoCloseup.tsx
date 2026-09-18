@@ -75,8 +75,9 @@ export function Closeup({
   if (p?.id === 'r2-water' && installed)
     photo = statePhoto('r2-water', `levels/${values.join('-')}`);
   if (p?.id === 'r3-overlay' && !opened) photo = statePhoto(p.id, 'base');
-  if (p?.id === 'r4-exit' || node.id === 'r4-sockets') photo = statePhoto('r4-exit', 'base');
-  if (p?.id === 'r4-memory' && opened) photo = '/images/rooms/04-return/states/box-open.webp';
+  if (p?.id === 'r4-exit') photo = statePhoto('r4-exit', installed ? 'installed' : 'base');
+  if (p?.id === 'r4-memory' && opened)
+    photo = statePhoto('r4-memory', collected ? 'empty' : 'reward');
   if (
     !p &&
     node.kind === 'clue' &&
@@ -166,16 +167,7 @@ export function Closeup({
                 className="photo-hit pull-hit"
                 style={photoRect(conf.pull)}
                 disabled={!solved}
-                aria-label="収納を開ける"
-                onClick={() => onOpen(p.id)}
-              />
-            )}
-            {p.id === 'r4-memory' && (
-              <button
-                className="photo-hit"
-                style={photoRect(conf.pull)}
-                disabled={!solved}
-                aria-label="小箱を開ける"
+                aria-label={p.id === 'r4-memory' ? '小箱を開ける' : '収納を開ける'}
                 onClick={() => onOpen(p.id)}
               />
             )}

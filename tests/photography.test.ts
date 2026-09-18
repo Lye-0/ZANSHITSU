@@ -10,6 +10,13 @@ it('every selectable photo including all water states exists', () => {
   for (const path of photographPaths())
     expect(existsSync(resolve('public', '.' + path)), path).toBe(true);
 });
+it('帰室の二枚の紙は他の謎の進行で白紙から書き換わらない', () => {
+  for (const id of ['r4-equations', 'r4-paper']) {
+    const node = ROOMS[3].views.flat().find((n) => n.id === id)!;
+    expect(node.gate).toBeUndefined();
+    expect(detailPhoto(3, node)).toBe(`/images/clues/${id}.webp`);
+  }
+});
 it('参照されない写真や候補を配信フォルダに残さない', () => {
   const walk = (p: string): string[] =>
     readdirSync(p, { withFileTypes: true }).flatMap((d) =>
@@ -38,7 +45,7 @@ it('全24方向と42対象の採用写真・輪郭がそろっている', () => 
       }
     }
 });
-it('14種類の持ち物の表と裏が実在する', () => {
+it('15種類の持ち物の表と裏が実在する', () => {
   for (const id of Object.keys(ITEMS))
     for (const side of ['front', 'back'])
       expect(existsSync(resolve('public/images/items', id, side + '.webp'))).toBe(true);

@@ -125,16 +125,13 @@ export const CLOSEUP_FILES: Record<string, string> = {
   'r4-memory': 'box',
   'r4-exit': 'door-lock',
   'r4-sockets': 'door-lock',
-  'r4-paper': 'desk-paper',
 };
 export const detailPhoto = (room: number, node: SceneNode) =>
   STATE_PHOTO_IDS.includes(node.id) || node.id.endsWith('-exit') || node.id === 'r4-sockets'
     ? statePhoto(node.id === 'r4-sockets' ? 'r4-exit' : node.id, 'base')
     : node.kind === 'clue' && node.clue !== 'empty' && !node.gate
       ? `/images/clues/${node.id}.webp`
-      : ['r1-equation', 'r4-equations'].includes(node.id)
-        ? '/images/shared/wall-paper.webp'
-        : `/images/rooms/${ROOM_FOLDERS[room]}/closeups/${CLOSEUP_FILES[node.id] ?? node.id}.webp`;
+      : `/images/rooms/${ROOM_FOLDERS[room]}/closeups/${CLOSEUP_FILES[node.id] ?? node.id}.webp`;
 const OPEN_SHAPES: Record<string, Shape> = {
   'r1-drawer': { bounds: [41, 55, 19, 9], points: '9,0 91,0 100,48 100,100 0,100 0,48' },
   'r1-cabinet': {

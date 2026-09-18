@@ -417,11 +417,7 @@ export default function App() {
                 <div
                   className="scene-paper last-equation"
                   aria-hidden="true"
-                  style={
-                    game.solved.includes('r4-gears')
-                      ? { backgroundImage: 'url(/images/clues/r4-equations.webp)' }
-                      : undefined
-                  }
+                  style={{ backgroundImage: 'url(/images/clues/r4-equations.webp)' }}
                 />
               )}
               {game.face === 0 && game.solved.includes(`r${game.room + 1}-exit`) && (

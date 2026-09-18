@@ -287,7 +287,9 @@ export function parseSave(raw: string | null): GameState | null {
       ? [
           ...new Set([
             ...x.inventory,
-            ...x.solved.flatMap((id: string) => (PUZZLES[id]?.reward ? [PUZZLES[id].reward] : [])),
+            ...x.solved.flatMap((id: string) =>
+              id !== 'r4-memory' && PUZZLES[id]?.reward ? [PUZZLES[id].reward] : [],
+            ),
             ...x.installed.flatMap((id: string) => (PUZZLES[id]?.item ? [PUZZLES[id].item] : [])),
           ]),
         ]

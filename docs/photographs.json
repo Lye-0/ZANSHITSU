@@ -1,8 +1,8 @@
 {
   "version": 2,
   "updated": "2026-09-18",
-  "count": 215,
-  "bytes": 27800444,
+  "count": 217,
+  "bytes": 27443142,
   "photos": [
     {
       "path": "public/images/clues/bathtub-full.webp",
@@ -507,6 +507,20 @@
       "height": 310,
       "bytes": 40458,
       "sha256": "6296607b88245825f37b66f483afb364350431f9e32ea8161c103802182a551d"
+    },
+    {
+      "path": "public/images/items/exitKey/back.webp",
+      "width": 640,
+      "height": 640,
+      "bytes": 35508,
+      "sha256": "4eff86055092b5e5d3e02c26f384782859ae14a47247b9f2b595e89dd30d7ec2"
+    },
+    {
+      "path": "public/images/items/exitKey/front.webp",
+      "width": 640,
+      "height": 640,
+      "bytes": 29878,
+      "sha256": "1bc637ecab937d11c5acd70e189723ce8ef2564ba4b43019c1374f0f7aece2e2"
     },
     {
       "path": "public/images/items/float/back.webp",
@@ -1156,8 +1170,29 @@
       "path": "public/images/mechanisms/r4-exit/base.webp",
       "width": 1250,
       "height": 1250,
-      "bytes": 630618,
-      "sha256": "71002a0a5a81617fe3652ae58bfbfc2bfdea57a18135b34845d0ddd0053d3c37"
+      "bytes": 399634,
+      "sha256": "f3ff9a0b6000eaf4918cb1217dbb0864b093071b52a549beab4d973a50709e34"
+    },
+    {
+      "path": "public/images/mechanisms/r4-exit/installed.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 336628,
+      "sha256": "9ef8d6796c253c06cd30cb9a4d978903a2bc39ea46a88107657e0f96c37e4a65"
+    },
+    {
+      "path": "public/images/mechanisms/r4-memory/empty.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 124156,
+      "sha256": "7e7e1eb8fd0270a85b935dd4d899047ad54914078b63c03eee72fc0277dbdea6"
+    },
+    {
+      "path": "public/images/mechanisms/r4-memory/reward.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 127318,
+      "sha256": "b58c4bdb2d44d33732f2a7e7e1dfedc63940e46acf0e3535ac76598b385634f3"
     },
     {
       "path": "public/images/rooms/01-waiting/closeups/echo-0.webp",
@@ -1398,13 +1433,6 @@
       "sha256": "684fa84502748ad0f3102d082cfc6c3f6e049f164aecd5309c4ac379646e523e"
     },
     {
-      "path": "public/images/rooms/04-return/closeups/desk-paper.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 69774,
-      "sha256": "d226cc2b9b99cb6ddf6a1b9792064339ca550fac9d6714adf759001f7fbe55ad"
-    },
-    {
       "path": "public/images/rooms/04-return/closeups/echo-3.webp",
       "width": 900,
       "height": 900,
@@ -1438,13 +1466,6 @@
       "height": 1254,
       "bytes": 426406,
       "sha256": "b72f2ff8c003912deb5c237f8af1f12880cf39916f4344a4223eba36649b808c"
-    },
-    {
-      "path": "public/images/rooms/04-return/states/box-open.webp",
-      "width": 900,
-      "height": 900,
-      "bytes": 92990,
-      "sha256": "c9d75bba1ee5acdfbc40d15ace43ef6546da9be20ec9729e7019530e79131b09"
     },
     {
       "path": "public/images/rooms/04-return/states/ceiling-unlit.webp",
@@ -1501,13 +1522,6 @@
       "height": 625,
       "bytes": 99506,
       "sha256": "18484718d274c7d6f1dcfc0b9a8ef5d6349c02e3bc8c0e3947cd48952d543286"
-    },
-    {
-      "path": "public/images/shared/wall-paper.webp",
-      "width": 1254,
-      "height": 1254,
-      "bytes": 617042,
-      "sha256": "2d33725f0f0e3b3cb47ee525057b61c3836206446b15a01acd488f4fdf6034fe"
     }
   ]
 }

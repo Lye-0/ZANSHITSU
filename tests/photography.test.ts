@@ -5,26 +5,12 @@ import { ITEMS, ROOMS } from '../src/data';
 import type { SceneNode } from '../src/data';
 import { detailPhoto, outline, SHAPES, viewPhoto } from '../src/photography';
 import { freshGame } from '../src/engine';
+import { photographPaths } from '../src/photoAssets';
+it('every selectable photo including all water states exists', () => {
+  for (const path of photographPaths())
+    expect(existsSync(resolve('public', '.' + path)), path).toBe(true);
+});
 it('参照されない写真や候補を配信フォルダに残さない', () => {
-  const used = new Set<string>();
-  for (let r = 0; r < 4; r++)
-    for (let f = 0; f < 6; f++) {
-      used.add(viewPhoto(r, f));
-      for (const n of ROOMS[r].views[f] as readonly SceneNode[]) used.add(detailPhoto(r, n));
-    }
-  for (const id of Object.keys(ITEMS))
-    for (const side of ['front', 'back']) used.add(`/images/items/${id}/${side}.webp`);
-  for (const path of [
-    '01-waiting/states/drawer-open.webp',
-    '01-waiting/states/cabinet-open.webp',
-    '01-waiting/states/west-drawer-open.webp',
-    '01-waiting/states/south-cabinet-open.webp',
-    '02-washroom/states/floor-empty.webp',
-    '02-washroom/states/wrench-taken.webp',
-    '04-return/states/box-open.webp',
-    '04-return/states/east-box-open.webp',
-  ])
-    used.add('/images/rooms/' + path);
   const walk = (p: string): string[] =>
     readdirSync(p, { withFileTypes: true }).flatMap((d) =>
       d.isDirectory()
@@ -35,7 +21,7 @@ it('参照されない写真や候補を配信フォルダに残さない', () =
               .replace(/^public/, ''),
           ],
     );
-  expect(walk('public/images').sort()).toEqual([...used].sort());
+  expect(walk('public/images').sort()).toEqual(photographPaths());
 });
 it('全24方向と44対象の採用写真・輪郭がそろっている', () => {
   for (let room = 0; room < 4; room++)
@@ -61,6 +47,7 @@ it('開閉と道具取得が写真選択に反映される', () => {
   const s = {
     ...freshGame(),
     solved: ['r1-drawer', 'r1-cabinet', 'r4-memory'],
+    opened: ['r1-drawer', 'r1-cabinet', 'r4-memory'],
     inventory: ['wrench'],
   };
   for (const [r, f, end] of [

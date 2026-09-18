@@ -1,15 +1,498 @@
 {
-  "version": 1,
+  "version": 2,
   "updated": "2026-09-18",
-  "count": 100,
-  "bytes": 9585830,
+  "count": 214,
+  "bytes": 26983836,
   "photos": [
     {
+      "path": "public/images/clues/bathtub-full.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 202744,
+      "sha256": "7f2c0e0c413037cc478cc6e84c8b24ea3f8e33dd9dfe342cd9ac04df12406f51"
+    },
+    {
+      "path": "public/images/clues/echo-0.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 147238,
+      "sha256": "60b52b23a3075940ecf5cd09bb3d206e1814732deccdb2f715630d58f9227c67"
+    },
+    {
+      "path": "public/images/clues/echo-1.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 139442,
+      "sha256": "6e731861039b57baa28fa9a15ab4df81cc288b9861fa30c17dbe939164bfa495"
+    },
+    {
+      "path": "public/images/clues/echo-2.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 154178,
+      "sha256": "1de270fa734e636701b8770f1284c60e8680e13a21d4ba62c3821f0f50dd2b4b"
+    },
+    {
+      "path": "public/images/clues/echo-3.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 151332,
+      "sha256": "73b809b9f003b04557d5ef045219c63a1045b3ccc62c3828796fb70f753bb792"
+    },
+    {
+      "path": "public/images/clues/r1-ceiling.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 183038,
+      "sha256": "96b91328e73c33af7826802dcffed8796883b5fc6e7eae93fd9070b7c8cd412d"
+    },
+    {
+      "path": "public/images/clues/r1-equation.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 140182,
+      "sha256": "3886dd52fda38b0d06613718dd6e75176c7fe04d093855d1916165c4fcf3c7d9"
+    },
+    {
+      "path": "public/images/clues/r1-floor.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 117580,
+      "sha256": "74795d86b25bae31f14df00a470efbea86a6b2da07c59effa3b04ac6908587bf"
+    },
+    {
+      "path": "public/images/clues/r1-note.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 119322,
+      "sha256": "66069aa449844c87a66ed859ff46e3a8f491bc03e6ae6f9a8027fc7ac922f232"
+    },
+    {
+      "path": "public/images/clues/r1-print.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 102102,
+      "sha256": "a716f2f56698074d384725c8f30d03c81728aedca38e82d23d636928235257e7"
+    },
+    {
+      "path": "public/images/clues/r2-tub.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 93750,
+      "sha256": "6c42ed475bb76fce0c24c4d575a78c58f1e717b0520ff28473dff793e2ef647d"
+    },
+    {
+      "path": "public/images/clues/r3-film-clue.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 57400,
+      "sha256": "5b0dc5507c255d143cf1bd9707849b390e4bd5121301bcfa88c35a9f7b6e3481"
+    },
+    {
+      "path": "public/images/clues/r3-plan.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 109734,
+      "sha256": "730273068f85f6a938d4302fbf5ffcdd0e45caa568222f3130fed074d85db599"
+    },
+    {
+      "path": "public/images/clues/r3-screen.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 232528,
+      "sha256": "1a8c42c4b2902ac476c0b9498825baaf7419125a731d436abae1b31cc0450111"
+    },
+    {
+      "path": "public/images/clues/r4-equations.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 128054,
+      "sha256": "5bbb47934b24a9680977aa678a47b2653b85c8ac59a4f76a4d770d96eb5077d9"
+    },
+    {
+      "path": "public/images/clues/r4-paper.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 69504,
+      "sha256": "8393808a26ba4ed0d4f619d60e8410bcba20b81f620a80432e9818fa288a25bd"
+    },
+    {
+      "path": "public/images/components/drums/0.webp",
+      "width": 351,
+      "height": 440,
+      "bytes": 53024,
+      "sha256": "6cc41d58c33f651623481ee7f87bf15bd8c5fcb14291c0bb78bf3318e1ca04ec"
+    },
+    {
+      "path": "public/images/components/drums/1.webp",
+      "width": 351,
+      "height": 440,
+      "bytes": 53092,
+      "sha256": "8e4929e83d15e8f3151ece0e33483c66b9133ddfb5db485374cb6992bc01ab27"
+    },
+    {
+      "path": "public/images/components/drums/2.webp",
+      "width": 350,
+      "height": 440,
+      "bytes": 54624,
+      "sha256": "ba1b8be6682030cfd76a3e5eb1fdf8159cdc98337e84d579b108eb4b93e96101"
+    },
+    {
+      "path": "public/images/components/drums/3.webp",
+      "width": 351,
+      "height": 440,
+      "bytes": 48406,
+      "sha256": "6534e5b95c78320e2111b591de4cf9c5daf7f953ec23e9e688d1399d5f8a8251"
+    },
+    {
+      "path": "public/images/components/drums/4.webp",
+      "width": 351,
+      "height": 440,
+      "bytes": 53458,
+      "sha256": "a1c4a972020d7e8411a9bad06b2bee2a8b77313926d460bfdbc2869f42b11cff"
+    },
+    {
+      "path": "public/images/components/drums/5.webp",
+      "width": 351,
+      "height": 439,
+      "bytes": 53836,
+      "sha256": "7b626a3ad926107030b74185263362337dc38ca14d343b3c237a0937eebfe0c6"
+    },
+    {
+      "path": "public/images/components/drums/6.webp",
+      "width": 351,
+      "height": 439,
+      "bytes": 55212,
+      "sha256": "07a7881036ffd8309a4a246215aedf3e7bc408c62e4336c0291b7f02b26932fe"
+    },
+    {
+      "path": "public/images/components/drums/7.webp",
+      "width": 350,
+      "height": 439,
+      "bytes": 54604,
+      "sha256": "80bf9b96c8a648a940551b62cff0046a14d32ec8b5dcc7a69d2eb17b82ca60b0"
+    },
+    {
+      "path": "public/images/components/drums/8.webp",
+      "width": 351,
+      "height": 439,
+      "bytes": 53130,
+      "sha256": "1d9857b794b941f0399799e76461cabe594df93e1a807e5eb600e2b1a0132641"
+    },
+    {
+      "path": "public/images/components/drums/9.webp",
+      "width": 351,
+      "height": 439,
+      "bytes": 53468,
+      "sha256": "6e5eb0aef76b0937e259de6a1faaf946286621694001411988ae26b6486c12e0"
+    },
+    {
+      "path": "public/images/components/films/0.webp",
+      "width": 1020,
+      "height": 303,
+      "bytes": 67508,
+      "sha256": "0ca53c975bf1b0f905e167823297238efe1bf5c875b9f3e9047b0a2c895ab634"
+    },
+    {
+      "path": "public/images/components/films/1.webp",
+      "width": 1020,
+      "height": 303,
+      "bytes": 68742,
+      "sha256": "36db01eb88cf90d0e8f4140c85e082fef4b6667366007ecde23df6c4606febde"
+    },
+    {
+      "path": "public/images/components/films/2.webp",
+      "width": 1020,
+      "height": 304,
+      "bytes": 66024,
+      "sha256": "e936757c622465c456f2026f65be6e1ab2cfbe5d4727d9731f79548f1f24d18c"
+    },
+    {
+      "path": "public/images/components/films/3.webp",
+      "width": 2168,
+      "height": 720,
+      "bytes": 328282,
+      "sha256": "d31c5b8cb3ee50a3f77590cee1fda0ba393b72dac9dfc8b7c8d97a5342752bb1"
+    },
+    {
+      "path": "public/images/components/films/4.webp",
+      "width": 1020,
+      "height": 303,
+      "bytes": 53720,
+      "sha256": "be7ed455e9186978743bef536dd0800063c738bb9ee93a6eb43d090ef8f10235"
+    },
+    {
+      "path": "public/images/components/hands/hour.webp",
+      "width": 883,
+      "height": 883,
+      "bytes": 44790,
+      "sha256": "7c1ccddbdf1a672858fb53a9f50dc844cd77b831c96407c8e8326b41a5525805"
+    },
+    {
+      "path": "public/images/components/hands/minute.webp",
+      "width": 883,
+      "height": 883,
+      "bytes": 37628,
+      "sha256": "af0be97a4a910fb4c113cb9a26223b498bad63e0c23460f35102f386b64b0ba7"
+    },
+    {
+      "path": "public/images/components/keys/0.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 90746,
+      "sha256": "3f8807c265f9fb6d493859058a4e5fbe17f6b62692b310e0a8e7b03586e25032"
+    },
+    {
+      "path": "public/images/components/keys/1.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 93150,
+      "sha256": "0371dbc47ee2f352ab04c0a12c70262f45516a9a6d82285916a97de6444bca02"
+    },
+    {
+      "path": "public/images/components/keys/2.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 89462,
+      "sha256": "5ca461339735ceee22b80ed2bb91a6bf5e68de3ea13d35f4f13ad87d784f3af8"
+    },
+    {
+      "path": "public/images/components/keys/3.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 90720,
+      "sha256": "4ccfe8473cf31c523044a8d146f003ac15c21471eeb1300767fdfd1acf426eb8"
+    },
+    {
+      "path": "public/images/components/keys/4.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 91886,
+      "sha256": "421892339d31520b034020746d7bb7533a013c8341c4098064110befc80c7234"
+    },
+    {
+      "path": "public/images/components/keys/5.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 89980,
+      "sha256": "35a5a8e97d201f99c371b4d78f9daab4204e2c7b694efb3431135e4ed4d32398"
+    },
+    {
+      "path": "public/images/components/lamps/off.webp",
+      "width": 883,
+      "height": 883,
+      "bytes": 303772,
+      "sha256": "940e892d08d2519b45459a50fed37382245474b6fe39114d23cad202e8f8cf11"
+    },
+    {
+      "path": "public/images/components/lamps/on.webp",
+      "width": 883,
+      "height": 883,
+      "bytes": 295778,
+      "sha256": "d569f3ef31eb5179d1acb058ef85d964e6f1a7a9fb956af034487b0077326bca"
+    },
+    {
+      "path": "public/images/components/pipes/elbow-0.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 112012,
+      "sha256": "3582a45281cc4fc490c183a9c70db814d1e516dc6effea5343bda4ecdc2b01da"
+    },
+    {
+      "path": "public/images/components/pipes/elbow-1.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 750874,
+      "sha256": "ea969d026e48e93cf85ebc3beebdc7fe65021745c2481ebc18551b3d4c696db7"
+    },
+    {
+      "path": "public/images/components/pipes/elbow-2.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 114040,
+      "sha256": "f7ba77e084f514b2340e2f2f73dbcc7486fc01ce23484b03cd74d81b8a0c2ad8"
+    },
+    {
+      "path": "public/images/components/pipes/elbow-3.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 111268,
+      "sha256": "0aa64fb47df05b6c2a3e05ff82db1c25c1cac80003f35bf652e441bb80172468"
+    },
+    {
+      "path": "public/images/components/pipes/straight-0.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 116994,
+      "sha256": "867be005aee5c1e3ca2bbccee9fad996acae4fbb6b3d7f62773501f0f041a6f9"
+    },
+    {
+      "path": "public/images/components/pipes/straight-1.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 113554,
+      "sha256": "2ef753367cbee8fddf2a34232543e7645dc3fadc53e53f4d443c3d8a9e3d2948"
+    },
+    {
+      "path": "public/images/components/rings/glass-0.webp",
+      "width": 720,
+      "height": 720,
+      "bytes": 113164,
+      "sha256": "cfb7aad0af036a0c8293f64b8e1f2da31df7d76c47f1de527ca2d84f929b4fab"
+    },
+    {
+      "path": "public/images/components/rings/glass-1.webp",
+      "width": 720,
+      "height": 720,
+      "bytes": 108996,
+      "sha256": "008cdcfd2e9165c46f30292a45ccf00a35a8d501d4c976e931b9ad44b83f19aa"
+    },
+    {
+      "path": "public/images/components/rings/glass-2.webp",
+      "width": 720,
+      "height": 720,
+      "bytes": 111594,
+      "sha256": "abcf8dea19c2ad1e3eb13d4c701cea0d9e4c0a34762f221e07e610852cf21025"
+    },
+    {
+      "path": "public/images/components/rings/metal-0.webp",
+      "width": 720,
+      "height": 720,
+      "bytes": 128778,
+      "sha256": "932a8d704d03af9634af6e0be31dd75b7877ad3b045a153696ce18674ea8cdb0"
+    },
+    {
+      "path": "public/images/components/rings/metal-1.webp",
+      "width": 720,
+      "height": 720,
+      "bytes": 127448,
+      "sha256": "c0a96010309e09c418ae9aa8c83560cfe66fc7f098a1dad7382e5543e66e5b1b"
+    },
+    {
+      "path": "public/images/components/rings/metal-2.webp",
+      "width": 720,
+      "height": 720,
+      "bytes": 127484,
+      "sha256": "5bef0d8590814d98a1dd8317814c8407e9a1cd05b42ac6a93360a13da759d3d0"
+    },
+    {
+      "path": "public/images/components/tiles/1.webp",
+      "width": 414,
+      "height": 414,
+      "bytes": 74466,
+      "sha256": "5d7a64d48a5965d8738ff1d96411a4269ad53bccc0def35d28525ffdf6c529a8"
+    },
+    {
+      "path": "public/images/components/tiles/2.webp",
+      "width": 414,
+      "height": 414,
+      "bytes": 73364,
+      "sha256": "d3b0492ad931f5dc4bae0430e1827ef47e1d36aed8953e00696afb058a9ffd4e"
+    },
+    {
+      "path": "public/images/components/tiles/3.webp",
+      "width": 414,
+      "height": 414,
+      "bytes": 70076,
+      "sha256": "bdff53517a8b0c992b34890eb7be277645fe2eca9e4a05ae9b80cca4b813d90c"
+    },
+    {
+      "path": "public/images/components/tiles/4.webp",
+      "width": 414,
+      "height": 414,
+      "bytes": 73948,
+      "sha256": "55df20cb71fd5a388ed059564a628379953e8a41a4c82d4ddf0faf381700163b"
+    },
+    {
+      "path": "public/images/components/tiles/5.webp",
+      "width": 414,
+      "height": 414,
+      "bytes": 73934,
+      "sha256": "8527d908f203fdb03c07faa6a145b8a9975aa1990bad1f1ef4197fa4f6187baf"
+    },
+    {
+      "path": "public/images/components/tiles/6.webp",
+      "width": 414,
+      "height": 414,
+      "bytes": 73724,
+      "sha256": "882ae1a5ba647ec567884247a28afe07292c7f5106620b943ad1afa8a054b9af"
+    },
+    {
+      "path": "public/images/components/tiles/7.webp",
+      "width": 414,
+      "height": 414,
+      "bytes": 73146,
+      "sha256": "24d151937dc788955039b20c3a7c853ed96ac197e8f03be0028e71010c1d58bc"
+    },
+    {
+      "path": "public/images/components/tiles/8.webp",
+      "width": 414,
+      "height": 414,
+      "bytes": 67978,
+      "sha256": "82a8a5468959864a401c76753bb012e468b05c1a46ca46b31b181ab9a23024b1"
+    },
+    {
+      "path": "public/images/components/wheels/0.webp",
+      "width": 440,
+      "height": 440,
+      "bytes": 75924,
+      "sha256": "b1a82a03732622581cefed68e9bf612fd3a4ce72f9c8df7ba0264e9eed0090a2"
+    },
+    {
+      "path": "public/images/components/wheels/1.webp",
+      "width": 439,
+      "height": 440,
+      "bytes": 75334,
+      "sha256": "07d3e146ea396d1fbafca7d83c9d81c1a557c207d6c5673edcd6b09b6a2ef0a4"
+    },
+    {
+      "path": "public/images/components/wheels/2.webp",
+      "width": 439,
+      "height": 440,
+      "bytes": 76242,
+      "sha256": "89e504236823668306b11f44e06b35f90011d9d498075d84dda348258f077f68"
+    },
+    {
+      "path": "public/images/components/wheels/3.webp",
+      "width": 440,
+      "height": 440,
+      "bytes": 75340,
+      "sha256": "5022fe40dd67a56a8cc93220962a9c9fc710782f62be6b60bb59be548a838c4f"
+    },
+    {
+      "path": "public/images/components/wheels/4.webp",
+      "width": 440,
+      "height": 439,
+      "bytes": 75734,
+      "sha256": "c621e52ebdea8c07d8a5d830900e2713250e090a361adbf358b45bbd25cf8d63"
+    },
+    {
+      "path": "public/images/components/wheels/5.webp",
+      "width": 439,
+      "height": 439,
+      "bytes": 74946,
+      "sha256": "c74ab802cef17e63af5de9f824de4cccdbc67854854bcb06e43924fbbbf62d2e"
+    },
+    {
+      "path": "public/images/components/wheels/6.webp",
+      "width": 439,
+      "height": 439,
+      "bytes": 75730,
+      "sha256": "929054907a8da03804a875a255bedcbd19c71bc8a26346d87393dabcd0f2b71c"
+    },
+    {
+      "path": "public/images/components/wheels/7.webp",
+      "width": 440,
+      "height": 439,
+      "bytes": 74172,
+      "sha256": "4208e0029ede1f42e35fe7307cc90a6999801f6a8b0eb313cdf9385f1d84cec4"
+    },
+    {
       "path": "public/images/items/crank/back.webp",
-      "width": 310,
-      "height": 310,
-      "bytes": 33924,
-      "sha256": "4893c82851566e9f25b4a124663874994fc3b3a6fc04817e6921289815173be0"
+      "width": 623,
+      "height": 623,
+      "bytes": 126230,
+      "sha256": "6ee0e86c92c7435549894207521218278fb7723fa6b8cf80d888c9cad2acf345"
     },
     {
       "path": "public/images/items/crank/front.webp",
@@ -20,10 +503,10 @@
     },
     {
       "path": "public/images/items/float/back.webp",
-      "width": 309,
-      "height": 309,
-      "bytes": 32110,
-      "sha256": "1b1ed425e162b8ea908fbc5efca099f2207cbd9c05516d6041a4b805292e0372"
+      "width": 623,
+      "height": 623,
+      "bytes": 117382,
+      "sha256": "5d5e55aa243d597a41fb87f45fa37fbce27b418b61fe898a3533c9cac8f7571a"
     },
     {
       "path": "public/images/items/float/front.webp",
@@ -48,17 +531,17 @@
     },
     {
       "path": "public/images/items/glass/back.webp",
-      "width": 310,
-      "height": 310,
-      "bytes": 34484,
-      "sha256": "fedda7f3dd0fde6ef3d7c5949b801dc5cc4a254dddc0724224ecedb0ec101af3"
+      "width": 883,
+      "height": 883,
+      "bytes": 183522,
+      "sha256": "770b503b4080d67e18bfc9ede7a76eb578530726ff81326a785ae3c883c474da"
     },
     {
       "path": "public/images/items/glass/front.webp",
-      "width": 310,
-      "height": 310,
-      "bytes": 43356,
-      "sha256": "a4aeee82bae8e535564404599940af6413155764ff4699c69d1b863ac0efac64"
+      "width": 883,
+      "height": 883,
+      "bytes": 187006,
+      "sha256": "987487ca84911e1091e34ad1bdde3d20cdb7816f23871f2df69e36bc169ef915"
     },
     {
       "path": "public/images/items/handle/back.webp",
@@ -104,59 +587,59 @@
     },
     {
       "path": "public/images/items/seal1/back.webp",
-      "width": 309,
-      "height": 310,
-      "bytes": 36130,
-      "sha256": "cc3b6e890eb34ceb0276456964ee181cf8cd1bf60b8c7c28cbf7e3aa5ae683ca"
+      "width": 623,
+      "height": 623,
+      "bytes": 147740,
+      "sha256": "b3ea39f0f059fb1e36d633ebfe8a0e933d363c21255f2c8e2802de36737695cc"
     },
     {
       "path": "public/images/items/seal1/front.webp",
-      "width": 309,
-      "height": 310,
-      "bytes": 44692,
-      "sha256": "6aa706bb85cd6045d3ce9042c4de16d77d02722d6581782ecbd9aba6d3b15ad3"
+      "width": 623,
+      "height": 623,
+      "bytes": 158298,
+      "sha256": "3d2ed6eedeaab5b0298a07d64cc62ae49b57b4a3ca467cd903338faf2c86ff4e"
     },
     {
       "path": "public/images/items/seal2/back.webp",
-      "width": 310,
-      "height": 310,
-      "bytes": 39578,
-      "sha256": "e46ac3591c9fe7e84f535a5bb816d12a58d2c7dddcf276af6abb46a9d5851ff6"
+      "width": 623,
+      "height": 623,
+      "bytes": 143852,
+      "sha256": "b3dd23553da6c21b9e479d6bd77591cf0e3c3de630c4f16ed621719331d056cc"
     },
     {
       "path": "public/images/items/seal2/front.webp",
-      "width": 310,
-      "height": 310,
-      "bytes": 47826,
-      "sha256": "dd4609450feed12f11a4f02cc488e1b8bcb659137ad68644d88a827a4248138b"
+      "width": 623,
+      "height": 623,
+      "bytes": 156168,
+      "sha256": "e3eb9f6b5192bebbff98d6433ab5b6e65485583783a2fec517c2d5185f165454"
     },
     {
       "path": "public/images/items/seal3/back.webp",
-      "width": 310,
-      "height": 309,
-      "bytes": 37068,
-      "sha256": "e7d84980c31fb17a1c26276b83825eded7e8b677e0a92bf2e9f2b90ab4de499b"
+      "width": 623,
+      "height": 623,
+      "bytes": 131898,
+      "sha256": "d2c3c3bdeaf818b60678311f15c85e795051a88f954b17aea49cf97f79dcd12e"
     },
     {
       "path": "public/images/items/seal3/front.webp",
-      "width": 310,
-      "height": 309,
-      "bytes": 45940,
-      "sha256": "34885b63c4be2e9419c94e020be580bc15837fdc364efd7926bca15ea4a0ad20"
+      "width": 623,
+      "height": 623,
+      "bytes": 156840,
+      "sha256": "3f7525e63004fbe91a79de19d9c5a3771108bb2eca40c8586b1d4aa3ae8bf106"
     },
     {
       "path": "public/images/items/seal4/back.webp",
-      "width": 309,
-      "height": 309,
-      "bytes": 36252,
-      "sha256": "6b9ddb37d0a89bf29f98f3770dad6b45c146eabfc268e38d5dfaca564cfae3ab"
+      "width": 623,
+      "height": 623,
+      "bytes": 135870,
+      "sha256": "5d9633d95a41cac7ecd247dea4f5f13eb14948f4c7c6159f55b58fcc86110e68"
     },
     {
       "path": "public/images/items/seal4/front.webp",
-      "width": 309,
-      "height": 309,
-      "bytes": 42304,
-      "sha256": "507e74b8e6b5326f0a550df5b0e9f0f69f60f5f78418618fdcfe8c67a27e0fea"
+      "width": 623,
+      "height": 623,
+      "bytes": 153218,
+      "sha256": "c32cd4fdf855608371d37c72277ab57f063312a6407d8826efa4f6f56447a966"
     },
     {
       "path": "public/images/items/shard/back.webp",
@@ -174,10 +657,10 @@
     },
     {
       "path": "public/images/items/vessel/back.webp",
-      "width": 310,
-      "height": 309,
-      "bytes": 30972,
-      "sha256": "5983ee945561db7c5b5e0f31952ee6dc9fd0fe3ea887571f06aec213067047ab"
+      "width": 623,
+      "height": 623,
+      "bytes": 93912,
+      "sha256": "19bf55d7e3596035c40426cb7187d05306b24e3054eb9c7798d2ab467ab32417"
     },
     {
       "path": "public/images/items/vessel/front.webp",
@@ -201,39 +684,473 @@
       "sha256": "d951b1e0ec4054f61de1a2f14de35673eaf2ddc3b3c80dde1a4a0a0f5b6527e9"
     },
     {
-      "path": "public/images/rooms/01-waiting/closeups/cabinet.webp",
-      "width": 900,
-      "height": 900,
-      "bytes": 115016,
-      "sha256": "74dcba9be5ce38aecc9339081dd3dc1b658afc41d0551aa416e58a17d5fa8a12"
+      "path": "public/images/mechanisms/r1-cabinet/base.webp",
+      "width": 623,
+      "height": 544,
+      "bytes": 109418,
+      "sha256": "30c68431f908dbc5220195c6042e232afa58b30f5eb51f1c48dc7d69048257e2"
     },
     {
-      "path": "public/images/rooms/01-waiting/closeups/clock.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 110174,
-      "sha256": "762103441489320f8706c5a480a8447304325ccb728a327162239f2eb68a1ac5"
+      "path": "public/images/mechanisms/r1-cabinet/empty.webp",
+      "width": 623,
+      "height": 702,
+      "bytes": 120622,
+      "sha256": "29128aed8a3421ac0c7912fcefdcda67ab57cfbf89540f900cc6d4f1873fde0f"
     },
     {
-      "path": "public/images/rooms/01-waiting/closeups/desk-paper.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 99976,
-      "sha256": "9fbce99a06af507a9fc2cd281f060263eca9d6509652d2b33b6baf5fb722836c"
+      "path": "public/images/mechanisms/r1-cabinet/installed.webp",
+      "width": 623,
+      "height": 544,
+      "bytes": 105330,
+      "sha256": "96e2aead19b0f0ea0f3d868ad213d3ee4926cfe89bbe41505304562263a4a69d"
     },
     {
-      "path": "public/images/rooms/01-waiting/closeups/door-lock.webp",
-      "width": 900,
-      "height": 900,
-      "bytes": 95748,
-      "sha256": "6951a459fc331ded39d877f5e95b46d75eed3e1ad2884f1a9175842eec37999c"
+      "path": "public/images/mechanisms/r1-cabinet/reward.webp",
+      "width": 623,
+      "height": 702,
+      "bytes": 120040,
+      "sha256": "80ce055efffcd77e50c8e4437977e901865014a2f1a533f096d4b1770849cad0"
     },
     {
-      "path": "public/images/rooms/01-waiting/closeups/drawer.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 83216,
-      "sha256": "0ae58c8872af58f3d3ab38e940e14182301cae71c1a632d1a7290bbbce4cdd98"
+      "path": "public/images/mechanisms/r1-clock/base.webp",
+      "width": 623,
+      "height": 600,
+      "bytes": 151880,
+      "sha256": "b6e29682628867013eb850009f35487859f189dfc8a13f2a73ed6d8af894d504"
+    },
+    {
+      "path": "public/images/mechanisms/r1-clock/empty.webp",
+      "width": 883,
+      "height": 883,
+      "bytes": 266176,
+      "sha256": "cce6d2bd22d3c813a8b8421a6f96be811275b4a325ffc21b745447a304b38e59"
+    },
+    {
+      "path": "public/images/mechanisms/r1-clock/installed.webp",
+      "width": 623,
+      "height": 600,
+      "bytes": 148978,
+      "sha256": "4e612017f542a8792edea909d46cfac992865c902042e3ed6b6ad14584296d84"
+    },
+    {
+      "path": "public/images/mechanisms/r1-clock/reward.webp",
+      "width": 883,
+      "height": 883,
+      "bytes": 269422,
+      "sha256": "29aeb1eea7fe55eb5c22493dd94bb8057a7de34456bac55486503f8f91030170"
+    },
+    {
+      "path": "public/images/mechanisms/r1-drawer/base.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 92646,
+      "sha256": "694ce23274f2a0f2f71359133005e6363931d2f7e192eb0a89c1185313624d48"
+    },
+    {
+      "path": "public/images/mechanisms/r1-drawer/empty.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 93032,
+      "sha256": "f51eabf589457f9b176a34f8cf06ca06ec0b7568411c942a701f240be032e63a"
+    },
+    {
+      "path": "public/images/mechanisms/r1-drawer/reward.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 96674,
+      "sha256": "9772d32134f0b65bbe59762005989fd36793d9e6ef65a6e1d8ef8dcdab5f1b2e"
+    },
+    {
+      "path": "public/images/mechanisms/r1-exit/base.webp",
+      "width": 720,
+      "height": 720,
+      "bytes": 140832,
+      "sha256": "982a1383ddfce3319ce2038b33cee0130552ba1f62ebda29459003dce3c80144"
+    },
+    {
+      "path": "public/images/mechanisms/r1-power/base.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 113074,
+      "sha256": "6440b73dd9fcbc67dd514cd05884e699e5f159ddb5c21ef4824384c35cf68ce5"
+    },
+    {
+      "path": "public/images/mechanisms/r1-power/empty.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 115504,
+      "sha256": "c50e807955737e574a0976130db46813eb0b3916f544db1069a0e55a197f64d7"
+    },
+    {
+      "path": "public/images/mechanisms/r1-power/installed.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 117006,
+      "sha256": "33556f6b50b2de5f2e76c9891597a99f57a54a8cb9c3a74eb2aac6fb078ecfe6"
+    },
+    {
+      "path": "public/images/mechanisms/r1-power/reward.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 111394,
+      "sha256": "edfdc3ca08ad696c83323a365bbb052a201a6f71decd73652346f37ec595146e"
+    },
+    {
+      "path": "public/images/mechanisms/r2-drain/base.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 154374,
+      "sha256": "69819073bb0b4b53dae6d1fda2a6908ea047f9f180c05ec7c5fd9d7bb4ea25f0"
+    },
+    {
+      "path": "public/images/mechanisms/r2-drain/empty.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 154286,
+      "sha256": "c2476620b5eb9e26b5d6b614c33a10e20dd2bed1bfef153a83e0e37f1c6b8449"
+    },
+    {
+      "path": "public/images/mechanisms/r2-drain/installed.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 154826,
+      "sha256": "3f3ed7d1e4af34cdd9a7a45d5c4343b78d4203db95ba05e4e40b63d78cd6c6ee"
+    },
+    {
+      "path": "public/images/mechanisms/r2-drain/reward.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 152754,
+      "sha256": "ede0a49395fd468c67f12ea1e415447aee7519f41faa9a466c4846a546eaec90"
+    },
+    {
+      "path": "public/images/mechanisms/r2-exit/base.webp",
+      "width": 720,
+      "height": 720,
+      "bytes": 177328,
+      "sha256": "cd6ecf50157ec28b1915641699e6a728c1a1a7b61eca0e2c21b1343f55474efd"
+    },
+    {
+      "path": "public/images/mechanisms/r2-locker/base.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 137668,
+      "sha256": "a40f31b59409885e658266f466692e2db0cd84beda302385e1becf2b18dae644"
+    },
+    {
+      "path": "public/images/mechanisms/r2-locker/empty.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 128674,
+      "sha256": "ac7dce3b580508d86125c864ec815d60fb6e9f3baeb870ba7933fbf2dd37a846"
+    },
+    {
+      "path": "public/images/mechanisms/r2-locker/installed.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 136960,
+      "sha256": "0aafed7ec9d8a7e6f684cf61c4f6f7b68905db8cc98bfdc58b75a519a8fbab4c"
+    },
+    {
+      "path": "public/images/mechanisms/r2-locker/reward.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 129548,
+      "sha256": "f66b4446779ecaeb8e89089c3a6378d4a13a1a9fe5bd5b5031eaae9ff7c8ae9c"
+    },
+    {
+      "path": "public/images/mechanisms/r2-pipes/base.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 156480,
+      "sha256": "445638b48e344fc22a6bb24b552b5a315a6b314b1d2aace6ef34660e2ce653ff"
+    },
+    {
+      "path": "public/images/mechanisms/r2-pipes/empty.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 146564,
+      "sha256": "f9e1de869a494ad3a5f2f739ccf3d0bdf36588b2244d1ad9f3ae461c764c1bf1"
+    },
+    {
+      "path": "public/images/mechanisms/r2-pipes/installed.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 151868,
+      "sha256": "008e356e040daf6d27aec92858b0698ecc72a741a4041f78f6d2c52c4d9bdfda"
+    },
+    {
+      "path": "public/images/mechanisms/r2-pipes/reward.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 149870,
+      "sha256": "dd581a9fcaec91d2b966a680ad438a15261c133cd4105d410f9ffdab44a98898"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/base.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 151268,
+      "sha256": "e62680cfd4ac5fd925b416a686fa29b360638cb9cbdf2872d2eae31971e4ca1f"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/empty-detail.webp",
+      "width": 200,
+      "height": 156,
+      "bytes": 10508,
+      "sha256": "e612f30f96ea04c88e13606ec4d3cc0c3513c51df7eafaae3b05598e15177e87"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/0-5-3.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 309894,
+      "sha256": "38e14a4a69491b02034fe3330c8fc49b09d7a50acedee65a0159c142a9ebc3bd"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/1-4-3.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 319144,
+      "sha256": "24cd13030d74795b1b95b2fabd1415cf699aa154bdf0dcb9cbb5006f5a476067"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/1-5-2.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 280078,
+      "sha256": "532231c9e65780085d71b2d1bb18acb730b1c5e71648658864827c900a89780b"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/2-3-3.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 348732,
+      "sha256": "7ce9f0e5c28b755317f5e318dcc7795cb65a81e223639447947281f565ee3b37"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/2-5-1.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 287180,
+      "sha256": "8a66b3f2f7c2e995d5325a16958eb15839ff78b0a89c490653ef7a34c9f1f7e3"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/3-2-3.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 286708,
+      "sha256": "890991d8bfee088a0c1510a5253f07249618263b02016a41119c374a02d55a8d"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/3-5-0.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 267238,
+      "sha256": "1c5f7a0eee70bf8dc4e8c3969f7f29983e4586d8f42beac7b8b22c33607e0639"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/4-1-3.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 288486,
+      "sha256": "8f459c309f5c8968a58dae06e504c65ac773a2b6500143b5da6ea3451a1fe1a8"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/4-4-0.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 282308,
+      "sha256": "fdd8ab48dcab42fbe4b1d8cf95eb91e917721a8195267334435fef33316c325a"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/5-0-3.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 274826,
+      "sha256": "3eb7fb1244dcd4ed3a121abf816fda81b742db923c53e166530f0a1bf1bb2ced"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/5-3-0.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 281762,
+      "sha256": "eea66ca684b1f92d366f2f3a54f46684737addb5187cc072afa4be27f1098acc"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/6-0-2.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 275844,
+      "sha256": "32936c987f9d591a41b96006be7a14a5842e3b639435ebbb502d0d9ca4a7638f"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/6-2-0.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 284808,
+      "sha256": "a2da961c27a3dd4a236bdb21980fe75922758552332df93f37beabd63060c458"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/7-0-1.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 282122,
+      "sha256": "f7daeeec7ffe35cd5522a2f56bf4b908223ef06c343e7b191add0035f16ff1d5"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/7-1-0.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 284112,
+      "sha256": "1d89cd929f96d24c9bf2d0f8a0bcf3ddb08e4be5795038f684fc1b38e2639093"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/levels/8-0-0.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 150312,
+      "sha256": "e50d4afa0c7dcc29400da63e96c3d435af357e4fbf8645efac209c4c0b0a499d"
+    },
+    {
+      "path": "public/images/mechanisms/r2-water/reward-detail.webp",
+      "width": 200,
+      "height": 156,
+      "bytes": 11060,
+      "sha256": "fc01932bd32a9cece0855d7a2ea1415f76319ce900849e36a4f45897c2dfcf12"
+    },
+    {
+      "path": "public/images/mechanisms/r3-exit/base.webp",
+      "width": 720,
+      "height": 720,
+      "bytes": 163566,
+      "sha256": "0c680c99ffe5b87e3369f5c0443568434a8bef27a4fd3a2b5ed6f31b46eb6fc4"
+    },
+    {
+      "path": "public/images/mechanisms/r3-order/base.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 93790,
+      "sha256": "9177bde94932cff55413f93e87c3d79b10a4f3282facec83cee77f7ffacffd77"
+    },
+    {
+      "path": "public/images/mechanisms/r3-order/empty.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 87572,
+      "sha256": "db1fc0c0c6f04bb362fd6dddd7e27bbbb198e71e81f987087a8be152f44b5283"
+    },
+    {
+      "path": "public/images/mechanisms/r3-order/installed.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 97666,
+      "sha256": "c2dd8d24514a06929fef8da70834dd397c33f5e8484eabf792081b54ac9a96d4"
+    },
+    {
+      "path": "public/images/mechanisms/r3-order/reward.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 216002,
+      "sha256": "bced1e0c684bc844ed8dacd4c03118dc0ddc028a0696f5b5562c0704832fcf73"
+    },
+    {
+      "path": "public/images/mechanisms/r3-overlay/base.webp",
+      "width": 623,
+      "height": 587,
+      "bytes": 108244,
+      "sha256": "aadec35c80ff506d044b67994fc8c223913f240848f577b1bdb40554bcd8feeb"
+    },
+    {
+      "path": "public/images/mechanisms/r3-overlay/empty.webp",
+      "width": 623,
+      "height": 659,
+      "bytes": 125608,
+      "sha256": "cac323c35171c69ad1061e8daf3a1f6effff94c58de02001744d501986005354"
+    },
+    {
+      "path": "public/images/mechanisms/r3-overlay/reward.webp",
+      "width": 623,
+      "height": 659,
+      "bytes": 128260,
+      "sha256": "5f1d30834317d648c3bc3ad1a7652f87d011caec21aeb7df6887d968a1875ba1"
+    },
+    {
+      "path": "public/images/mechanisms/r3-score/base.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 119274,
+      "sha256": "1d5daac9b812f33515dee644f8256daaa9c2845bd97a5327488cdc86344c53d9"
+    },
+    {
+      "path": "public/images/mechanisms/r3-score/empty.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 103790,
+      "sha256": "535b63fed7fea40cd33fb20a0e0221ad13725d092d456571063044d5ac6b19ae"
+    },
+    {
+      "path": "public/images/mechanisms/r3-score/installed.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 119840,
+      "sha256": "2fe56499e034f9ce2d75b027edb62e3637404479326a7fc091f7395ca856f3b6"
+    },
+    {
+      "path": "public/images/mechanisms/r3-score/reward.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 111678,
+      "sha256": "8fdfb3b46f5398bf371e8934f99ef1ccf7307ccca8cfd8d5acb80b0c6c37c7c5"
+    },
+    {
+      "path": "public/images/mechanisms/r3-slide/base.webp",
+      "width": 623,
+      "height": 533,
+      "bytes": 123908,
+      "sha256": "0d1f78a0d437347c257204a620c2784e1bdbc6a76081f0c3e1b7192842757a94"
+    },
+    {
+      "path": "public/images/mechanisms/r3-slide/empty.webp",
+      "width": 623,
+      "height": 713,
+      "bytes": 89204,
+      "sha256": "024efa20f4530dbe2800c754f4ded6ef0f5ba1cc1daf2a366b57d1e3db8b93f8"
+    },
+    {
+      "path": "public/images/mechanisms/r3-slide/reward.webp",
+      "width": 623,
+      "height": 713,
+      "bytes": 95354,
+      "sha256": "629440d761b5a1a84c66eca65ea44b2fb5529551d67a393018f29beb42f4462f"
+    },
+    {
+      "path": "public/images/mechanisms/r4-balance/base.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 106800,
+      "sha256": "749dceee4dbb22d19cd2796bc4114e24755f249f997f95ba061eb455ae363ceb"
+    },
+    {
+      "path": "public/images/mechanisms/r4-balance/empty.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 102894,
+      "sha256": "1cb6bfc917f5aca49df4c416bfe61c917633bdca311ee50a7714a1900d659d66"
+    },
+    {
+      "path": "public/images/mechanisms/r4-balance/reward.webp",
+      "width": 623,
+      "height": 623,
+      "bytes": 103776,
+      "sha256": "17f37a5e209c37ae94d6a5f2b2dfaed7ecce61c6271a08cebcc13a6182072b15"
+    },
+    {
+      "path": "public/images/mechanisms/r4-exit/base.webp",
+      "width": 1250,
+      "height": 1250,
+      "bytes": 630618,
+      "sha256": "71002a0a5a81617fe3652ae58bfbfc2bfdea57a18135b34845d0ddd0053d3c37"
     },
     {
       "path": "public/images/rooms/01-waiting/closeups/echo-0.webp",
@@ -262,41 +1179,6 @@
       "height": 900,
       "bytes": 72272,
       "sha256": "f7a56a7054573e9e13fc01f5867fc697e80bb74290050750f8f42b271469ecd7"
-    },
-    {
-      "path": "public/images/rooms/01-waiting/closeups/r1-floor.webp",
-      "width": 900,
-      "height": 900,
-      "bytes": 103264,
-      "sha256": "b807359fa3d618a39afb03f0e9e98e138173b62002f5626dfeab638136385dd1"
-    },
-    {
-      "path": "public/images/rooms/01-waiting/closeups/r1-print.webp",
-      "width": 900,
-      "height": 900,
-      "bytes": 104772,
-      "sha256": "4694f3538f13ebdbea07ce7c8903b90dd74fae6e557f61c719da44a435b601ed"
-    },
-    {
-      "path": "public/images/rooms/01-waiting/closeups/switchboard.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 103470,
-      "sha256": "939dad2550424f9cd22c8b5a9b0d1cde2d8be5f201839b556aa7adfa6dc12bce"
-    },
-    {
-      "path": "public/images/rooms/01-waiting/states/cabinet-open.webp",
-      "width": 900,
-      "height": 900,
-      "bytes": 86268,
-      "sha256": "76b697a69b7526d348c4a7264883af59fab8280e014bcb007a253bfa718ac004"
-    },
-    {
-      "path": "public/images/rooms/01-waiting/states/drawer-open.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 77750,
-      "sha256": "b1331c03824a9b25fc6eedeacb93fcde1187b278bd028c8bcc7bf40d3339c1c6"
     },
     {
       "path": "public/images/rooms/01-waiting/states/south-cabinet-open.webp",
@@ -362,20 +1244,6 @@
       "sha256": "5fba339e89b3f84e3f35627ba0953f75e5c4deb0979b1e96e9ef8229f1e8ac2b"
     },
     {
-      "path": "public/images/rooms/02-washroom/closeups/door-lock.webp",
-      "width": 1254,
-      "height": 1254,
-      "bytes": 350636,
-      "sha256": "6922255040addfce522143808df023c21d0aef6aee1f08ff16945670b77a857b"
-    },
-    {
-      "path": "public/images/rooms/02-washroom/closeups/drain.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 137536,
-      "sha256": "8772734a905f281f693fb663eb46de6c8339262b26ff3bf9fe4df4d0321d1c72"
-    },
-    {
       "path": "public/images/rooms/02-washroom/closeups/echo-1.webp",
       "width": 900,
       "height": 900,
@@ -390,13 +1258,6 @@
       "sha256": "7a27ce825200ea351ff9215a88b65d4ea26875475dbfd801b9682a50e82ce7af"
     },
     {
-      "path": "public/images/rooms/02-washroom/closeups/pipes.webp",
-      "width": 1254,
-      "height": 1254,
-      "bytes": 592610,
-      "sha256": "21926859786449b6b362216e8e16f23f02cc5ae989cfe3ca81b1b57028f99fa7"
-    },
-    {
       "path": "public/images/rooms/02-washroom/closeups/r2-gauge.webp",
       "width": 900,
       "height": 900,
@@ -409,13 +1270,6 @@
       "height": 900,
       "bytes": 85874,
       "sha256": "ce5d644fd9f91c4aceffabdf5f41751095af2f067a277cfaa390d8ab77faa3e2"
-    },
-    {
-      "path": "public/images/rooms/02-washroom/closeups/tanks.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 122464,
-      "sha256": "a471bce6401a06f655be87f1f384937ca72fc1e7408a35609b0e65d5d4ace939"
     },
     {
       "path": "public/images/rooms/02-washroom/states/floor-empty.webp",
@@ -474,39 +1328,11 @@
       "sha256": "22672850a51bae6ae4b103a3e011c38b087723a57bda4d05621bee216d1373aa"
     },
     {
-      "path": "public/images/rooms/03-projection/closeups/door-lock.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 122990,
-      "sha256": "a7e1bd550acd6cafb7d76da16290ef4b1c899be19c505fa78a15b2e268a9e595"
-    },
-    {
       "path": "public/images/rooms/03-projection/closeups/echo-2.webp",
       "width": 900,
       "height": 900,
       "bytes": 55094,
       "sha256": "99b61a451146879e7437fc023a3fc259773fa98040115c60aed9a00552f35926"
-    },
-    {
-      "path": "public/images/rooms/03-projection/closeups/lightbox.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 99468,
-      "sha256": "6b421f35c1bd25d6eeec8cde1380a5780689ba514870353a2e0611392ec75b39"
-    },
-    {
-      "path": "public/images/rooms/03-projection/closeups/projector-keys.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 96892,
-      "sha256": "9d9ed35ce7ab4d4d1c689e5f0e121ad826541ae386596eed5e568a846ed00863"
-    },
-    {
-      "path": "public/images/rooms/03-projection/closeups/projector.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 79916,
-      "sha256": "4d76e4ebdf074ac7ec19301c3515d4bdccae884bdd99a317b33cb1f6a5a6eff8"
     },
     {
       "path": "public/images/rooms/03-projection/closeups/r3-floor.webp",
@@ -516,25 +1342,11 @@
       "sha256": "2a047bbd7406dd2de677a305b344c556a4d7255f8eebef18a755dd9d3be16376"
     },
     {
-      "path": "public/images/rooms/03-projection/closeups/r3-plan.webp",
-      "width": 1254,
-      "height": 1254,
-      "bytes": 335894,
-      "sha256": "341c1924f25e4f3f5710d91cb23ab5a8798c2d1d3c9355b8e2701c08eeeb5bd0"
-    },
-    {
       "path": "public/images/rooms/03-projection/closeups/screen.webp",
       "width": 508,
       "height": 508,
       "bytes": 65778,
       "sha256": "ccd60eee5793c154f96dfb20128ac5cfdef9aae38c581b0445650ed8be0a69c0"
-    },
-    {
-      "path": "public/images/rooms/03-projection/closeups/tile-drawer.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 90458,
-      "sha256": "599e0e8bfe4fff5e3174479e72a29a824af7f773da85107a585c4741c9f9183f"
     },
     {
       "path": "public/images/rooms/03-projection/views/ceiling.webp",
@@ -586,25 +1398,11 @@
       "sha256": "684fa84502748ad0f3102d082cfc6c3f6e049f164aecd5309c4ac379646e523e"
     },
     {
-      "path": "public/images/rooms/04-return/closeups/cabinet.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 87954,
-      "sha256": "fd1f1c88d2653596998c78c1e5db874b6a99e7198f1e27d4d4d1126449a0878b"
-    },
-    {
       "path": "public/images/rooms/04-return/closeups/desk-paper.webp",
       "width": 508,
       "height": 508,
       "bytes": 69774,
       "sha256": "d226cc2b9b99cb6ddf6a1b9792064339ca550fac9d6714adf759001f7fbe55ad"
-    },
-    {
-      "path": "public/images/rooms/04-return/closeups/door-lock.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 113718,
-      "sha256": "76b2cba89a903173432df52ade7e624a72b29616ae5fbe8cbb329af5f52c1bee"
     },
     {
       "path": "public/images/rooms/04-return/closeups/echo-3.webp",

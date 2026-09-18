@@ -2,15 +2,24 @@ import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import { FACE_NAMES, ITEMS, PUZZLES, ROOMS } from './data';
 import type { SceneNode } from './data';
-import { freshGame, install, parseSave, SAVE_KEY, solve, take } from './engine';
+import {
+  freshGame,
+  install,
+  parseSave,
+  SAVE_KEY,
+  solve,
+  take,
+  openContainer,
+  leaveRoom,
+} from './engine';
 import type { GameState } from './engine';
 import { audioEnabled, sound } from './audio';
-import { ClueArt } from './Clues';
 import { Icon } from './Icons';
-import { Closeup, ItemCloseup } from './Closeup';
+import { Closeup, ItemCloseup } from './PhotoCloseup';
 import { Hotspots } from './Hotspots';
 import { viewPhoto } from './photography';
 import { turnView } from './navigation';
+import { Inventory } from './Inventory';
 
 type Panel =
   | { type: 'node'; node: SceneNode; room: number }
@@ -74,6 +83,7 @@ export default function App() {
   const [game, setGame] = useState<GameState>(getInitial);
   const [playing, setPlaying] = useState(false);
   const [panel, setPanel] = useState<Panel>(null);
+  const itemOrigin = useRef<Panel>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [flipped, setFlipped] = useState(false);
   const [marks, setMarks] = useState(false);
@@ -87,7 +97,9 @@ export default function App() {
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const room = ROOMS[game.room];
   const close = () => {
-    setPanel(null);
+    setPanel(panel?.type === 'item' ? itemOrigin.current : null);
+    itemOrigin.current = null;
+    setSelected(null);
     setFlipped(false);
   };
   const notify = (msg: string) => {
@@ -137,6 +149,7 @@ export default function App() {
     if (panel) return;
     sound('turn', game.sound);
     setHover('');
+    setSelected(null);
     const d =
       direction === -1 ? 'left' : direction === 1 ? 'right' : direction === 4 ? 'up' : 'down';
     setGame((g) => turnView(g, d));
@@ -187,16 +200,12 @@ export default function App() {
       visit(node.room!);
       return;
     }
-    if (node.kind === 'puzzle' && selected) {
-      const next = install(game, node.target!, selected);
-      if (next !== game) {
-        setGame(next);
-        setSelected(null);
-        sound('open', game.sound);
-        notify('かちり。');
-      }
-    }
-    if (node.kind === 'clue' && (!node.gate || game.solved.includes(node.gate)))
+    setSelected(null);
+    if (
+      node.kind === 'clue' &&
+      (!node.gate || game.solved.includes(node.gate)) &&
+      (node.id !== 'r2-mirror' || game.installed.includes('r2-locker'))
+    )
       setGame((g) => ({ ...g, seen: [...new Set([...g.seen, node.id])] }));
     setPanel({ type: 'node', node, room: game.room });
   }
@@ -206,23 +215,16 @@ export default function App() {
     setGame(next);
     if (next.solved.length > game.solved.length) {
       sound('open', game.sound);
-      notify(PUZZLES[id].reward ? ITEMS[PUZZLES[id].reward!].name : 'かちり。');
+      notify('かちり。');
       if (next.finished) close();
     } else sound('tap', game.sound);
   }
   const showItem = (id: string) => {
-    setSelected(id);
+    itemOrigin.current = panel?.type === 'node' ? panel : null;
+    setSelected(null);
     setPanel({ type: 'item', id });
     setFlipped(false);
   };
-  const selectedItem = selected ? ITEMS[selected] : null;
-  function inventoryClick(id: string) {
-    if (selected === id) showItem(id);
-    else {
-      setSelected(id);
-      sound('tap', game.sound);
-    }
-  }
   const style = {
     '--room-image': `url(${viewPhoto(game.room, game.face, game)})`,
     '--brightness': game.brightness,
@@ -360,26 +362,22 @@ export default function App() {
                 <div className="scene-plan-paper" aria-hidden="true" />
               )}
               {game.face === 2 && game.room === 0 && (
-                <div className="scene-paper first-equation" aria-hidden="true">
-                  △＋△
-                  <br />
-                  △＋○
-                  <br />
-                  □−○
-                </div>
+                <div
+                  className="scene-paper first-equation"
+                  aria-hidden="true"
+                  style={{ backgroundImage: 'url(/images/clues/r1-equation.webp)' }}
+                />
               )}
               {game.face === 2 && game.room === 3 && (
-                <div className="scene-paper last-equation" aria-hidden="true">
-                  {game.solved.includes('r4-gears') && (
-                    <>
-                      ○−△
-                      <br />
-                      □＝○＋△
-                      <br />
-                      ◇＋△
-                    </>
-                  )}
-                </div>
+                <div
+                  className="scene-paper last-equation"
+                  aria-hidden="true"
+                  style={
+                    game.solved.includes('r4-gears')
+                      ? { backgroundImage: 'url(/images/clues/r4-equations.webp)' }
+                      : undefined
+                  }
+                />
               )}
               {game.face === 0 && game.solved.includes(`r${game.room + 1}-exit`) && (
                 <div className="door-light" />
@@ -393,12 +391,12 @@ export default function App() {
                   }}
                   aria-hidden="true"
                 >
-                  ⌾
+                  <img src={`/images/clues/echo-${game.room}.webp`} alt="" />
                 </div>
               )}
               <Hotspots
                 nodes={nodes}
-                solved={game.solved}
+                solved={game.opened}
                 open={openNode}
                 hover={setHover}
                 marks={marks}
@@ -478,52 +476,12 @@ export default function App() {
               <Icon name={game.sound ? 'sound' : 'muted'} size={20} />
             </button>
           </div>
-          <footer className="inventory">
-            <div className="inventory-label">
-              持ち物<span>{game.inventory.length.toString().padStart(2, '0')}</span>
-            </div>
-            <div className="inventory-slots">
-              {game.inventory.map((id) => (
-                <button
-                  key={id}
-                  className={`inventory-slot ${selected === id ? 'selected' : ''}`}
-                  aria-label={ITEMS[id].name}
-                  aria-pressed={selected === id}
-                  onClick={() => inventoryClick(id)}
-                >
-                  <img
-                    src={`/images/items/${id}/front.webp`}
-                    alt=""
-                    draggable={false}
-                    width={47}
-                    height={47}
-                  />
-                </button>
-              ))}
-              {Array.from({ length: Math.max(0, 5 - game.inventory.length) }, (_, i) => (
-                <span className="inventory-slot empty-slot" key={`empty-${i}`} />
-              ))}
-            </div>
-            <button
-              className="inspect-button"
-              disabled={!selectedItem}
-              aria-label="選んだ持ち物を調べる"
-              onClick={() => selected && showItem(selected)}
-            >
-              <Icon name="expand" size={19} />
-              <small>{selectedItem ? '調べる' : ' '}</small>
-            </button>
-          </footer>
-          <div className="selected-caption">
-            {selectedItem ? (
-              <button onClick={() => setSelected(null)}>
-                {selectedItem.name}
-                <span>×</span>
-              </button>
-            ) : (
-              <span>持ち物は、選んで使う。もう一度で調べる。</span>
-            )}
-          </div>
+          <Inventory
+            items={game.inventory}
+            selected={selected}
+            onSelect={setSelected}
+            onInspect={showItem}
+          />
         </main>
       )}
       {playing && panel?.type === 'node' && (
@@ -550,12 +508,17 @@ export default function App() {
             const next = take(game, id);
             if (next !== game) {
               setGame(next);
-              setSelected(id);
+              setSelected(null);
               notify(ITEMS[id].name);
             }
           }}
-          onDoor={() => visit(Math.min(3, panel.room + 1))}
+          onOpen={(id) => setGame((g) => openContainer(g, id))}
+          onDoor={() => {
+            setGame((g) => leaveRoom(g));
+            close();
+          }}
           onNote={(i) => sound('note', game.sound, i)}
+          onInspect={showItem}
         />
       )}
       {playing && panel?.type === 'item' && (
@@ -564,6 +527,15 @@ export default function App() {
           flipped={flipped}
           onFlip={() => setFlipped(!flipped)}
           onBack={close}
+        />
+      )}
+      {playing && panel?.type === 'node' && (
+        <Inventory
+          closeup
+          items={game.inventory}
+          selected={selected}
+          onSelect={setSelected}
+          onInspect={showItem}
         />
       )}
       <div className="toast" role="status" aria-live="polite">
@@ -635,9 +607,22 @@ export default function App() {
                     .map(({ node, room: ri }) => (
                       <button
                         key={node.id}
-                        onClick={() => setPanel({ type: 'node', node, room: ri })}
+                        onClick={() => {
+                          setSelected(null);
+                          setPanel({ type: 'node', node, room: ri });
+                        }}
                       >
-                        <ClueArt kind={node.clue!} room={ri} />
+                        <img
+                          className="journal-photo"
+                          src={
+                            node.id === 'r2-mirror'
+                              ? '/images/mechanisms/r2-locker/installed.webp'
+                              : node.id === 'r4-sockets'
+                                ? '/images/mechanisms/r4-exit/base.webp'
+                                : `/images/clues/${node.id}.webp`
+                          }
+                          alt={node.label}
+                        />
                         <span>{node.label}</span>
                       </button>
                     ))}

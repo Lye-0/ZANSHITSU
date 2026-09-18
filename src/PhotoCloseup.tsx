@@ -1,0 +1,252 @@
+import type { CSSProperties } from 'react';
+import { ITEMS, PUZZLES } from './data';
+import type { SceneNode } from './data';
+import { canAccess } from './engine';
+import type { GameState } from './engine';
+import { detailPhoto } from './photography';
+import { PHOTO_MECHANISMS, STATE_PHOTO_IDS, statePhoto } from './mechanismPhotos';
+import type { Rect } from './mechanismPhotos';
+import { PhotoControls } from './PhotoControls';
+export const photoRect = ([x, y, w, h]: Rect): CSSProperties => ({
+  left: `${x}%`,
+  top: `${y}%`,
+  width: `${w}%`,
+  height: `${h}%`,
+});
+export function Closeup({
+  node,
+  room,
+  game,
+  selected,
+  onBack,
+  onValues,
+  onReset,
+  onInsert,
+  onTake,
+  onOpen,
+  onDoor,
+  onNote,
+  onInspect,
+}: {
+  node: SceneNode;
+  room: number;
+  game: GameState;
+  selected: string | null;
+  onBack: () => void;
+  onValues: (id: string, v: number[]) => void;
+  onReset: (id: string) => void;
+  onInsert: (id: string, item: string) => void;
+  onTake: (id: string) => void;
+  onOpen: (id: string) => void;
+  onDoor: () => void;
+  onNote: (n: number) => void;
+  onInspect: (id: string) => void;
+}) {
+  const p =
+    node.kind === 'puzzle'
+      ? PUZZLES[node.target!]
+      : node.id === 'r4-sockets' && room === game.room
+        ? PUZZLES['r4-exit']
+        : null;
+  const solved = !!p && game.solved.includes(p.id),
+    opened = !!p && game.opened.includes(p.id);
+  const installed = !!p && game.installed.includes(p.id),
+    collected = !!p?.reward && game.collected.includes(p.reward);
+  const gated = !!p?.requires?.some((id) => !game.solved.includes(id));
+  const allowed = !!p && canAccess(game, p) && !solved && !selected;
+  const values = p ? (game.values[p.id] ?? p.initial) : [];
+  const conf = p ? PHOTO_MECHANISMS[p.id] : null;
+  let photo = detailPhoto(room, node);
+  if (p && STATE_PHOTO_IDS.includes(p.id))
+    photo = statePhoto(
+      p.id,
+      opened ? (collected ? 'empty' : 'reward') : installed ? 'installed' : 'base',
+    );
+  if (p?.id === 'r2-water' && installed)
+    photo = statePhoto('r2-water', `levels/${values.join('-')}`);
+  if (p?.id === 'r3-overlay' && !opened) photo = statePhoto(p.id, 'base');
+  if (p?.id === 'r4-exit' || node.id === 'r4-sockets') photo = statePhoto('r4-exit', 'base');
+  if (p?.id === 'r4-memory' && opened) photo = '/images/rooms/04-return/states/box-open.webp';
+  if (
+    !p &&
+    node.kind === 'clue' &&
+    node.id !== 'r4-sockets' &&
+    node.clue !== 'empty' &&
+    (!node.gate || game.solved.includes(node.gate)) &&
+    (node.id !== 'r2-mirror' || game.installed.includes('r2-locker'))
+  )
+    photo =
+      node.id === 'r2-mirror'
+        ? statePhoto('r2-locker', 'installed')
+        : `/images/clues/${node.id}.webp`;
+  if (node.clue === 'tub' && !game.solved.includes('r2-drain'))
+    photo = '/images/clues/bathtub-full.webp';
+  if (node.kind === 'take' && game.collected.includes(node.target!))
+    photo = '/images/rooms/02-washroom/states/wrench-taken.webp';
+  const use = (id: string) => {
+    if (selected) onInsert(id, selected);
+  };
+  return (
+    <section
+      className={`closeup-view photo-closeup detail-${node.id} ${opened ? 'container-open' : ''}`}
+      aria-label={`${node.label}の接写`}
+      style={{ '--detail-photo': `url(${photo})` } as CSSProperties}
+    >
+      <div className="closeup-bleed" />
+      <div className="closeup-plane">
+        <img className="closeup-photo" src={photo} alt={`${node.label}を近くで見た写真`} />
+        {p && opened && p.id === 'r2-water' && (
+          <img
+            className="photo-reveal-patch"
+            src={statePhoto(p.id, `${collected ? 'empty' : 'reward'}-detail`)}
+            alt=""
+            style={photoRect([66, 75, 32, 25])}
+          />
+        )}
+        {p && conf?.openControls && opened && (
+          <div
+            className={`photo-mechanism ${p.motif === 'clock' ? 'clock-mechanism' : ''}`}
+            style={p.motif === 'clock' ? undefined : photoRect(conf.openControls)}
+          >
+            <PhotoControls p={p} values={values} disabled change={() => {}} note={onNote} />
+          </div>
+        )}
+        {p && conf && !opened && (
+          <>
+            {(installed || !['r2-pipes', 'r3-order', 'r3-overlay'].includes(p.id)) && (
+              <div
+                className={`photo-mechanism ${p.motif === 'clock' ? 'clock-mechanism' : ''}`}
+                style={p.motif === 'clock' ? undefined : photoRect(conf.controls)}
+              >
+                <PhotoControls
+                  key={`${p.id}-${installed}`}
+                  p={p}
+                  values={values}
+                  disabled={!allowed}
+                  change={(v) => allowed && onValues(p.id, v)}
+                  note={onNote}
+                />
+              </div>
+            )}
+            {p.item && !installed && !gated && conf.fitting && (
+              <button
+                className="photo-hit fitting-hit"
+                style={photoRect(conf.fitting)}
+                aria-label={`${ITEMS[p.item].name}を使う場所`}
+                onClick={() => use(p.id)}
+              />
+            )}
+            {p.reward && (
+              <button
+                className="photo-hit pull-hit"
+                style={photoRect(conf.pull)}
+                disabled={!solved}
+                aria-label="収納を開ける"
+                onClick={() => onOpen(p.id)}
+              />
+            )}
+            {p.id === 'r4-memory' && (
+              <button
+                className="photo-hit"
+                style={photoRect(conf.pull)}
+                disabled={!solved}
+                aria-label="小箱を開ける"
+                onClick={() => onOpen(p.id)}
+              />
+            )}
+            {p.id.endsWith('exit') && (
+              <button
+                className="photo-hit"
+                style={photoRect(conf.pull)}
+                disabled={!solved}
+                aria-label="扉を開ける"
+                onClick={onDoor}
+              />
+            )}
+            {conf.reset && allowed && (
+              <button
+                className="photo-hit reset-hit"
+                style={photoRect(conf.reset)}
+                aria-label="仕掛けを初期状態に戻す"
+                onClick={() => onReset(p.id)}
+              />
+            )}
+          </>
+        )}
+        {p?.reward && opened && !collected && conf?.reward && (
+          <button
+            className="photo-hit reward-hit"
+            style={photoRect(conf.reward)}
+            aria-label={`${ITEMS[p.reward].name}を拾う`}
+            onClick={() => onTake(p.reward!)}
+          />
+        )}
+        {p?.id === 'r4-exit' &&
+          ['seal4', 'seal1', 'seal3', 'seal2'].map((id, i) => (
+            <button
+              key={id}
+              className="photo-hit seal-placement"
+              style={photoRect([15.2 + i * 17.8, 25, 12.5, 13])}
+              aria-label={`${ITEMS[id].name}の窪み`}
+              onClick={() =>
+                game.mounted.includes(id) ? onInspect(id) : selected === id && onInsert(p.id, id)
+              }
+            >
+              {game.mounted.includes(id) && <img src={`/images/items/${id}/front.webp`} alt="" />}
+            </button>
+          ))}
+        {node.kind === 'take' && !game.collected.includes(node.target!) && (
+          <button
+            className="photo-hit take-in-photo"
+            aria-label={`${ITEMS[node.target!].name}を拾う`}
+            onClick={() => onTake(node.target!)}
+          />
+        )}
+      </div>
+      <button
+        className="direction down closeup-return"
+        aria-label="元の視点に戻る"
+        onClick={onBack}
+      >
+        <span />
+      </button>
+    </section>
+  );
+}
+export function ItemCloseup({
+  id,
+  flipped,
+  onFlip,
+  onBack,
+}: {
+  id: string;
+  flipped: boolean;
+  onFlip: () => void;
+  onBack: () => void;
+}) {
+  const photo = `/images/items/${id}/${flipped ? 'back' : 'front'}.webp`;
+  return (
+    <section
+      className="closeup-view photo-item"
+      aria-label={`${ITEMS[id].name}の接写`}
+      style={{ '--detail-photo': `url(${photo})` } as CSSProperties}
+    >
+      <div className="closeup-bleed" />
+      <div className="closeup-plane">
+        <img
+          className="closeup-photo"
+          src={photo}
+          alt={`${ITEMS[id].name}の${flipped ? '裏' : '表'}`}
+        />
+        <button className="photo-hit flip-in-photo" aria-label="持ち物を裏返す" onClick={onFlip} />
+      </div>
+      <button
+        className="direction down closeup-return"
+        aria-label="元の視点に戻る"
+        onClick={onBack}
+      >
+        <span />
+      </button>
+    </section>
+  );
+}

@@ -5,6 +5,8 @@ import {
   freshGame,
   gear,
   install,
+  openContainer,
+  leaveRoom,
   isAnswer,
   parseSave,
   pipesConnected,
@@ -13,9 +15,19 @@ import {
   solve,
   take,
   toggleLights,
+  WATER_STATES,
 } from '../src/engine';
 
 describe('physical mechanisms', () => {
+  it('water photographs cover all 16 reachable states and reject impossible saves', () => {
+    expect(WATER_STATES).toHaveLength(16);
+    for (const state of WATER_STATES)
+      for (let from = 0; from < 3; from++)
+        for (let to = 0; to < 3; to++) expect(WATER_STATES).toContainEqual(pour(state, from, to));
+    expect(
+      parseSave(JSON.stringify({ ...freshGame(), values: { 'r2-water': [4, 2, 2] } })),
+    ).toBeNull();
+  });
   it('the twenty-move slide hint solves the more demanding initial arrangement', () => {
     let values = [...PUZZLES['r3-slide'].initial];
     for (const tile of [3, 1, 6, 3, 5, 7, 2, 4, 3, 5, 1, 8, 7, 1, 4, 2, 1, 4, 5, 6]) {
@@ -88,10 +100,12 @@ describe('complete progression', () => {
     expect(solve(s, 'r1-exit', PUZZLES['r1-exit'].answer)).toBe(s);
     expect(install(s, 'r1-clock', 'crank')).toBe(s);
   });
-  it('all twenty puzzles and item gates lead to a finish, retaining four seals', () => {
+  it('all twenty puzzles require explicit collection, installation and door opening', () => {
     let s = { ...freshGame(), started: true };
     for (const p of Object.values(PUZZLES)) {
-      if (p.id === 'r2-pipes') s = take(s, 'wrench');
+      if (p.id === 'r2-pipes') s = take({ ...s, face: 5 }, 'wrench');
+      if (p.id === 'r4-exit')
+        for (const seal of ['seal1', 'seal2', 'seal3', 'seal4']) s = install(s, p.id, seal);
       if (p.item) {
         expect(s.inventory).toContain(p.item);
         s = install(s, p.id, p.item);
@@ -99,11 +113,19 @@ describe('complete progression', () => {
       expect(canAccess(s, p), p.id).toBe(true);
       s = solve(s, p.id, p.answer);
       expect(s.solved, p.id).toContain(p.id);
+      if (p.reward) {
+        expect(s.inventory).not.toContain(p.reward);
+        s = openContainer(s, p.id);
+        s = take(s, p.reward);
+        expect(s.inventory).toContain(p.reward);
+      }
+      if (p.id.endsWith('exit')) s = leaveRoom(s);
     }
     expect(s.finished).toBe(true);
     expect(s.unlocked).toBe(3);
     expect(s.solved).toHaveLength(20);
-    for (const id of ['seal1', 'seal2', 'seal3', 'seal4']) expect(s.inventory).toContain(id);
+    for (const id of ['seal1', 'seal2', 'seal3', 'seal4']) expect(s.mounted).toContain(id);
+    expect(s.inventory).toContain('wrench');
   });
   it('wrong answers and repeated solves never duplicate rewards', () => {
     let s = freshGame();
@@ -111,10 +133,14 @@ describe('complete progression', () => {
     expect(solve(s, p.id, [0, 0, 0, 0])).toBe(s);
     s = solve(s, p.id, p.answer);
     expect(solve(s, p.id, p.answer)).toBe(s);
+    expect(s.inventory).not.toContain('crank');
+    s = take(openContainer(s, p.id), 'crank');
+    expect(take(s, 'crank')).toBe(s);
     expect(s.inventory.filter((n) => n === 'crank')).toHaveLength(1);
   });
   it('installed consumables remain installed after resume', () => {
     let s = solve({ ...freshGame(), started: true }, 'r1-drawer', PUZZLES['r1-drawer'].answer);
+    s = take(openContainer(s, 'r1-drawer'), 'crank');
     s = install(s, 'r1-clock', 'crank');
     const saved = parseSave(JSON.stringify(s));
     expect(saved?.installed).toContain('r1-clock');
@@ -124,13 +150,56 @@ describe('complete progression', () => {
 });
 
 describe('save recovery', () => {
+  it('migrates automatically awarded legacy items without respawning used items', () => {
+    const legacy = {
+      ...freshGame(),
+      version: 1,
+      started: true,
+      solved: ['r1-drawer', 'r1-clock'],
+      inventory: ['key'],
+      installed: ['r1-clock'],
+    };
+    delete (legacy as Partial<typeof legacy>).opened;
+    delete (legacy as Partial<typeof legacy>).collected;
+    delete (legacy as Partial<typeof legacy>).mounted;
+    const migrated = parseSave(JSON.stringify(legacy))!;
+    expect(migrated.version).toBe(2);
+    expect(migrated.collected).toEqual(expect.arrayContaining(['crank', 'key']));
+    expect(migrated.opened).toContain('r1-drawer');
+    expect(take(migrated, 'crank')).toBe(migrated);
+    expect(migrated.inventory).toEqual(['key']);
+  });
+  it('persists a solved but unopened reward and collects only after opening', () => {
+    const solved = solve(freshGame(), 'r1-drawer', PUZZLES['r1-drawer'].answer);
+    expect(take(solved, 'crank')).toBe(solved);
+    const resumed = parseSave(JSON.stringify(solved))!;
+    const opened = openContainer(resumed, 'r1-drawer');
+    expect(opened.inventory).toHaveLength(0);
+    const collected = take(opened, 'crank');
+    expect(collected.inventory).toEqual(['crank']);
+    expect(take(parseSave(JSON.stringify(collected))!, 'crank').inventory).toEqual(['crank']);
+  });
+  it('does not accept another room, wrong object, or repeat installation', () => {
+    let s = { ...freshGame(), inventory: ['crank'] };
+    expect(install(s, 'r1-clock', 'key')).toBe(s);
+    expect(install({ ...s, room: 1, unlocked: 1 }, 'r1-clock', 'crank').installed).toHaveLength(0);
+    s = install(s, 'r1-clock', 'crank');
+    expect(install(s, 'r1-clock', 'crank')).toBe(s);
+  });
+  it('cannot pick up a hidden reward or leave a locked room', () => {
+    const s = freshGame();
+    expect(take(s, 'crank')).toBe(s);
+    expect(openContainer(s, 'r1-drawer')).toBe(s);
+    expect(take({ ...s, unlocked: 1 }, 'wrench')).toEqual({ ...s, unlocked: 1 });
+    expect(leaveRoom(s)).toBe(s);
+  });
   it('rejects malformed or incompatible saves', () => {
     for (const raw of [
       '{',
       'null',
       '[]',
       '{}',
-      JSON.stringify({ ...freshGame(), version: 2 }),
+      JSON.stringify({ ...freshGame(), version: 99 }),
       JSON.stringify({ ...freshGame(), room: 19 }),
       JSON.stringify({ ...freshGame(), values: { 'r2-water': [100, 0, 0] } }),
       JSON.stringify({ ...freshGame(), values: { 'r3-slide': [1, 1, 1, 1, 1, 1, 1, 1, 0] } }),

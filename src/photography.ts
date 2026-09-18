@@ -1,18 +1,19 @@
 import { ROOMS } from './data';
 import type { SceneNode } from './data';
+import { STATE_PHOTO_IDS, statePhoto } from './mechanismPhotos';
 export const ROOM_FOLDERS = ['01-waiting', '02-washroom', '03-projection', '04-return'];
 export const FACES = ['north', 'east', 'south', 'west', 'ceiling', 'floor'];
 export const viewPhoto = (
   room: number,
   face: number,
-  state?: { solved: string[]; inventory: string[]; installed: string[] },
+  state?: { solved: string[]; inventory: string[]; installed: string[]; opened?: string[] },
 ) => {
   const base = `/images/rooms/${ROOM_FOLDERS[room]}`;
-  if (room === 0 && face === 3 && state?.solved.includes('r1-drawer'))
+  if (room === 0 && face === 3 && state?.opened?.includes('r1-drawer'))
     return base + '/states/west-drawer-open.webp';
-  if (room === 0 && face === 2 && state?.solved.includes('r1-cabinet'))
+  if (room === 0 && face === 2 && state?.opened?.includes('r1-cabinet'))
     return base + '/states/south-cabinet-open.webp';
-  if (room === 3 && face === 1 && state?.solved.includes('r4-memory'))
+  if (room === 3 && face === 1 && state?.opened?.includes('r4-memory'))
     return base + '/states/east-box-open.webp';
   if (
     room === 1 &&
@@ -127,9 +128,13 @@ export const CLOSEUP_FILES: Record<string, string> = {
   'r4-paper': 'desk-paper',
 };
 export const detailPhoto = (room: number, node: SceneNode) =>
-  ['r1-equation', 'r4-equations'].includes(node.id)
-    ? '/images/shared/wall-paper.webp'
-    : `/images/rooms/${ROOM_FOLDERS[room]}/closeups/${CLOSEUP_FILES[node.id] ?? node.id}.webp`;
+  STATE_PHOTO_IDS.includes(node.id) || node.id.endsWith('-exit') || node.id === 'r4-sockets'
+    ? statePhoto(node.id === 'r4-sockets' ? 'r4-exit' : node.id, 'base')
+    : node.kind === 'clue' && node.clue !== 'empty' && !node.gate
+      ? `/images/clues/${node.id}.webp`
+      : ['r1-equation', 'r4-equations'].includes(node.id)
+        ? '/images/shared/wall-paper.webp'
+        : `/images/rooms/${ROOM_FOLDERS[room]}/closeups/${CLOSEUP_FILES[node.id] ?? node.id}.webp`;
 const OPEN_SHAPES: Record<string, Shape> = {
   'r1-drawer': { bounds: [41, 55, 19, 9], points: '9,0 91,0 100,48 100,100 0,100 0,48' },
   'r1-cabinet': {

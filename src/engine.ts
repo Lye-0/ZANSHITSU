@@ -2,7 +2,7 @@ import { ITEMS, PUZZLES } from './data';
 import type { Puzzle } from './data';
 export const SAVE_KEY = 'zanshitsu:save:v1';
 export type GameState = {
-  version: 1;
+  version: 2;
   started: boolean;
   room: number;
   face: number;
@@ -11,6 +11,9 @@ export type GameState = {
   solved: string[];
   inventory: string[];
   installed: string[];
+  opened: string[];
+  collected: string[];
+  mounted: string[];
   values: Record<string, number[]>;
   seen: string[];
   hints: Record<string, number>;
@@ -22,7 +25,7 @@ export type GameState = {
 };
 export function freshGame(): GameState {
   return {
-    version: 1,
+    version: 2,
     started: false,
     room: 0,
     face: 0,
@@ -31,6 +34,9 @@ export function freshGame(): GameState {
     solved: [],
     inventory: [],
     installed: [],
+    opened: [],
+    collected: [],
+    mounted: [],
     values: {},
     seen: [],
     hints: {},
@@ -63,6 +69,13 @@ export function pour(values: number[], from: number, to: number) {
   next[to] += amount;
   return next;
 }
+export const WATER_STATES: number[][] = [[8, 0, 0]];
+for (let i = 0; i < WATER_STATES.length; i++)
+  for (let from = 0; from < 3; from++)
+    for (let to = 0; to < 3; to++) {
+      const next = pour(WATER_STATES[i], from, to);
+      if (!WATER_STATES.some((v) => same(v, next))) WATER_STATES.push(next);
+    }
 export function slide(values: number[], index: number) {
   const empty = values.indexOf(0);
   if (
@@ -123,14 +136,28 @@ export function canAccess(s: GameState, p: Puzzle) {
     (!p.requires || p.requires.every((id) => s.solved.includes(id))) &&
     (!p.item || s.installed.includes(p.id)) &&
     (p.id !== 'r4-exit' ||
-      ['seal1', 'seal2', 'seal3', 'seal4'].every((id) => s.inventory.includes(id)))
+      ['seal1', 'seal2', 'seal3', 'seal4'].every((id) => s.mounted.includes(id)))
   );
 }
 export function install(s: GameState, id: string, item: string): GameState {
   const p = PUZZLES[id];
   if (
+    id === 'r4-exit' &&
+    s.room === 3 &&
+    s.solved.includes('r4-memory') &&
+    ['seal1', 'seal2', 'seal3', 'seal4'].includes(item) &&
+    s.inventory.includes(item)
+  )
+    return {
+      ...s,
+      mounted: [...new Set([...s.mounted, item])],
+      inventory: s.inventory.filter((k) => k !== item),
+    };
+  if (
     !p ||
     p.room > s.unlocked ||
+    p.room !== s.room ||
+    s.installed.includes(id) ||
     p.item !== item ||
     !s.inventory.includes(item) ||
     (p.requires && !p.requires.every((k) => s.solved.includes(k)))
@@ -139,7 +166,7 @@ export function install(s: GameState, id: string, item: string): GameState {
   return {
     ...s,
     installed: [...new Set([...s.installed, id])],
-    inventory: s.inventory.filter((k) => k !== item),
+    inventory: item === 'wrench' ? s.inventory : s.inventory.filter((k) => k !== item),
   };
 }
 export function solve(s: GameState, id: string, values: number[]): GameState {
@@ -149,28 +176,43 @@ export function solve(s: GameState, id: string, values: number[]): GameState {
     ...s,
     solved: [...s.solved, id],
     values: { ...s.values, [id]: values },
-    inventory: p.reward ? [...new Set([...s.inventory, p.reward])] : s.inventory,
-    unlocked: id.endsWith('exit') ? Math.max(s.unlocked, Math.min(3, p.room + 1)) : s.unlocked,
-    finished: id === 'r4-exit' || s.finished,
+  };
+}
+export function openContainer(s: GameState, id: string): GameState {
+  const p = PUZZLES[id];
+  if (!p || p.room !== s.room || !s.solved.includes(id) || s.opened.includes(id)) return s;
+  return { ...s, opened: [...s.opened, id] };
+}
+export function leaveRoom(s: GameState): GameState {
+  if (!s.solved.includes(`r${s.room + 1}-exit`)) return s;
+  if (s.room === 3) return { ...s, finished: true };
+  return {
+    ...s,
+    room: s.room + 1,
+    unlocked: Math.max(s.unlocked, s.room + 1),
+    face: 0,
+    wallFace: 0,
   };
 }
 export function take(s: GameState, id: string): GameState {
-  if (
-    id !== 'wrench' ||
-    s.unlocked < 1 ||
-    s.inventory.includes(id) ||
-    s.installed.includes('r2-pipes')
-  )
-    return s;
-  return { ...s, inventory: [...s.inventory, id] };
+  if (!ITEMS[id] || s.collected.includes(id)) return s;
+  const source = Object.values(PUZZLES).find((p) => p.reward === id);
+  const available =
+    id === 'wrench'
+      ? s.room === 1 && s.face === 5
+      : !!source &&
+        source.room === s.room &&
+        s.solved.includes(source.id) &&
+        s.opened.includes(source.id);
+  if (!available) return s;
+  return { ...s, inventory: [...new Set([...s.inventory, id])], collected: [...s.collected, id] };
 }
 function validValues(p: Puzzle, v: unknown): v is number[] {
   if (!Array.isArray(v) || !v.every((n) => Number.isInteger(n) && n >= 0)) return false;
   if (p.kind === 'sequence')
     return v.length <= p.answer.length && v.every((n) => n < (p.glyphs ? 6 : 5));
   if (v.length !== p.initial.length) return false;
-  if (p.kind === 'water')
-    return v.reduce((a, b) => a + b, 0) === 8 && v.every((n, i) => n <= [8, 5, 3][i]);
+  if (p.kind === 'water') return WATER_STATES.some((state) => same(state, v));
   if (p.kind === 'slide')
     return same(
       [...v].sort((a, b) => a - b),
@@ -189,7 +231,7 @@ export function parseSave(raw: string | null): GameState | null {
     const x = JSON.parse(raw);
     if (
       !x ||
-      x.version !== 1 ||
+      ![1, 2].includes(x.version) ||
       typeof x.started !== 'boolean' ||
       !Number.isInteger(x.room) ||
       x.room < 0 ||
@@ -214,16 +256,40 @@ export function parseSave(raw: string | null): GameState | null {
       return null;
     if (!Object.entries(x.values).every(([k, v]) => PUZZLES[k] && validValues(PUZZLES[k], v)))
       return null;
+    if (
+      x.version === 2 &&
+      (!Array.isArray(x.opened) ||
+        !x.opened.every((id: string) => PUZZLES[id] && x.solved.includes(id)) ||
+        !Array.isArray(x.collected) ||
+        !x.collected.every((id: string) => ITEMS[id]) ||
+        !Array.isArray(x.mounted) ||
+        !x.mounted.every((id: string) => ['seal1', 'seal2', 'seal3', 'seal4'].includes(id)))
+    )
+      return null;
+    const old = x.version === 1;
+    const collected = old
+      ? [
+          ...new Set([
+            ...x.inventory,
+            ...x.solved.flatMap((id: string) => (PUZZLES[id]?.reward ? [PUZZLES[id].reward] : [])),
+            ...x.installed.flatMap((id: string) => (PUZZLES[id]?.item ? [PUZZLES[id].item] : [])),
+          ]),
+        ]
+      : x.collected;
     return {
       ...freshGame(),
       ...x,
+      version: 2,
+      collected,
+      opened: old ? [...x.solved] : x.opened,
+      mounted: old ? [] : x.mounted,
       wallFace:
         x.face < 4
           ? x.face
           : Number.isInteger(x.wallFace) && x.wallFace >= 0 && x.wallFace < 4
             ? x.wallFace
             : 0,
-      finished: x.solved.includes('r4-exit'),
+      finished: x.solved.includes('r4-exit') && (old || x.finished === true),
       elapsed: Number.isFinite(x.elapsed) ? Math.max(0, x.elapsed) : 0,
       brightness: typeof x.brightness === 'number' ? Math.max(0.8, Math.min(1.5, x.brightness)) : 1,
       sound: x.sound === true,

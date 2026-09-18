@@ -94,7 +94,7 @@ export const PUZZLES: Record<string, Puzzle> = Object.fromEntries(
         hints: [
           '机の紙には、長さの違う針がある。',
           '短針は八。長針は三。巻き鍵を先に差す。',
-          '左を8、右を3に合わせる。',
+          '短針を選んで8、長針を選んで3へ動かす。',
         ],
       },
       {

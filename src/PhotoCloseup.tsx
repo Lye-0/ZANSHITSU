@@ -72,13 +72,9 @@ export function Closeup({
     node.kind === 'clue' &&
     node.id !== 'r4-sockets' &&
     node.clue !== 'empty' &&
-    (!node.gate || game.solved.includes(node.gate)) &&
-    (node.id !== 'r2-mirror' || game.installed.includes('r2-locker'))
+    (!node.gate || game.solved.includes(node.gate))
   )
-    photo =
-      node.id === 'r2-mirror'
-        ? statePhoto('r2-locker', 'installed')
-        : `/images/clues/${node.id}.webp`;
+    photo = `/images/clues/${node.id}.webp`;
   if (node.clue === 'tub' && !game.solved.includes('r2-drain'))
     photo = '/images/clues/bathtub-full.webp';
   if (node.kind === 'take' && game.collected.includes(node.target!))
@@ -88,13 +84,20 @@ export function Closeup({
   };
   return (
     <section
-      className={`closeup-view photo-closeup detail-${node.id} ${opened ? 'container-open' : ''}`}
+      className={`closeup-view photo-closeup detail-${node.id} ${opened ? 'container-open' : ''} ${installed ? 'part-installed' : ''}`}
       aria-label={`${node.label}の接写`}
       style={{ '--detail-photo': `url(${photo})` } as CSSProperties}
     >
       <div className="closeup-bleed" />
       <div className="closeup-plane">
         <img className="closeup-photo" src={photo} alt={`${node.label}を近くで見た写真`} />
+        {p?.id === 'r2-locker' && installed && (
+          <img
+            className="mirror-number-photo"
+            src="/images/components/markings/mirror-number.webp"
+            alt="鏡に刻まれた四つの数字"
+          />
+        )}
         {p && opened && p.id === 'r2-water' && (
           <img
             className="photo-reveal-patch"
@@ -116,7 +119,15 @@ export function Closeup({
             {(installed || !['r2-pipes', 'r3-order', 'r3-overlay'].includes(p.id)) && (
               <div
                 className={`photo-mechanism ${p.motif === 'clock' ? 'clock-mechanism' : ''}`}
-                style={p.motif === 'clock' ? undefined : photoRect(conf.controls)}
+                style={
+                  p.motif === 'clock'
+                    ? undefined
+                    : photoRect(
+                        installed && conf.installedControls
+                          ? conf.installedControls
+                          : conf.controls,
+                      )
+                }
               >
                 <PhotoControls
                   key={`${p.id}-${installed}`}
@@ -203,6 +214,28 @@ export function Closeup({
           />
         )}
       </div>
+      {p?.id === 'r2-water' && (
+        <div className="water-status" aria-label="計量槽の水量">
+          <span aria-hidden="true" />
+          {[8, 5, 3].map((capacity, i) => (
+            <span key={i} className="water-capacity">
+              {capacity} L槽
+            </span>
+          ))}
+          <span>現在</span>
+          {values.map((n, i) => (
+            <output key={i} aria-label={`計量槽${i + 1}の現在量`} aria-live="polite">
+              {n} L
+            </output>
+          ))}
+          <span>目標</span>
+          {p.answer.map((n, i) => (
+            <span key={i} aria-label={`計量槽${i + 1}の目標量`}>
+              {n} L
+            </span>
+          ))}
+        </div>
+      )}
       <button
         className="direction down closeup-return"
         aria-label="元の視点に戻る"

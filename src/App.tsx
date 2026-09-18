@@ -20,6 +20,7 @@ import { Hotspots } from './Hotspots';
 import { viewPhoto } from './photography';
 import { turnView } from './navigation';
 import { Inventory } from './Inventory';
+import { HintContent } from './HintContent';
 
 type Panel =
   | { type: 'node'; node: SceneNode; room: number }
@@ -201,11 +202,7 @@ export default function App() {
       return;
     }
     setSelected(null);
-    if (
-      node.kind === 'clue' &&
-      (!node.gate || game.solved.includes(node.gate)) &&
-      (node.id !== 'r2-mirror' || game.installed.includes('r2-locker'))
-    )
+    if (node.kind === 'clue' && (!node.gate || game.solved.includes(node.gate)))
       setGame((g) => ({ ...g, seen: [...new Set([...g.seen, node.id])] }));
     setPanel({ type: 'node', node, room: game.room });
   }
@@ -555,28 +552,24 @@ export default function App() {
                 .filter((p) => p.room === game.room && !game.solved.includes(p.id))
                 .map((p) => (
                   <div key={p.id}>
-                    <button className="menu-link" onClick={() => setHintTarget(p.id)}>
+                    <button
+                      className="menu-link"
+                      aria-expanded={hintTarget === p.id}
+                      onClick={() => setHintTarget(hintTarget === p.id ? null : p.id)}
+                    >
                       {p.title}
                     </button>
                     {hintTarget === p.id && (
-                      <div className="hint-content">
-                        {(game.hints[p.id] ?? 0) > 0 && (
-                          <p>{p.hints[(game.hints[p.id] ?? 1) - 1]}</p>
-                        )}
-                        {(game.hints[p.id] ?? 0) < 3 && (
-                          <button
-                            className="text-button"
-                            onClick={() =>
-                              setGame((g) => ({
-                                ...g,
-                                hints: { ...g.hints, [p.id]: (g.hints[p.id] ?? 0) + 1 },
-                              }))
-                            }
-                          >
-                            もう少し見る
-                          </button>
-                        )}
-                      </div>
+                      <HintContent
+                        puzzle={p}
+                        revealed={game.hints[p.id] ?? 0}
+                        onReveal={(level) =>
+                          setGame((g) => ({
+                            ...g,
+                            hints: { ...g.hints, [p.id]: Math.max(g.hints[p.id] ?? 0, level) },
+                          }))
+                        }
+                      />
                     )}
                   </div>
                 ))}
@@ -615,11 +608,9 @@ export default function App() {
                         <img
                           className="journal-photo"
                           src={
-                            node.id === 'r2-mirror'
-                              ? '/images/mechanisms/r2-locker/installed.webp'
-                              : node.id === 'r4-sockets'
-                                ? '/images/mechanisms/r4-exit/base.webp'
-                                : `/images/clues/${node.id}.webp`
+                            node.id === 'r4-sockets'
+                              ? '/images/mechanisms/r4-exit/base.webp'
+                              : `/images/clues/${node.id}.webp`
                           }
                           alt={node.label}
                         />
@@ -699,7 +690,7 @@ export default function App() {
               <p>
                 持ち物を選んで、使いたい場所へ。
                 <br />
-                もう一度選ぶと、裏側まで調べられます。
+                拡大の印で表裏を調べ、同じ物をもう一度選ぶと選択を解除します。
               </p>
               <p>
                 目の印で、調べられる場所を表示。

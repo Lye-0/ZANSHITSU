@@ -2,7 +2,7 @@
   "version": 2,
   "updated": "2026-09-18",
   "count": 214,
-  "bytes": 26983836,
+  "bytes": 27397886,
   "photos": [
     {
       "path": "public/images/clues/bathtub-full.webp",
@@ -290,6 +290,13 @@
       "height": 883,
       "bytes": 295778,
       "sha256": "d569f3ef31eb5179d1acb058ef85d964e6f1a7a9fb956af034487b0077326bca"
+    },
+    {
+      "path": "public/images/components/markings/mirror-number.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 352876,
+      "sha256": "2e992a7b2c70bcac09bb8e1775beadcad265442d639b2fc679cda62cfea7b69f"
     },
     {
       "path": "public/images/components/pipes/elbow-0.webp",
@@ -839,24 +846,24 @@
     },
     {
       "path": "public/images/mechanisms/r2-locker/empty.webp",
-      "width": 623,
-      "height": 623,
-      "bytes": 128674,
-      "sha256": "ac7dce3b580508d86125c864ec815d60fb6e9f3baeb870ba7933fbf2dd37a846"
+      "width": 720,
+      "height": 720,
+      "bytes": 187652,
+      "sha256": "ed6a304a289137f4d399e9597b79c11b724de65bdce107ae40fde35b3fb66575"
     },
     {
       "path": "public/images/mechanisms/r2-locker/installed.webp",
-      "width": 623,
-      "height": 623,
-      "bytes": 136960,
-      "sha256": "0aafed7ec9d8a7e6f684cf61c4f6f7b68905db8cc98bfdc58b75a519a8fbab4c"
+      "width": 720,
+      "height": 720,
+      "bytes": 188644,
+      "sha256": "d62e63522f9314da6aa3db50e4e9969151162067ef08cf265c709c6ccef5aaca"
     },
     {
       "path": "public/images/mechanisms/r2-locker/reward.webp",
-      "width": 623,
-      "height": 623,
-      "bytes": 129548,
-      "sha256": "f66b4446779ecaeb8e89089c3a6378d4a13a1a9fe5bd5b5031eaae9ff7c8ae9c"
+      "width": 720,
+      "height": 720,
+      "bytes": 198298,
+      "sha256": "4706f3f855859c21a3510be09ab038b4b13c5ee2dd1790405ef6a254a8220aee"
     },
     {
       "path": "public/images/mechanisms/r2-pipes/base.webp",
@@ -1249,13 +1256,6 @@
       "height": 900,
       "bytes": 85760,
       "sha256": "546f0ef0a33da2693ffddd2d9b221fba37fca9585f3d629df393159d95b795e7"
-    },
-    {
-      "path": "public/images/rooms/02-washroom/closeups/mirror.webp",
-      "width": 508,
-      "height": 508,
-      "bytes": 118238,
-      "sha256": "7a27ce825200ea351ff9215a88b65d4ea26875475dbfd801b9682a50e82ce7af"
     },
     {
       "path": "public/images/rooms/02-washroom/closeups/r2-gauge.webp",

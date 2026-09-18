@@ -20,7 +20,7 @@ export function PhotoControls({
 }) {
   const [source, setSource] = useState<number | null>(null);
   const [hand, setHand] = useState<number | null>(null);
-  const drag = useRef<{ x: number; y: number; moved: boolean } | null>(null);
+  const drag = useRef<{ x: number; y: number; moved: boolean; hand: number } | null>(null);
   const face = useRef<HTMLDivElement>(null);
   const step = (i: number) =>
     change(values.map((v, j) => (j === i ? (v + 1) % (p.modulus ?? 10) : v)));
@@ -40,7 +40,7 @@ export function PhotoControls({
         {values.map((n, i) => (
           <img
             key={i}
-            className={`clock-hand clock-hand-${i}`}
+            className={`clock-hand clock-hand-${i} ${hand === i ? 'clock-hand-selected' : ''}`}
             src={componentPhoto('hands', i ? 'minute' : 'hour')}
             alt=""
             draggable={false}
@@ -55,18 +55,21 @@ export function PhotoControls({
             aria-label={i ? '長針をつかむ' : '短針をつかむ'}
             aria-pressed={hand === i}
             style={{ transform: `rotate(${n * 30}deg)` }}
-            onClick={() => setHand(i)}
+            onClick={(e) => {
+              if (e.detail === 0) setHand(i);
+            }}
             onPointerDown={(e) => {
               if (disabled) return;
-              setHand(i);
-              drag.current = { x: e.clientX, y: e.clientY, moved: false };
+              const chosen = hand === i && values[0] === values[1] ? 1 - i : i;
+              setHand(chosen);
+              drag.current = { x: e.clientX, y: e.clientY, moved: false, hand: chosen };
               e.currentTarget.setPointerCapture(e.pointerId);
             }}
             onPointerMove={(e) => {
               const d = drag.current;
               if (!d) return;
               if (Math.hypot(e.clientX - d.x, e.clientY - d.y) > 5) d.moved = true;
-              if (d.moved) pointHand(i, e.clientX, e.clientY);
+              if (d.moved) pointHand(d.hand, e.clientX, e.clientY);
             }}
             onPointerUp={() => {
               drag.current = null;

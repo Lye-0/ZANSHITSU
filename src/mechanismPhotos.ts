@@ -1,6 +1,7 @@
 export type Rect = [number, number, number, number];
 export type MechanismPhoto = {
   controls: Rect;
+  installedControls?: Rect;
   fitting?: Rect;
   pull: Rect;
   reward?: Rect;
@@ -45,10 +46,11 @@ export const PHOTO_MECHANISMS: Record<string, MechanismPhoto> = {
   },
   'r2-locker': {
     controls: [29, 69.2, 42, 6.6],
+    installedControls: [30.7, 66.1, 38.4, 4.6],
     fitting: [73, 29, 15, 19],
-    pull: [47, 77, 7, 9],
-    reward: [42, 72, 17, 9],
-    openControls: [29.5, 62.3, 41, 5.5],
+    pull: [46, 73, 8, 9],
+    reward: [42, 69, 17, 11],
+    openControls: [30.7, 59.6, 38.4, 4.6],
   },
   'r2-water': {
     controls: [5, 24, 90, 45],

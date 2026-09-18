@@ -299,3 +299,16 @@ Use case: precise-object-edit. Edit THIS exact reference photograph. LOCK camera
 ### water-7-1-0
 
 Use case: precise-object-edit. Edit THIS exact reference photograph. LOCK camera, pixel framing, rack, bolts, pipes, glass smudges, markings 8/5/3, shadows, stopper and drawer. Change ONLY water inside the three glass cylinders. Required levels: LEFT cylinder: 7 liters out of 8, 88% of the internal straight glass chamber height ; MIDDLE cylinder: 1 liters out of 5, 20% of the internal straight glass chamber height ; RIGHT cylinder: 0 liters out of 3, 0% of the internal straight glass chamber height (completely EMPTY, no green water). Water is dark transparent olive green with a visible REAL horizontal meniscus and subtle refraction, tank wall and reflections remain visible. The usable glass chamber runs vertically approximately y24%-67% of frame; zero at bottom of that chamber, full at top. Keep all metal and external background exactly unchanged. No drawn overlays, no text additions, no measurements rendered, no colored rectangular fills, no collage. Single square photo, not a grid.
+
+
+## 鏡の可読性修正（2026-09-18）
+
+設置後・収納内・取得後の鏡面を文字なしで再制作。別生成の正しく読める2715の写真部品を左右反転して使用し、実画面を反転して数字順を確認した。
+
+### mirror-clean
+
+Production photographic triptych of these THREE references, exactly THREE equal square cells SIDE BY SIDE, no margins. Left cell corresponds to first reference (closed lower drawer); middle to second (open drawer with brass stopper); right to third (open EMPTY drawer). In each photo REMOVE ALL FOUR scratched numerals from the glass, restoring natural cloudy mirror texture. Do not replace them with any writing. Preserve original camera, mirror frame, cracks, empty numeric recesses, drawer geometry, stopper when present, tiled background and light. No letters, numbers, symbols, captions. High fidelity to each original; just remove scratched numbers.
+
+### mirror-digits
+
+Photorealistic asset of just four large hand-scratched chalk-white digits reading EXACTLY '2715' in normal left-to-right readable orientation. 2 first, 7 second, 1 third, 5 fourth. TRUE TRANSPARENT BACKGROUND. Four separated digits equally sized and equally spaced, a slightly irregular human incised mark texture with tiny chipped edges, pale ivory scratches and extremely subtle grey edge shadows, matching marks scraped on old cloudy mirror glass. No mirror, no object, no black background, no box, no extra marks. The shape of 7 must have a CLEAR LONG HORIZONTAL TOP BAR and diagonal stem. 1 a straight vertical stem with small serif. Wide 4:1 canvas, digits fill central 80% width and 80% height. This is a photographic scratch decal, NOT clean vector font.

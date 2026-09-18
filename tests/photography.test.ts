@@ -23,7 +23,7 @@ it('参照されない写真や候補を配信フォルダに残さない', () =
     );
   expect(walk('public/images').sort()).toEqual(photographPaths());
 });
-it('全24方向と44対象の採用写真・輪郭がそろっている', () => {
+it('全24方向と43対象の採用写真・輪郭がそろっている', () => {
   for (let room = 0; room < 4; room++)
     for (let face = 0; face < 6; face++) {
       expect(existsSync(resolve('public', '.' + viewPhoto(room, face)))).toBe(true);

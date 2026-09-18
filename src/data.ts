@@ -474,10 +474,7 @@ export const ROOMS = [
         puzzle('r2-exit', '濡れた扉', 34, 20, 30, 68),
         clue('r2-gauge', '圧力計', 'empty', 73, 28, 16, 20),
       ],
-      [
-        puzzle('r2-locker', '洗面台の鏡', 24, 20, 53, 40),
-        clue('r2-mirror', '鏡の傷', 'mirror', 34, 62, 34, 21, 'r2-pipes'),
-      ],
+      [puzzle('r2-locker', '洗面台の鏡', 24, 20, 53, 40)],
       [
         puzzle('r2-water', '計量槽', 16, 20, 67, 47),
         puzzle('r2-pipes', '配管の継手', 23, 68, 53, 22),

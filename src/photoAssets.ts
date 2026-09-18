@@ -11,11 +11,7 @@ export function photographPaths() {
       paths.add(viewPhoto(room, face));
       for (const node of ROOMS[room].views[face] as readonly SceneNode[]) {
         paths.add(detailPhoto(room, node));
-        if (
-          node.kind === 'clue' &&
-          node.clue !== 'empty' &&
-          !['r2-mirror', 'r4-sockets'].includes(node.id)
-        )
+        if (node.kind === 'clue' && node.clue !== 'empty' && node.id !== 'r4-sockets')
           paths.add(`/images/clues/${node.id}.webp`);
       }
     }
@@ -54,5 +50,6 @@ export function photographPaths() {
   ])
     paths.add('/images/rooms/' + path);
   paths.add('/images/clues/bathtub-full.webp');
+  paths.add('/images/components/markings/mirror-number.webp');
   return [...paths].sort();
 }

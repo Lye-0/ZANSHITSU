@@ -128,6 +128,9 @@
 .detail-r2-locker .photo-dials {
   gap: 12.5%;
 }
+.detail-r2-locker.part-installed .photo-dials {
+  gap: 15.8%;
+}
 .photo-keys {
   display: flex;
   gap: 3%;
@@ -239,8 +242,8 @@
 }
 .hand-hit {
   position: absolute;
-  left: 46%;
-  width: 6%;
+  left: calc(49% - max(4%, 14px));
+  width: max(8%, 28px);
   transform-origin: 50% 100%;
   touch-action: none;
   z-index: 4;
@@ -252,11 +255,10 @@
 }
 .hand-hit-1 {
   top: 7.8%;
-  height: 10%;
-  transform-origin: 50% 310%;
+  height: 31%;
 }
-.hand-hit[aria-pressed='true'] {
-  outline: 1px solid #c4b99566;
+.clock-hand-selected {
+  filter: drop-shadow(0 0 3px #c8bb8980);
 }
 .dial-index-hit {
   position: absolute;
@@ -276,7 +278,71 @@
   aspect-ratio: 1;
   object-fit: cover;
 }
+.mirror-number-photo {
+  position: absolute;
+  left: 34%;
+  top: 38%;
+  width: 31%;
+  height: 11%;
+  object-fit: contain;
+  transform: scaleX(-1);
+  opacity: 0.6;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.container-open .mirror-number-photo {
+  top: 35%;
+}
+.hint-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.hint-navigation span {
+  color: #a6ab98;
+  font-size: 12px;
+}
+.hint-navigation button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.detail-r2-water {
+  grid-template-rows: minmax(0, 1fr) auto 56px;
+}
+.detail-r2-water .closeup-plane {
+  grid-row: 1;
+  width: min(100vw, calc(100dvh - 112px - 136px));
+  height: min(100vw, calc(100dvh - 112px - 136px));
+}
+.water-status {
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 44px repeat(3, minmax(54px, 1fr));
+  gap: 4px 12px;
+  width: min(360px, calc(100vw - 32px));
+  padding: 6px 12px;
+  color: #c8c5ac;
+  background: #101510ed;
+  border-top: 1px solid #8b906342;
+  font-size: 13px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  z-index: 5;
+}
+.water-status output {
+  font-size: 19px;
+  color: #ece1bf;
+}
+.water-status .water-capacity {
+  font-size: 11px;
+  color: #a6ab98;
+}
 @media (max-width: 480px) {
+  .detail-r2-water .closeup-plane {
+    width: min(100vw, calc(100dvh - 98px - 136px));
+    height: min(100vw, calc(100dvh - 98px - 136px));
+  }
   .room-stage > .direction.left,
   .room-stage > .direction.right {
     width: 32px;

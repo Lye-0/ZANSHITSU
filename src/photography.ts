@@ -49,8 +49,7 @@ export const SHAPES: Record<string, Shape> = {
   'r1-floor': { bounds: [29, 41, 25, 28], points: '20,0 80,2 100,87 70,100 0,18' },
   'r2-exit': { bounds: [32, 16, 36, 67] },
   'r2-gauge': { bounds: [75, 30, 10, 12], ellipse: true },
-  'r2-locker': { bounds: [27.5, 48, 45, 2.8] },
-  'r2-mirror': { bounds: [28, 13.5, 44, 34.5] },
+  'r2-locker': { bounds: [27.5, 13.5, 45, 37.3] },
   'r2-water': {
     bounds: [22.5, 14, 54, 34],
     points:
@@ -107,7 +106,6 @@ export const CLOSEUP_FILES: Record<string, string> = {
   'r1-note': 'desk-paper',
   'r2-pipes': 'pipes',
   'r2-locker': 'mirror',
-  'r2-mirror': 'mirror',
   'r2-water': 'tanks',
   'r2-drain': 'drain',
   'r2-exit': 'door-lock',

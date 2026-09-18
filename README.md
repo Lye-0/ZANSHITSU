@@ -15,6 +15,26 @@ mise run dev
 
 開発URL: http://127.0.0.1:5187/
 
+### 自宅Wi-Fiのスマホから開く
+
+```powershell
+pnpm dev:wifi
+# または mise run dev:wifi
+```
+
+起動したターミナルの `Network:` に出るURLを、同じルーターのWi-Fiに接続したスマホのブラウザで開きます。PCが有線接続でも使えます。確認時の自宅LANは `http://192.168.11.18:5187/` です。IPアドレスは再接続などで変わることがあるため、その場合は `ipconfig` で使用中のアダプターのIPv4アドレスを確認してください。仮想アダプターのアドレスは使いません。
+
+`pnpm dev` はPC内限定、`pnpm dev:wifi` はLAN向けです。同じ5187番を使うため同時には起動できません。起動したターミナルで Ctrl+C を押すと停止します。
+
+Windowsファイアウォールの初回設定は、管理者として開いたPowerShellで行います。以下は確認済みの自宅回線（インターフェース5、192.168.11.0/24）用です。別の回線では `Get-NetConnectionProfile` と `ipconfig` で対象を確認してから値を変更します。
+
+```powershell
+Set-NetConnectionProfile -InterfaceIndex 5 -NetworkCategory Private
+New-NetFirewallRule -Name 'ZANSHITSU-Dev-WiFi-5187' -DisplayName 'ZANSHITSU development (home LAN)' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 5187 -RemoteAddress '192.168.11.0/24' -InterfaceAlias 'イーサネット' -Profile Private
+```
+
+同じ規則を作り直す必要はありません。解除するときは管理者PowerShellで `Remove-NetFirewallRule -Name 'ZANSHITSU-Dev-WiFi-5187'` を実行します。ルーターのポート開放は不要です。スマホとPC、localhostとLANのIPアドレスでは保存先が異なるため、進行は共有されません。
+
 ```powershell
 mise run test
 mise run build

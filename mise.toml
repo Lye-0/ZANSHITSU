@@ -14,6 +14,10 @@ run = "pnpm dev"
 description = "Typecheck and build"
 run = "pnpm build"
 
+[tasks."dev:wifi"]
+description = "Start the development server on the home LAN"
+run = "pnpm dev:wifi"
+
 [tasks.test]
 description = "Run puzzle and save-state tests"
 run = "pnpm test"

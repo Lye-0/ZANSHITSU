@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import type { Puzzle } from './data';
 import { GLYPHS } from './data';
-import { gear, pipeEdges, pour, slide, toggleLights } from './engine';
+import { canSlide, gear, pipeEdges, pour, slide, toggleLights } from './engine';
 import { componentPhoto } from './mechanismPhotos';
 
 export function PhotoControls({
@@ -224,7 +224,7 @@ export function PhotoControls({
           {values.map((n, i) => (
             <button
               key={i}
-              disabled={disabled || n === 0}
+              disabled={disabled || !canSlide(values, i)}
               aria-label={n ? `小蓋${n}` : '空き'}
               onClick={() => change(slide(values, i))}
             >

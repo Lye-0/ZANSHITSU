@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { PUZZLES, ROOMS } from '../src/data';
 import {
   canAccess,
+  beginPuzzle,
+  canSlide,
   freshGame,
   gear,
   install,
@@ -19,6 +21,36 @@ import {
 } from '../src/engine';
 
 describe('physical mechanisms', () => {
+  it('saves the slide arrangement before the first reference visit and preserves it on resume', () => {
+    const fresh = { ...freshGame(), started: true, room: 2, unlocked: 2 };
+    const opened = beginPuzzle(fresh, 'r3-slide');
+    expect(opened.values['r3-slide']).toEqual(PUZZLES['r3-slide'].initial);
+    expect(opened.values['r3-slide']).not.toBe(PUZZLES['r3-slide'].initial);
+    const readPaper = { ...opened, seen: ['r3-plan'] };
+    expect(beginPuzzle(readPaper, 'r3-slide').values['r3-slide']).toEqual(
+      opened.values['r3-slide'],
+    );
+    const changed = slide(opened.values['r3-slide'], 7);
+    const saved = parseSave(JSON.stringify({ ...readPaper, values: { 'r3-slide': changed } }));
+    expect(beginPuzzle(saved!, 'r3-slide').values['r3-slide']).toEqual(changed);
+  });
+  it('makes the same adjacent tiles movable before and after reading the reference', () => {
+    const v = PUZZLES['r3-slide'].initial;
+    expect(v.map((_, i) => canSlide(v, i))).toEqual([
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+    ]);
+    const state = { ...freshGame(), room: 2, unlocked: 2 };
+    expect(canAccess(state, PUZZLES['r3-slide'])).toBe(true);
+    expect(canAccess({ ...state, seen: ['r3-plan'] }, PUZZLES['r3-slide'])).toBe(true);
+  });
   it('water photographs cover all 16 reachable states and reject impossible saves', () => {
     expect(WATER_STATES).toHaveLength(16);
     for (const state of WATER_STATES)

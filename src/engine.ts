@@ -76,14 +76,20 @@ for (let i = 0; i < WATER_STATES.length; i++)
       const next = pour(WATER_STATES[i], from, to);
       if (!WATER_STATES.some((v) => same(v, next))) WATER_STATES.push(next);
     }
-export function slide(values: number[], index: number) {
+export function canSlide(values: number[], index: number) {
   const empty = values.indexOf(0);
-  if (
+  return (
+    index >= 0 &&
+    index < values.length &&
+    empty >= 0 &&
     Math.abs(Math.floor(empty / 3) - Math.floor(index / 3)) +
-      Math.abs((empty % 3) - (index % 3)) !==
-    1
-  )
-    return values;
+      Math.abs((empty % 3) - (index % 3)) ===
+      1
+  );
+}
+export function slide(values: number[], index: number) {
+  if (!canSlide(values, index)) return values;
+  const empty = values.indexOf(0);
   const next = [...values];
   [next[index], next[empty]] = [next[empty], next[index]];
   return next;
@@ -138,6 +144,11 @@ export function canAccess(s: GameState, p: Puzzle) {
     (p.id !== 'r4-exit' ||
       ['seal1', 'seal2', 'seal3', 'seal4'].every((id) => s.mounted.includes(id)))
   );
+}
+export function beginPuzzle(s: GameState, id: string): GameState {
+  const p = PUZZLES[id];
+  if (!p || p.room !== s.room || !canAccess(s, p) || s.values[id]) return s;
+  return { ...s, values: { ...s.values, [id]: [...p.initial] } };
 }
 export function install(s: GameState, id: string, item: string): GameState {
   const p = PUZZLES[id];

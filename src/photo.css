@@ -36,6 +36,72 @@
   width: 50px;
   height: 50px;
 }
+.installed-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.installed-item > span {
+  font-size: 9px;
+  color: #aaa98e;
+  letter-spacing: 0.05em;
+}
+.installed-item button {
+  position: relative;
+  display: block;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #77735c;
+  overflow: hidden;
+}
+.installed-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.installed-item svg {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  filter: drop-shadow(0 1px 2px #000);
+}
+.detail-r3-slide,
+.detail-r3-plan {
+  grid-template-rows: minmax(0, 1fr) auto 56px;
+}
+.detail-r3-slide .closeup-plane,
+.detail-r3-plan .closeup-plane {
+  grid-row: 1;
+  width: min(100vw, calc(100dvh - 112px - 106px));
+  height: min(100vw, calc(100dvh - 112px - 106px));
+}
+.slide-guide,
+.reference-caption {
+  grid-row: 2;
+  z-index: 5;
+  color: #c8c5ac;
+  background: #101510ed;
+  padding: 8px 14px;
+  font-size: 12px;
+}
+.slide-guide {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.slide-guide button {
+  padding: 7px 12px;
+  border: 1px solid #8b906366;
+  color: #ddd3b4;
+}
+.slide-guide button:focus-visible {
+  outline: 2px solid #ddd3b4;
+  outline-offset: 2px;
+}
 .photo-hit,
 .photo-controls button,
 .hand-hit,
@@ -339,6 +405,11 @@
   color: #a6ab98;
 }
 @media (max-width: 480px) {
+  .detail-r3-slide .closeup-plane,
+  .detail-r3-plan .closeup-plane {
+    width: min(100vw, calc(100dvh - 98px - 106px));
+    height: min(100vw, calc(100dvh - 98px - 106px));
+  }
   .detail-r2-water .closeup-plane {
     width: min(100vw, calc(100dvh - 98px - 136px));
     height: min(100vw, calc(100dvh - 98px - 136px));

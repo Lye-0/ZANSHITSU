@@ -27,6 +27,7 @@ export function Closeup({
   onDoor,
   onNote,
   onInspect,
+  onReference,
 }: {
   node: SceneNode;
   room: number;
@@ -41,6 +42,7 @@ export function Closeup({
   onDoor: () => void;
   onNote: (n: number) => void;
   onInspect: (id: string) => void;
+  onReference: (id: string) => void;
 }) {
   const p =
     node.kind === 'puzzle'
@@ -53,7 +55,7 @@ export function Closeup({
   const installed = !!p && game.installed.includes(p.id),
     collected = !!p?.reward && game.collected.includes(p.reward);
   const gated = !!p?.requires?.some((id) => !game.solved.includes(id));
-  const allowed = !!p && canAccess(game, p) && !solved && !selected;
+  const allowed = !!p && canAccess(game, p) && !solved;
   const values = p ? (game.values[p.id] ?? p.initial) : [];
   const conf = p ? PHOTO_MECHANISMS[p.id] : null;
   let photo = detailPhoto(room, node);
@@ -214,6 +216,13 @@ export function Closeup({
           />
         )}
       </div>
+      {p?.id === 'r3-slide' && (
+        <div className="slide-guide">
+          <span>{solved ? '解錠済み' : '空きの隣の板を動かす'}</span>
+          <button onClick={() => onReference('r3-plan')}>完成図を見る</button>
+        </div>
+      )}
+      {node.id === 'r3-plan' && <div className="reference-caption">完成図</div>}
       {p?.id === 'r2-water' && (
         <div className="water-status" aria-label="計量槽の水量">
           <span aria-hidden="true" />

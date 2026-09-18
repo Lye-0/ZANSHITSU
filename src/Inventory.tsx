@@ -5,12 +5,14 @@ export function Inventory({
   selected,
   onSelect,
   onInspect,
+  installedItem,
   closeup = false,
 }: {
   items: string[];
   selected: string | null;
   onSelect: (id: string | null) => void;
-  onInspect: (id: string) => void;
+  onInspect: (id: string, back?: boolean) => void;
+  installedItem?: string;
   closeup?: boolean;
 }) {
   return (
@@ -38,10 +40,22 @@ export function Inventory({
               />
             </button>
           ))}
-          {Array.from({ length: Math.max(0, 5 - items.length) }, (_, i) => (
+          {Array.from({ length: Math.max(0, (installedItem ? 4 : 5) - items.length) }, (_, i) => (
             <span key={i} className="inventory-slot empty-slot" />
           ))}
         </div>
+        {installedItem && (
+          <div className="installed-item" role="group" aria-label="設置済みの部品">
+            <span>設置済み</span>
+            <button
+              aria-label={`${ITEMS[installedItem].name}の刻印を確認`}
+              onClick={() => onInspect(installedItem, true)}
+            >
+              <img src={`/images/items/${installedItem}/back.webp`} alt="" draggable={false} />
+              <Icon name="expand" size={12} />
+            </button>
+          </div>
+        )}
         <button
           className="inspect-button"
           disabled={!selected}

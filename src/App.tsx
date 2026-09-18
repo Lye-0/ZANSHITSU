@@ -11,6 +11,7 @@ import {
   take,
   openContainer,
   leaveRoom,
+  beginPuzzle,
 } from './engine';
 import type { GameState } from './engine';
 import { audioEnabled, sound } from './audio';
@@ -85,6 +86,7 @@ export default function App() {
   const [playing, setPlaying] = useState(false);
   const [panel, setPanel] = useState<Panel>(null);
   const itemOrigin = useRef<Panel>(null);
+  const referenceOrigin = useRef<Panel>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [flipped, setFlipped] = useState(false);
   const [marks, setMarks] = useState(false);
@@ -98,7 +100,14 @@ export default function App() {
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const room = ROOMS[game.room];
   const close = () => {
-    setPanel(panel?.type === 'item' ? itemOrigin.current : null);
+    setPanel(
+      panel?.type === 'item'
+        ? itemOrigin.current
+        : panel?.type === 'node'
+          ? referenceOrigin.current
+          : null,
+    );
+    if (panel?.type !== 'item') referenceOrigin.current = null;
     itemOrigin.current = null;
     setSelected(null);
     setFlipped(false);
@@ -195,6 +204,7 @@ export default function App() {
     sound('open', game.sound);
   }
   function openNode(node: SceneNode) {
+    referenceOrigin.current = null;
     setIntro(false);
     sound('tap', game.sound);
     if (node.kind === 'travel') {
@@ -202,11 +212,13 @@ export default function App() {
       return;
     }
     setSelected(null);
+    if (node.kind === 'puzzle') setGame((g) => beginPuzzle(g, node.target!));
     if (node.kind === 'clue' && (!node.gate || game.solved.includes(node.gate)))
       setGame((g) => ({ ...g, seen: [...new Set([...g.seen, node.id])] }));
     setPanel({ type: 'node', node, room: game.room });
   }
   function updatePuzzle(id: string, values: number[]) {
+    setSelected(null);
     const changed = { ...game, values: { ...game.values, [id]: values } };
     const next = solve(changed, id, values);
     setGame(next);
@@ -216,12 +228,28 @@ export default function App() {
       if (next.finished) close();
     } else sound('tap', game.sound);
   }
-  const showItem = (id: string) => {
+  const showItem = (id: string, back = false) => {
     itemOrigin.current = panel?.type === 'node' ? panel : null;
     setSelected(null);
     setPanel({ type: 'item', id });
-    setFlipped(false);
+    setFlipped(back);
   };
+  const showReference = (id: string) => {
+    const node = ROOMS[game.room].views.flat().find((n) => n.id === id);
+    if (!node) return;
+    referenceOrigin.current = panel;
+    setSelected(null);
+    setGame((g) => ({ ...g, seen: [...new Set([...g.seen, id])] }));
+    setPanel({ type: 'node', node, room: game.room });
+  };
+  const currentPuzzle =
+    panel?.type === 'node' && panel.node.kind === 'puzzle' ? PUZZLES[panel.node.target!] : null;
+  const installedItem =
+    currentPuzzle?.item &&
+    currentPuzzle.item !== 'wrench' &&
+    game.installed.includes(currentPuzzle.id)
+      ? currentPuzzle.item
+      : undefined;
   const style = {
     '--room-image': `url(${viewPhoto(game.room, game.face, game)})`,
     '--brightness': game.brightness,
@@ -516,6 +544,7 @@ export default function App() {
           }}
           onNote={(i) => sound('note', game.sound, i)}
           onInspect={showItem}
+          onReference={showReference}
         />
       )}
       {playing && panel?.type === 'item' && (
@@ -529,6 +558,7 @@ export default function App() {
       {playing && panel?.type === 'node' && (
         <Inventory
           closeup
+          installedItem={installedItem}
           items={game.inventory}
           selected={selected}
           onSelect={setSelected}

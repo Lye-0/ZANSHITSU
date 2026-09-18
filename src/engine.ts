@@ -6,6 +6,7 @@ export type GameState = {
   started: boolean;
   room: number;
   face: number;
+  wallFace: number;
   unlocked: number;
   solved: string[];
   inventory: string[];
@@ -25,6 +26,7 @@ export function freshGame(): GameState {
     started: false,
     room: 0,
     face: 0,
+    wallFace: 0,
     unlocked: 0,
     solved: [],
     inventory: [],
@@ -215,6 +217,12 @@ export function parseSave(raw: string | null): GameState | null {
     return {
       ...freshGame(),
       ...x,
+      wallFace:
+        x.face < 4
+          ? x.face
+          : Number.isInteger(x.wallFace) && x.wallFace >= 0 && x.wallFace < 4
+            ? x.wallFace
+            : 0,
       finished: x.solved.includes('r4-exit'),
       elapsed: Number.isFinite(x.elapsed) ? Math.max(0, x.elapsed) : 0,
       brightness: typeof x.brightness === 'number' ? Math.max(0.8, Math.min(1.5, x.brightness)) : 1,

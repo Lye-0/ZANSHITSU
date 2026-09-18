@@ -2,17 +2,20 @@ import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import { FACE_NAMES, ITEMS, PUZZLES, ROOMS } from './data';
 import type { SceneNode } from './data';
-import { canAccess, freshGame, install, parseSave, SAVE_KEY, solve, take } from './engine';
+import { freshGame, install, parseSave, SAVE_KEY, solve, take } from './engine';
 import type { GameState } from './engine';
 import { audioEnabled, sound } from './audio';
 import { ClueArt } from './Clues';
 import { Icon } from './Icons';
-import { PuzzleControls } from './PuzzleControls';
+import { Closeup, ItemCloseup } from './Closeup';
+import { Hotspots } from './Hotspots';
+import { viewPhoto } from './photography';
+import { turnView } from './navigation';
 
 type Panel =
   | { type: 'node'; node: SceneNode; room: number }
   | { type: 'item'; id: string }
-  | { type: 'menu' | 'journal' | 'help' | 'restart' }
+  | { type: 'menu' | 'journal' | 'help' | 'restart' | 'hints' }
   | null;
 function Modal({
   children,
@@ -76,20 +79,15 @@ export default function App() {
   const [marks, setMarks] = useState(false);
   const [toast, setToast] = useState('');
   const [hover, setHover] = useState('');
-  const [feedback, setFeedback] = useState<'wrong' | 'right' | ''>('');
-  const [hintOpen, setHintOpen] = useState(false);
+  const [hintTarget, setHintTarget] = useState<string | null>(null);
   const [saveError, setSaveError] = useState(false);
   const [assetError, setAssetError] = useState(false);
   const [intro, setIntro] = useState(false);
   const [journalRoom, setJournalRoom] = useState(0);
-  const lastFace = useRef(0);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const feedbackTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const room = ROOMS[game.room];
   const close = () => {
     setPanel(null);
-    setHintOpen(false);
-    setFeedback('');
     setFlipped(false);
   };
   const notify = (msg: string) => {
@@ -100,7 +98,6 @@ export default function App() {
   useEffect(
     () => () => {
       if (toastTimer.current) clearTimeout(toastTimer.current);
-      if (feedbackTimer.current) clearTimeout(feedbackTimer.current);
     },
     [],
   );
@@ -140,23 +137,17 @@ export default function App() {
     if (panel) return;
     sound('turn', game.sound);
     setHover('');
-    setGame((g) => {
-      let face = g.face;
-      if (direction === -1 || direction === 1) {
-        face = ((face > 3 ? lastFace.current : face) + direction + 4) % 4;
-        lastFace.current = face;
-      } else if (direction === 4 || direction === 5) {
-        if (face === direction) face = lastFace.current;
-        else {
-          if (face < 4) lastFace.current = face;
-          face = direction;
-        }
-      }
-      return { ...g, face };
-    });
+    const d =
+      direction === -1 ? 'left' : direction === 1 ? 'right' : direction === 4 ? 'up' : 'down';
+    setGame((g) => turnView(g, d));
   }
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if ((panel?.type === 'node' || panel?.type === 'item') && e.key === 'ArrowDown') {
+        e.preventDefault();
+        close();
+        return;
+      }
       if (!playing || panel || game.finished || e.altKey || e.ctrlKey || e.metaKey) return;
       const target = e.target as HTMLElement;
       if (['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) return;
@@ -182,8 +173,7 @@ export default function App() {
   }
   function visit(index: number) {
     if (index > game.unlocked) return;
-    setGame((g) => ({ ...g, room: index, face: 0 }));
-    lastFace.current = 0;
+    setGame((g) => ({ ...g, room: index, face: 0, wallFace: 0 }));
     close();
     setSelected(null);
     setHover('');
@@ -192,19 +182,7 @@ export default function App() {
   }
   function openNode(node: SceneNode) {
     setIntro(false);
-    setFeedback('');
-    setHintOpen(false);
     sound('tap', game.sound);
-    if (node.kind === 'take') {
-      const next = take(game, node.target!);
-      if (next !== game) {
-        setGame(next);
-        setPanel({ type: 'item', id: node.target! });
-        setFlipped(false);
-        notify(`${ITEMS[node.target!].name}`);
-      } else notify('何も残っていない。');
-      return;
-    }
     if (node.kind === 'travel') {
       visit(node.room!);
       return;
@@ -222,27 +200,18 @@ export default function App() {
       setGame((g) => ({ ...g, seen: [...new Set([...g.seen, node.id])] }));
     setPanel({ type: 'node', node, room: game.room });
   }
-  function checkPuzzle(id: string) {
-    const p = PUZZLES[id];
-    const values = game.values[id] ?? p.initial;
-    const next = solve(game, id, values);
-    if (next !== game) {
-      setGame(next);
-      setFeedback('right');
+  function updatePuzzle(id: string, values: number[]) {
+    const changed = { ...game, values: { ...game.values, [id]: values } };
+    const next = solve(changed, id, values);
+    setGame(next);
+    if (next.solved.length > game.solved.length) {
       sound('open', game.sound);
-      if (p.id === 'r4-power') notify('遠くで、三つの音。');
-      if (next.finished) {
-        close();
-        setSelected(null);
-      }
-    } else {
-      setFeedback('wrong');
-      sound('fail', game.sound);
-      if (feedbackTimer.current) clearTimeout(feedbackTimer.current);
-      feedbackTimer.current = setTimeout(() => setFeedback(''), 700);
-    }
+      notify(PUZZLES[id].reward ? ITEMS[PUZZLES[id].reward!].name : 'かちり。');
+      if (next.finished) close();
+    } else sound('tap', game.sound);
   }
   const showItem = (id: string) => {
+    setSelected(id);
     setPanel({ type: 'item', id });
     setFlipped(false);
   };
@@ -255,18 +224,10 @@ export default function App() {
     }
   }
   const style = {
-    '--room-image': `url(${room.image})`,
+    '--room-image': `url(${viewPhoto(game.room, game.face, game)})`,
     '--brightness': game.brightness,
   } as CSSProperties;
   const nodes = room.views[game.face] as readonly SceneNode[];
-  const p =
-    panel?.type === 'node' && panel.node.kind === 'puzzle' ? PUZZLES[panel.node.target!] : null;
-  const solved = !!p && game.solved.includes(p.id);
-  const gate = p?.requires?.find((id) => !game.solved.includes(id));
-  const itemMissing = p?.item && !game.installed.includes(p.id);
-  const missingSeals =
-    p?.id === 'r4-exit' &&
-    ['seal1', 'seal2', 'seal3', 'seal4'].some((id) => !game.inventory.includes(id));
   const foundClues = ROOMS.flatMap((r, i) =>
     r.views.flatMap((v) =>
       (v as readonly SceneNode[])
@@ -275,7 +236,10 @@ export default function App() {
     ),
   );
   return (
-    <div className={`app ${game.motion ? '' : 'reduced-motion'} tone-${room.tone}`} style={style}>
+    <div
+      className={`app ${game.motion ? '' : 'reduced-motion'} tone-${room.tone} ${panel?.type === 'node' || panel?.type === 'item' ? 'has-closeup' : ''}`}
+      style={style}
+    >
       {!playing ? (
         <main className="title-screen">
           <div className="title-image" />
@@ -381,19 +345,10 @@ export default function App() {
               className={`room-stage face-${game.face} ${marks ? 'show-marks' : ''}`}
               aria-label={`第${game.room + 1}室 ${FACE_NAMES[game.face]}`}
             >
-              <div
-                key={`${game.room}-${game.face}`}
-                className="room-picture"
-                style={{
-                  backgroundPosition:
-                    game.face < 4
-                      ? `${(game.face % 2) * 100}% ${Math.floor(game.face / 2) * 100}%`
-                      : `${(game.room / 3) * 100}% ${game.face === 4 ? 0 : 100}%`,
-                }}
-              />
+              <div key={`${game.room}-${game.face}`} className="room-picture" />
               <img
                 className="asset-check"
-                src={game.face < 4 ? room.image : '/assets/vertical.webp'}
+                src={viewPhoto(game.room, game.face, game)}
                 onError={() => setAssetError(true)}
                 onLoad={() => setAssetError(false)}
                 alt=""
@@ -427,46 +382,44 @@ export default function App() {
                   ⌾
                 </div>
               )}
-              {nodes.map((node) => (
+              <Hotspots
+                nodes={nodes}
+                open={openNode}
+                hover={setHover}
+                marks={marks}
+                taken={(n) =>
+                  n.kind === 'take' &&
+                  (game.inventory.includes(n.target!) || game.installed.includes('r2-pipes'))
+                }
+              />
+              {game.face < 4 && (
+                <>
+                  <button className="direction left" aria-label="左を向く" onClick={() => turn(-1)}>
+                    <span />
+                  </button>
+                  <button className="direction right" aria-label="右を向く" onClick={() => turn(1)}>
+                    <span />
+                  </button>
+                </>
+              )}
+              {game.face !== 4 && (
                 <button
-                  key={node.id}
-                  className={`hotspot ${node.kind === 'take' && (game.inventory.includes(node.target!) || game.installed.includes('r2-pipes')) ? 'taken' : ''}`}
-                  style={{
-                    left: `${node.x}%`,
-                    top: `${node.y}%`,
-                    width: `${node.w}%`,
-                    height: `${node.h}%`,
-                  }}
-                  aria-label={node.label}
-                  onClick={() => openNode(node)}
-                  onMouseEnter={() => setHover(node.label)}
-                  onMouseLeave={() => setHover('')}
-                  onFocus={() => setHover(node.label)}
-                  onBlur={() => setHover('')}
+                  className="direction up"
+                  aria-label={game.face === 5 ? '壁へ戻る' : '天井を見る'}
+                  onClick={() => turn(4)}
                 >
-                  <span className="hotspot-dot" />
+                  <span />
                 </button>
-              ))}
-              <button className="direction left" aria-label="左を向く" onClick={() => turn(-1)}>
-                <span />
-              </button>
-              <button className="direction right" aria-label="右を向く" onClick={() => turn(1)}>
-                <span />
-              </button>
-              <button
-                className={`direction up ${game.face === 4 ? 'is-back' : ''}`}
-                aria-label={game.face === 4 ? '壁へ戻る' : '天井を見る'}
-                onClick={() => turn(4)}
-              >
-                <span />
-              </button>
-              <button
-                className={`direction down ${game.face === 5 ? 'is-back' : ''}`}
-                aria-label={game.face === 5 ? '壁へ戻る' : '床を見る'}
-                onClick={() => turn(5)}
-              >
-                <span />
-              </button>
+              )}
+              {game.face !== 5 && (
+                <button
+                  className="direction down"
+                  aria-label={game.face === 4 ? '壁へ戻る' : '床を見る'}
+                  onClick={() => turn(5)}
+                >
+                  <span />
+                </button>
+              )}
               <div className="view-marker" aria-hidden="true">
                 {[0, 1, 2, 3].map((n) => (
                   <i className={game.face === n ? 'active' : ''} key={n} />
@@ -552,6 +505,46 @@ export default function App() {
           </div>
         </main>
       )}
+      {playing && panel?.type === 'node' && (
+        <Closeup
+          key={panel.node.id}
+          node={panel.node}
+          room={panel.room}
+          game={game}
+          selected={selected}
+          onBack={close}
+          onValues={updatePuzzle}
+          onReset={(id) =>
+            setGame((g) => ({ ...g, values: { ...g.values, [id]: [...PUZZLES[id].initial] } }))
+          }
+          onInsert={(id, item) => {
+            const next = install(game, id, item);
+            if (next !== game) {
+              setGame(next);
+              setSelected(null);
+              sound('open', game.sound);
+            } else notify('合わない。');
+          }}
+          onTake={(id) => {
+            const next = take(game, id);
+            if (next !== game) {
+              setGame(next);
+              setSelected(id);
+              notify(ITEMS[id].name);
+            }
+          }}
+          onDoor={() => visit(Math.min(3, panel.room + 1))}
+          onNote={(i) => sound('note', game.sound, i)}
+        />
+      )}
+      {playing && panel?.type === 'item' && (
+        <ItemCloseup
+          id={panel.id}
+          flipped={flipped}
+          onFlip={() => setFlipped(!flipped)}
+          onBack={close}
+        />
+      )}
       <div className="toast" role="status" aria-live="polite">
         {toast}
       </div>
@@ -560,117 +553,19 @@ export default function App() {
           保存できません。この画面を閉じると進行が失われます。
         </div>
       )}
-      {panel && (
-        <Modal
-          key={
-            panel.type === 'node' ? panel.node.id : panel.type === 'item' ? panel.id : panel.type
-          }
-          label={
-            panel.type === 'node'
-              ? panel.node.label
-              : panel.type === 'item'
-                ? ITEMS[panel.id].name
-                : 'メニュー'
-          }
-          onClose={close}
-        >
-          {panel.type === 'node' && p && (
-            <div className={`puzzle-panel ${feedback}`}>
-              <div className="panel-kicker">{ROOMS[p.room].roman}</div>
-              <h2>{p.title}</h2>
-              <div className="panel-divider" />
-              {solved ? (
-                <div className="solved-panel">
-                  <div className="solved-seal">
-                    <Icon name="check" size={40} />
-                  </div>
-                  <p>かちり。</p>
-                  {p.reward && (
-                    <span className="reward-caption">
-                      {ITEMS[p.reward].icon}　{ITEMS[p.reward].name}
-                    </span>
-                  )}
-                  {p.id.endsWith('exit') && p.room < 3 ? (
-                    <button className="primary-button" onClick={() => visit(p.room + 1)}>
-                      扉を開ける
-                      <Icon name="arrow" />
+      {panel && panel.type !== 'node' && panel.type !== 'item' && (
+        <Modal key={panel.type} label="メニュー" onClose={close}>
+          {panel.type === 'hints' && (
+            <div className="hints-menu">
+              <h2>手掛かり</h2>
+              {Object.values(PUZZLES)
+                .filter((p) => p.room === game.room && !game.solved.includes(p.id))
+                .map((p) => (
+                  <div key={p.id}>
+                    <button className="menu-link" onClick={() => setHintTarget(p.id)}>
+                      {p.title}
                     </button>
-                  ) : (
-                    <button className="text-button" onClick={close}>
-                      戻る
-                    </button>
-                  )}
-                </div>
-              ) : (
-                <>
-                  {(gate || missingSeals) && (
-                    <div className="locked-note">
-                      <span>⌑</span>
-                      <p>{missingSeals ? '四つの窪みが、空いている。' : 'まだ、動かない。'}</p>
-                    </div>
-                  )}
-                  {!gate && !missingSeals && itemMissing && (
-                    <div className="insert-area">
-                      <div className="item-socket">{ITEMS[p.item!].icon}</div>
-                      <p>差し込み口がある。</p>
-                      <div className="insert-items">
-                        {game.inventory.map((id) => (
-                          <button
-                            key={id}
-                            aria-label={`${ITEMS[id].name}を使う`}
-                            onClick={() => {
-                              const next = install(game, p.id, id);
-                              if (next === game) {
-                                notify('合わない。');
-                                sound('fail', game.sound);
-                              } else {
-                                setGame(next);
-                                setSelected(null);
-                                sound('open', game.sound);
-                              }
-                            }}
-                          >
-                            {ITEMS[id].icon}
-                            <small>{ITEMS[id].name}</small>
-                          </button>
-                        ))}
-                      </div>
-                      {game.inventory.length === 0 && <small>手元には、何もない。</small>}
-                    </div>
-                  )}
-                  {!gate && !missingSeals && !itemMissing && (
-                    <PuzzleControls
-                      key={p.id}
-                      puzzle={p}
-                      values={game.values[p.id] ?? p.initial}
-                      disabled={!canAccess(game, p)}
-                      onChange={(values) => {
-                        setGame((g) => ({ ...g, values: { ...g.values, [p.id]: values } }));
-                        setFeedback('');
-                        sound('tap', game.sound);
-                      }}
-                      onCheck={() => checkPuzzle(p.id)}
-                      onReset={() => {
-                        setGame((g) => ({ ...g, values: { ...g.values, [p.id]: [...p.initial] } }));
-                        setFeedback('');
-                        sound('turn', game.sound);
-                      }}
-                      onNote={(i) => sound('note', game.sound, i)}
-                    />
-                  )}
-                  <div className="puzzle-feedback" role="status">
-                    {feedback === 'wrong' ? '違う。' : ''}
-                  </div>
-                  <div className="hint-area">
-                    <button
-                      className="hint-toggle"
-                      aria-label="ヒントを開く"
-                      onClick={() => setHintOpen(!hintOpen)}
-                    >
-                      <Icon name="hint" size={17} />
-                      <span>手掛かり</span>
-                    </button>
-                    {hintOpen && (
+                    {hintTarget === p.id && (
                       <div className="hint-content">
                         {(game.hints[p.id] ?? 0) > 0 && (
                           <p>{p.hints[(game.hints[p.id] ?? 1) - 1]}</p>
@@ -685,69 +580,13 @@ export default function App() {
                               }))
                             }
                           >
-                            {(game.hints[p.id] ?? 0) === 0
-                              ? '少しだけ見る'
-                              : (game.hints[p.id] ?? 0) === 2
-                                ? '解き方を見る'
-                                : 'もう少し見る'}
+                            もう少し見る
                           </button>
                         )}
                       </div>
                     )}
                   </div>
-                </>
-              )}
-            </div>
-          )}
-          {panel.type === 'node' && panel.node.kind === 'clue' && (
-            <div className="clue-panel">
-              <div className="panel-kicker">{ROOMS[panel.room].roman} / TRACE</div>
-              <h2>{panel.node.label}</h2>
-              <ClueArt
-                kind={panel.node.clue!}
-                room={panel.room}
-                active={!panel.node.gate || game.solved.includes(panel.node.gate)}
-              />
-              {(!panel.node.gate || game.solved.includes(panel.node.gate)) &&
-                panel.node.clue !== 'empty' && (
-                  <div className="recorded">
-                    <Icon name="book" size={16} />
-                    記録に残した
-                  </div>
-                )}
-            </div>
-          )}
-          {panel.type === 'item' && (
-            <div className="item-panel">
-              <div className="panel-kicker">OBJECT / {flipped ? 'REVERSE' : 'OBVERSE'}</div>
-              <h2>{ITEMS[panel.id].name}</h2>
-              <button
-                className={`inspect-object ${flipped ? 'flipped' : ''}`}
-                aria-label="持ち物を裏返す"
-                onClick={() => {
-                  setFlipped(!flipped);
-                  sound('turn', game.sound);
-                }}
-              >
-                {flipped ? (
-                  <span className="item-back">{ITEMS[panel.id].back ?? '·'}</span>
-                ) : (
-                  <span>{ITEMS[panel.id].icon}</span>
-                )}
-              </button>
-              <p className="control-whisper">タップで裏返す</p>
-              {!flipped && ITEMS[panel.id].description && (
-                <p className="object-description">{ITEMS[panel.id].description}</p>
-              )}
-              <button
-                className="primary-button"
-                onClick={() => {
-                  setSelected(panel.id);
-                  close();
-                }}
-              >
-                手に持つ
-              </button>
+                ))}
             </div>
           )}
           {panel.type === 'journal' && (
@@ -818,6 +657,10 @@ export default function App() {
                   onChange={(e) => setGame((g) => ({ ...g, motion: e.target.checked }))}
                 />
               </label>
+              <button className="menu-link" onClick={() => setPanel({ type: 'hints' })}>
+                手掛かり
+                <Icon name="hint" size={16} />
+              </button>
               <button className="menu-link" onClick={() => setPanel({ type: 'help' })}>
                 操作について
                 <Icon name="arrow" size={16} />
@@ -845,8 +688,8 @@ export default function App() {
             <div className="help-panel">
               <div className="panel-kicker">HOW TO TOUCH</div>
               <h2>操作</h2>
-              <p>画面端の三角で、壁・天井・床へ。</p>
-              <p>物に触れると、近くで調べられます。</p>
+              <p>画面端の三角で、壁・天井・床へ。天井からは下、床からは上で戻ります。</p>
+              <p>物に触れると、その場所へ近づきます。下の三角で元の視点へ。</p>
               <p>
                 持ち物を選んで、使いたい場所へ。
                 <br />
@@ -882,7 +725,6 @@ export default function App() {
                   setGame(next);
                   setPlaying(true);
                   setSelected(null);
-                  lastFace.current = 0;
                   setIntro(true);
                   setMarks(false);
                   close();
@@ -900,4 +742,3 @@ export default function App() {
     </div>
   );
 }
-

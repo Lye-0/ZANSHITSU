@@ -1,0 +1,808 @@
+.room-picture,
+.room-stage.face-4 .room-picture,
+.room-stage.face-5 .room-picture {
+  background-image: var(--room-image);
+  background-size: 100% 100%;
+  background-position: center;
+}
+.title-image {
+  background-image: url('/images/rooms/01-waiting/views/north.webp');
+  background-size: cover;
+  background-position: center;
+}
+.object-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  overflow: visible;
+  pointer-events: none;
+}
+.object-outline {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 1.3;
+  vector-effect: non-scaling-stroke;
+  pointer-events: all;
+  cursor: pointer;
+  transition:
+    fill 0.2s,
+    stroke 0.2s;
+  outline: none;
+}
+.object-outline:hover,
+.object-outline:focus-visible {
+  fill: #d6c79b0a;
+  stroke: #dfd0a580;
+}
+.object-outline:focus-visible {
+  stroke: #eadbad;
+  stroke-width: 2;
+}
+.reveal-objects .object-outline {
+  stroke: #c8c7a356;
+  fill: #c8c7a30a;
+}
+.has-closeup .game-shell {
+  display: none;
+}
+.has-closeup {
+  height: 100dvh;
+  overflow: hidden;
+}
+.closeup-view {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  background: #151812;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.closeup-bleed {
+  position: absolute;
+  inset: -3%;
+  background-image: var(--detail-photo);
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px) brightness(0.65);
+  z-index: -2;
+}
+.closeup-view:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 35%, #0609043d 100%);
+  z-index: 3;
+}
+.closeup-plane {
+  position: relative;
+  width: min(100vw, 100dvh);
+  height: min(100vw, 100dvh);
+  container-type: inline-size;
+  isolation: isolate;
+  animation: approach 0.38s ease-out;
+}
+.closeup-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  filter: brightness(var(--brightness));
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+.closeup-return {
+  position: fixed !important;
+  bottom: max(12px, env(safe-area-inset-bottom)) !important;
+  left: calc(50% - 32px) !important;
+  z-index: 20 !important;
+  height: 56px !important;
+  opacity: 0.9 !important;
+  background: radial-gradient(ellipse, #11190d88, transparent 68%);
+}
+.physical-controls,
+.physical-dials,
+.physical-clock {
+  position: absolute;
+  z-index: 2;
+}
+.physical-controls .mechanism,
+.physical-controls fieldset {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  opacity: 1;
+}
+.physical-controls .mechanism-actions,
+.physical-controls .control-whisper,
+.physical-controls .engraved-rule,
+.physical-controls .light-goal,
+.physical-controls .ring-legend,
+.physical-controls .water-target {
+  display: none;
+}
+.physical-controls .sequence-readout {
+  height: 22%;
+  min-height: 0;
+  margin: 0 0 6%;
+  gap: 3px;
+}
+.physical-controls .sequence-readout span {
+  height: 100%;
+  font-size: clamp(10px, 3.5cqw, 30px);
+  width: 10%;
+  color: #c9bf99;
+  border-color: #14170a99;
+  text-shadow: 0 1px 1px #000;
+}
+.physical-controls .symbol-buttons:not(.music-keys) {
+  width: 100%;
+  height: 66%;
+  max-width: none;
+  gap: 3%;
+  grid-template-columns: repeat(6, 1fr);
+}
+.physical-controls .symbol-buttons:not(.music-keys) button {
+  min-width: 0;
+  height: 100%;
+  font-size: clamp(14px, 5cqw, 40px);
+  border-radius: 50%;
+  background: radial-gradient(at 40% 30%, #776c44, #39321d 70%);
+  color: #d7ca9e;
+  box-shadow:
+    inset 0 0 3px #171706,
+    0 3px 3px #000b;
+  text-shadow: 0 -1px #000;
+}
+.physical-controls .music-keys {
+  height: 100%;
+  gap: 4%;
+  padding: 0;
+}
+.physical-controls .music-keys button {
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+.physical-controls .music-keys button:active {
+  background: #d5c68e25;
+}
+.physical-controls .music-keys .note-height {
+  width: 2px;
+  background: #c8b993;
+  height: 25% !important;
+}
+.physical-controls .music-keys small {
+  font-size: clamp(9px, 2cqw, 17px);
+  text-shadow: 0 1px #000;
+}
+.controls-r3-score .sequence-readout {
+  position: absolute;
+  top: -28%;
+  left: 0;
+  width: 100%;
+  height: 17%;
+  margin: 0;
+}
+.controls-r3-score .music-keys {
+  height: 100%;
+}
+.physical-dials {
+  display: flex;
+  gap: 8%;
+  align-items: stretch;
+}
+.physical-dials button {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  color: #d9c8a3;
+  text-shadow: 0 2px 2px #000;
+  box-shadow: inset 0 0 9px #0008;
+  background: linear-gradient(#0006, transparent 35%, #0002 70%, #0008);
+  border-radius: 2px;
+  font:
+    clamp(17px, 5cqw, 50px) / 1 Georgia,
+    serif;
+}
+.physical-dials button:disabled {
+  opacity: 1;
+}
+.physical-dials button:active {
+  filter: brightness(1.35);
+}
+.physical-dials.round-dials button {
+  border-radius: 50%;
+  background: radial-gradient(#3a3b2a, #15190f 80%);
+  outline: 2px dashed #787350;
+  outline-offset: -3px;
+}
+.physical-clock svg {
+  width: 100%;
+  height: 100%;
+  fill: #2e2b22;
+  stroke: #29271f;
+  filter: drop-shadow(0 1px 1px #0003);
+}
+.physical-clock svg text {
+  font:
+    13px Georgia,
+    serif;
+  stroke: none;
+}
+.clock-winders {
+  position: absolute;
+  left: 25%;
+  top: 72%;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+.clock-winders button {
+  width: 5cqw;
+  height: 5cqw;
+  border-radius: 50%;
+  font-size: 1.8cqw;
+  background: radial-gradient(at 40% 25%, #8d805c, #393321);
+  border: 1px solid #665c3a;
+  color: #cec3a1;
+  box-shadow: 1px 3px 4px #0009;
+  min-height: 28px;
+  min-width: 28px;
+}
+.physical-controls .lights-grid {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  padding: 3%;
+  gap: 8%;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.physical-controls .lights-grid button {
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1;
+  box-shadow:
+    inset 0 2px 8px #000b,
+    0 1px 1px #c9bb8244;
+  background: radial-gradient(#292b18, #151709);
+  border-color: #80734280;
+}
+.physical-controls .lights-grid button span {
+  width: 35%;
+  height: 35%;
+}
+.physical-controls .pipe-board {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+.physical-controls .pipe-grid {
+  width: 100%;
+  height: 100%;
+  background: #1e1b1380;
+  gap: 1%;
+  border: 0;
+}
+.physical-controls .pipe-grid button {
+  background: radial-gradient(#4f443080, #271f1177);
+  color: #a5804e;
+  border-color: #73614744;
+}
+.physical-controls .pipe-in,
+.physical-controls .pipe-out {
+  font-size: 4cqw;
+}
+.physical-controls .pipe-in {
+  left: -7%;
+}
+.physical-controls .pipe-out {
+  right: -7%;
+}
+.physical-controls .vessels {
+  height: 100%;
+  width: 100%;
+  gap: 7%;
+  padding: 0;
+}
+.physical-controls .vessel {
+  height: 100%;
+  width: 28.66%;
+  position: relative;
+  gap: 0;
+}
+.physical-controls .vessel-glass {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  border-radius: 10% 10% 5% 5%;
+  overflow: hidden;
+}
+.physical-controls .vessel-glass i {
+  opacity: 0.5;
+}
+.physical-controls .water-fill {
+  background: linear-gradient(#76938b44, #254d4266);
+  mix-blend-mode: screen;
+  border-top: 1px solid #a3c5b199;
+}
+.physical-controls .vessel small {
+  position: absolute;
+  top: -15%;
+  font-size: 3.5cqw;
+  color: #d2c9a2;
+  text-shadow: 0 1px #000;
+}
+.physical-controls .vessel output {
+  position: absolute;
+  bottom: -24%;
+  font-size: 4cqw;
+  color: #d2c9a2;
+  text-shadow: 0 2px #000;
+}
+.physical-controls .vessel.selected .vessel-glass {
+  outline: 1px solid #d0c38b77;
+  outline-offset: 2px;
+}
+.physical-controls .ring-assembly {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  aspect-ratio: 1;
+}
+.physical-controls .ring {
+  border-color: #958052;
+  background: radial-gradient(transparent 54%, #8d754b88 70%, #2e2816 71%);
+}
+.physical-controls .ring-1,
+.physical-controls .ring-2 {
+  background-color: #352d1d;
+}
+.physical-controls .ring small {
+  font-size: 2cqw;
+}
+.physical-controls .ring-rotor i {
+  height: 12%;
+  top: 3%;
+  width: 2.5%;
+  left: 48.75%;
+  background: #c4af7c;
+}
+.physical-controls .glass-rings .ring {
+  background-color: #b1a6781a;
+  border-color: #665c4277;
+  box-shadow: 0 2px 5px #201b1655;
+}
+.physical-controls .slide-grid {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  gap: 2%;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.physical-controls .slide-grid button {
+  aspect-ratio: auto;
+  font-size: 5cqw;
+  background: linear-gradient(140deg, #615334, #332919);
+  color: #ccba8e;
+  border-color: #9c835055;
+}
+.physical-controls .film-strip {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  gap: 4%;
+}
+.physical-controls .film-strip button {
+  flex: 1;
+  min-height: 0;
+  padding: 0 8%;
+  gap: 5%;
+  background: #2a201988;
+}
+.physical-controls .film-center {
+  font-size: 3cqw;
+}
+.physical-controls .film-perfs {
+  grid-template-columns: repeat(3, 3px);
+  gap: 2px;
+  width: 14px;
+}
+.physical-controls .film-perfs i {
+  width: 3px;
+  height: 3px;
+}
+.physical-socket {
+  position: absolute;
+  z-index: 4;
+  left: 77%;
+  top: 79%;
+  width: 8%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(#030502 20%, #766346 25%, #2e2718 65%, #a98d5255 70%);
+  box-shadow: 0 2px 3px #0008;
+}
+.physical-socket span {
+  position: absolute;
+  inset: 30%;
+  background: #0b0e07;
+  transform: rotate(45deg);
+}
+.physical-socket i {
+  position: absolute;
+  right: 120%;
+  top: 0;
+  font-style: normal;
+  color: #c9b78d;
+  font-size: 6cqw;
+}
+.physical-reset {
+  position: absolute;
+  z-index: 4;
+  left: 12%;
+  top: 83%;
+  width: 6%;
+  aspect-ratio: 1;
+  background: radial-gradient(at 40% 20%, #8d7c54, #352e20 65%);
+  border-radius: 50%;
+  box-shadow: 1px 2px 3px #000b;
+}
+.physical-reset:after {
+  content: '';
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 48%;
+  height: 2px;
+  transform: rotate(-30deg);
+  background: #17170d;
+}
+.mechanism-released {
+  position: absolute;
+  left: 84%;
+  top: 17%;
+  font-size: 2cqw;
+  color: #c5ba78;
+  filter: drop-shadow(0 0 6px #d2c990);
+  pointer-events: none;
+}
+.physical-door-handle {
+  position: absolute;
+  left: 70%;
+  top: 69%;
+  width: 18%;
+  height: 16%;
+  z-index: 5;
+}
+.physical-door-handle span {
+  display: block;
+  height: 18%;
+  background: linear-gradient(#ba9c60, #5f4a29);
+  border-radius: 3px;
+  transform: rotate(-18deg);
+  box-shadow: 0 6px 5px #0009;
+}
+.physical-writing {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+  z-index: 2;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.physical-writing .clue-art {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  box-shadow: none;
+  transform: none;
+  color: #26251c;
+}
+.physical-writing .clue-art > svg {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+}
+.physical-writing .equations {
+  font-size: clamp(12px, 3.5cqw, 28px);
+  line-height: 2;
+}
+.physical-writing .scratch-rule {
+  font-size: 2.5cqw;
+}
+.physical-writing .clock-sketch {
+  width: 65%;
+  height: 85%;
+}
+.physical-writing .clock-sketch svg {
+  height: 100%;
+}
+.physical-writing .echo-clue {
+  gap: 1cqw;
+}
+.physical-writing .echo-clue strong {
+  font-size: 8cqw;
+}
+.physical-writing .echo-mark {
+  font-size: 8cqw;
+}
+.physical-writing .echo-clue > span {
+  font-size: 2cqw;
+}
+.physical-writing .glyph-trail {
+  font-size: 4cqw;
+  gap: 2cqw;
+}
+.physical-writing .scratch-numbers {
+  gap: 4cqw;
+}
+.physical-writing .scratch-numbers strong {
+  font-size: 8cqw;
+}
+.physical-writing .memory-paper {
+  font-size: 4cqw;
+}
+.physical-writing .seal-sockets span {
+  font-size: 5cqw;
+}
+.physical-writing .tile-plan {
+  width: 65%;
+}
+.physical-writing .tile-plan span {
+  font-size: 4cqw;
+}
+.detail-r1-note .physical-writing {
+  left: 23%;
+  top: 16%;
+  width: 56%;
+  height: 66%;
+}
+.detail-r4-paper .physical-writing {
+  left: 27%;
+  top: 30%;
+  width: 43%;
+  height: 37%;
+  transform: rotate(-12deg);
+}
+.detail-r1-print .physical-writing {
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height: 50%;
+}
+.writing-mirror {
+  mix-blend-mode: screen;
+  color: #c8cfb5;
+}
+.writing-mirror .mirror-code {
+  font-size: 10cqw;
+}
+.mirror-engraving {
+  position: absolute;
+  left: 30%;
+  top: 40%;
+  color: #8f9680;
+  font:
+    9cqw Georgia,
+    serif;
+  letter-spacing: 0.1em;
+  transform: scaleX(-1);
+  mix-blend-mode: screen;
+}
+.writing-seals {
+  top: 31%;
+  left: 9%;
+  width: 82%;
+  height: 24%;
+}
+.writing-seals .seal-sockets {
+  width: 100%;
+  justify-content: space-between;
+  gap: 5%;
+}
+.writing-seals .seal-sockets > span {
+  width: 22%;
+  border: 0;
+  box-shadow: none;
+  color: #b4a782;
+}
+.writing-seals {
+  mix-blend-mode: screen;
+}
+.bath-water {
+  position: absolute;
+  left: 18%;
+  top: 35%;
+  width: 64%;
+  height: 53%;
+  border-radius: 35%;
+  background: #34433bec;
+  box-shadow: inset 0 0 40px #141c15;
+  opacity: 0.85;
+}
+.take-in-photo {
+  position: absolute;
+  left: 20%;
+  top: 15%;
+  width: 60%;
+  height: 70%;
+  background: transparent;
+}
+.flip-in-photo {
+  position: absolute;
+  inset: 10%;
+  background: transparent;
+}
+.object-engraving {
+  position: absolute;
+  left: 25%;
+  top: 46%;
+  width: 50%;
+  font-size: clamp(12px, 3cqw, 25px);
+  text-align: center;
+  white-space: pre-wrap;
+  pointer-events: none;
+  color: #443b29;
+  mix-blend-mode: multiply;
+  font-weight: 600;
+}
+@keyframes approach {
+  from {
+    opacity: 0.4;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.physical-controls .symbol-buttons:not(.music-keys) {
+  align-items: center;
+}
+.physical-controls .symbol-buttons:not(.music-keys) button {
+  height: auto;
+  aspect-ratio: 1;
+  align-self: center;
+  font-size: clamp(14px, 3.4cqw, 34px);
+  background: radial-gradient(#31281722, #17180b44);
+  border: 1px solid #a8996655;
+  box-shadow:
+    inset 1px 2px 4px #0008,
+    0 1px 1px #d5c79133;
+  color: #bfb18b;
+  text-shadow: 0 -1px 1px #17190b;
+}
+.detail-r2-wrench .take-in-photo {
+  left: 65%;
+  top: 28%;
+  width: 23%;
+  height: 44%;
+  clip-path: polygon(
+    40% 0,
+    65% 2%,
+    73% 15%,
+    59% 25%,
+    36% 72%,
+    45% 80%,
+    30% 100%,
+    5% 97%,
+    0 81%,
+    14% 71%,
+    40% 22%,
+    28% 12%
+  );
+}
+@media (max-aspect-ratio: 3/4) {
+  .closeup-photo {
+    mask-image: linear-gradient(0deg, transparent, #000 4%, #000 96%, transparent);
+  }
+  .closeup-plane {
+    width: 100vw;
+    height: 100vw;
+  }
+  .closeup-bleed {
+    filter: blur(9px) brightness(0.7);
+  }
+}
+.mechanism-released {
+  display: none;
+}
+.physical-clock svg {
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+.physical-reset:before {
+  content: '↺';
+  position: absolute;
+  left: -65%;
+  top: 10%;
+  font-size: 3cqw;
+  color: #b6a478;
+  text-shadow: 0 1px #000;
+}
+
+.physical-dials button {
+  position: relative;
+}
+.dial-etch-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 113%;
+  font:
+    2.8cqw Georgia,
+    serif;
+  color: #b9a97f;
+  text-shadow: 0 1px #000;
+}
+.detail-r2-wrench .take-in-photo {
+  clip-path: polygon(
+    57% 0,
+    92% 2%,
+    100% 15%,
+    76% 25%,
+    43% 72%,
+    51% 81%,
+    41% 100%,
+    6% 97%,
+    0 81%,
+    22% 71%,
+    59% 22%,
+    45% 12%
+  );
+}
+.room-stage {
+  overflow: visible;
+}
+.room-stage > .direction.left {
+  left: -12px;
+  width: 44px;
+}
+.room-stage > .direction.right {
+  right: -12px;
+  width: 44px;
+}
+.physical-controls .glass-rings .ring small {
+  color: #4e4736;
+  opacity: 0.85;
+}
+.physical-controls .glass-rings .ring-rotor i {
+  background: #756444;
+  box-shadow: 0 1px 1px #f5e9b955;
+}
+.scene-paper {
+  background-image: url(/images/shared/wall-paper.webp);
+  background-size: 130% 130%;
+  background-position: center;
+}

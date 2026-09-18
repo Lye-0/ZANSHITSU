@@ -1,0 +1,708 @@
+{
+  "version": 1,
+  "updated": "2026-09-18",
+  "count": 100,
+  "bytes": 9311574,
+  "photos": [
+    {
+      "path": "public/images/items/crank/back.webp",
+      "width": 310,
+      "height": 310,
+      "bytes": 33924,
+      "sha256": "4893c82851566e9f25b4a124663874994fc3b3a6fc04817e6921289815173be0"
+    },
+    {
+      "path": "public/images/items/crank/front.webp",
+      "width": 310,
+      "height": 310,
+      "bytes": 40458,
+      "sha256": "6296607b88245825f37b66f483afb364350431f9e32ea8161c103802182a551d"
+    },
+    {
+      "path": "public/images/items/float/back.webp",
+      "width": 309,
+      "height": 309,
+      "bytes": 32110,
+      "sha256": "1b1ed425e162b8ea908fbc5efca099f2207cbd9c05516d6041a4b805292e0372"
+    },
+    {
+      "path": "public/images/items/float/front.webp",
+      "width": 309,
+      "height": 309,
+      "bytes": 40910,
+      "sha256": "a9ef27d4fd4b33ffe0c7e3c4c10d490eef525940243db4b6f4e783fd6ecf303d"
+    },
+    {
+      "path": "public/images/items/fuse/back.webp",
+      "width": 310,
+      "height": 310,
+      "bytes": 29594,
+      "sha256": "5c8dd08c90f9a24638dec560a749256a1dd3da94c058229cd2741549bf7dd43d"
+    },
+    {
+      "path": "public/images/items/fuse/front.webp",
+      "width": 310,
+      "height": 310,
+      "bytes": 37770,
+      "sha256": "a9549e0cf5a390c3dfad2bb73441774b48c4ee2c1d44426699be419318179046"
+    },
+    {
+      "path": "public/images/items/glass/back.webp",
+      "width": 310,
+      "height": 310,
+      "bytes": 34484,
+      "sha256": "fedda7f3dd0fde6ef3d7c5949b801dc5cc4a254dddc0724224ecedb0ec101af3"
+    },
+    {
+      "path": "public/images/items/glass/front.webp",
+      "width": 310,
+      "height": 310,
+      "bytes": 43356,
+      "sha256": "a4aeee82bae8e535564404599940af6413155764ff4699c69d1b863ac0efac64"
+    },
+    {
+      "path": "public/images/items/handle/back.webp",
+      "width": 309,
+      "height": 310,
+      "bytes": 31666,
+      "sha256": "f8931efa97350fc678a32b34cc2687f0fbc47ef4c30b0ed8bbce9ab1da987b10"
+    },
+    {
+      "path": "public/images/items/handle/front.webp",
+      "width": 309,
+      "height": 310,
+      "bytes": 39126,
+      "sha256": "f9a1e59f94841f9a6b267299bdea1c1a76cd6bccf98c1c39eccffbfd0a329361"
+    },
+    {
+      "path": "public/images/items/key/back.webp",
+      "width": 309,
+      "height": 310,
+      "bytes": 35942,
+      "sha256": "7536a28be205849662a12ceef21392b73b8bb6188b7b0600cec26fdd27457ea5"
+    },
+    {
+      "path": "public/images/items/key/front.webp",
+      "width": 309,
+      "height": 310,
+      "bytes": 44134,
+      "sha256": "f191501385094feb7f9b9ec1b31a8e0783f92ab20e80ee4205a02b49e688a26e"
+    },
+    {
+      "path": "public/images/items/lens/back.webp",
+      "width": 309,
+      "height": 310,
+      "bytes": 31742,
+      "sha256": "b0f6981fb8e0d588d07870b0910fdbe6a941ae6349e7609a3c4291c42f4abaa5"
+    },
+    {
+      "path": "public/images/items/lens/front.webp",
+      "width": 309,
+      "height": 310,
+      "bytes": 37008,
+      "sha256": "c4e78104222e95fefdf0a5f1c3db2605a63b806b9587b126729abe2691860ada"
+    },
+    {
+      "path": "public/images/items/seal1/back.webp",
+      "width": 309,
+      "height": 310,
+      "bytes": 36130,
+      "sha256": "cc3b6e890eb34ceb0276456964ee181cf8cd1bf60b8c7c28cbf7e3aa5ae683ca"
+    },
+    {
+      "path": "public/images/items/seal1/front.webp",
+      "width": 309,
+      "height": 310,
+      "bytes": 44692,
+      "sha256": "6aa706bb85cd6045d3ce9042c4de16d77d02722d6581782ecbd9aba6d3b15ad3"
+    },
+    {
+      "path": "public/images/items/seal2/back.webp",
+      "width": 310,
+      "height": 310,
+      "bytes": 39578,
+      "sha256": "e46ac3591c9fe7e84f535a5bb816d12a58d2c7dddcf276af6abb46a9d5851ff6"
+    },
+    {
+      "path": "public/images/items/seal2/front.webp",
+      "width": 310,
+      "height": 310,
+      "bytes": 47826,
+      "sha256": "dd4609450feed12f11a4f02cc488e1b8bcb659137ad68644d88a827a4248138b"
+    },
+    {
+      "path": "public/images/items/seal3/back.webp",
+      "width": 310,
+      "height": 309,
+      "bytes": 37068,
+      "sha256": "e7d84980c31fb17a1c26276b83825eded7e8b677e0a92bf2e9f2b90ab4de499b"
+    },
+    {
+      "path": "public/images/items/seal3/front.webp",
+      "width": 310,
+      "height": 309,
+      "bytes": 45940,
+      "sha256": "34885b63c4be2e9419c94e020be580bc15837fdc364efd7926bca15ea4a0ad20"
+    },
+    {
+      "path": "public/images/items/seal4/back.webp",
+      "width": 309,
+      "height": 309,
+      "bytes": 36252,
+      "sha256": "6b9ddb37d0a89bf29f98f3770dad6b45c146eabfc268e38d5dfaca564cfae3ab"
+    },
+    {
+      "path": "public/images/items/seal4/front.webp",
+      "width": 309,
+      "height": 309,
+      "bytes": 42304,
+      "sha256": "507e74b8e6b5326f0a550df5b0e9f0f69f60f5f78418618fdcfe8c67a27e0fea"
+    },
+    {
+      "path": "public/images/items/shard/back.webp",
+      "width": 309,
+      "height": 309,
+      "bytes": 32462,
+      "sha256": "0fcd4739d1ba7e868432163d6c9bbc4d89e755c896d07ad311e40aeb954a9085"
+    },
+    {
+      "path": "public/images/items/shard/front.webp",
+      "width": 309,
+      "height": 309,
+      "bytes": 39164,
+      "sha256": "54b783a2f1d5f5d255a026cc9dbd47af95423507c037cc644809f5327619f666"
+    },
+    {
+      "path": "public/images/items/vessel/back.webp",
+      "width": 310,
+      "height": 309,
+      "bytes": 30972,
+      "sha256": "5983ee945561db7c5b5e0f31952ee6dc9fd0fe3ea887571f06aec213067047ab"
+    },
+    {
+      "path": "public/images/items/vessel/front.webp",
+      "width": 310,
+      "height": 309,
+      "bytes": 37916,
+      "sha256": "5d4284ffa9cdece556e7cfcc9c05bddfefd2febcd8a0134a3668ca41f6c970dc"
+    },
+    {
+      "path": "public/images/items/wrench/back.webp",
+      "width": 310,
+      "height": 309,
+      "bytes": 36752,
+      "sha256": "eab5e5cee4cd9b508d0a271dbdfbe29c0469b00cf663e7a65c97d38b124ca521"
+    },
+    {
+      "path": "public/images/items/wrench/front.webp",
+      "width": 310,
+      "height": 309,
+      "bytes": 43608,
+      "sha256": "d951b1e0ec4054f61de1a2f14de35673eaf2ddc3b3c80dde1a4a0a0f5b6527e9"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/cabinet.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 115016,
+      "sha256": "74dcba9be5ce38aecc9339081dd3dc1b658afc41d0551aa416e58a17d5fa8a12"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/clock.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 110174,
+      "sha256": "762103441489320f8706c5a480a8447304325ccb728a327162239f2eb68a1ac5"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/desk-paper.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 99976,
+      "sha256": "9fbce99a06af507a9fc2cd281f060263eca9d6509652d2b33b6baf5fb722836c"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/door-lock.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 95748,
+      "sha256": "6951a459fc331ded39d877f5e95b46d75eed3e1ad2884f1a9175842eec37999c"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/drawer.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 83216,
+      "sha256": "0ae58c8872af58f3d3ab38e940e14182301cae71c1a632d1a7290bbbce4cdd98"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/echo-0.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 46400,
+      "sha256": "856c4298eb7f359d351405e72f576b51d3cedbf07171434760a690b41d760b54"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/r1-ceiling.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 101044,
+      "sha256": "539ce56c3c8bd8880e6b278afb8d7a5cb7eb8ca1e60a649a21e2f94bc836f90d"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/r1-chairs.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 131008,
+      "sha256": "37026d6d0d514152f4473c4b8c052ba6949b1c618e5c25b588890a5b78da567c"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/r1-entry.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 72272,
+      "sha256": "f7a56a7054573e9e13fc01f5867fc697e80bb74290050750f8f42b271469ecd7"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/r1-floor.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 103264,
+      "sha256": "b807359fa3d618a39afb03f0e9e98e138173b62002f5626dfeab638136385dd1"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/r1-print.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 104772,
+      "sha256": "4694f3538f13ebdbea07ce7c8903b90dd74fae6e557f61c719da44a435b601ed"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/closeups/switchboard.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 103470,
+      "sha256": "939dad2550424f9cd22c8b5a9b0d1cde2d8be5f201839b556aa7adfa6dc12bce"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/states/cabinet-open.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 86268,
+      "sha256": "76b697a69b7526d348c4a7264883af59fab8280e014bcb007a253bfa718ac004"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/states/drawer-open.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 77750,
+      "sha256": "b1331c03824a9b25fc6eedeacb93fcde1187b278bd028c8bcc7bf40d3339c1c6"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/states/south-cabinet-open.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 84034,
+      "sha256": "4f2c9fd433a04af57cc0235618d0f7d1318e5535f89bd5fe18d3cd56acdf254e"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/states/west-drawer-open.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 84532,
+      "sha256": "e73bf4e0190bef23edcc239fae6ff9add82ed6b5366dc09ece7541cd0b37e84c"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/views/ceiling.webp",
+      "width": 442,
+      "height": 442,
+      "bytes": 55008,
+      "sha256": "2253484985dfd42a437614eccdc4c960efba13d936bb5bf62a435865eb980c45"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/views/east.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 103084,
+      "sha256": "16c460b44642b09570ee110bb0b7c72efb56221abf2e0cbba9c1308a611e3207"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/views/floor.webp",
+      "width": 442,
+      "height": 441,
+      "bytes": 69820,
+      "sha256": "80008b581d3c083fe2120d8a18afeb0a3e01a2e907324d50b76ded7afa94f30f"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/views/north.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 109074,
+      "sha256": "a5f22815ee89258f1e29b12de4a676961564360f0f143eca883b3d247857842d"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/views/south.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 103106,
+      "sha256": "8aaf42481d77fe84d33f2824ce2176d77ed143130763bdbb08075156b8f898f8"
+    },
+    {
+      "path": "public/images/rooms/01-waiting/views/west.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 102728,
+      "sha256": "0c997ed68874506aa8e4fd4684da1de43e44dd71672996a42ecb22af2b74a4fb"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/closeups/bathtub.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 119564,
+      "sha256": "5fba339e89b3f84e3f35627ba0953f75e5c4deb0979b1e96e9ef8229f1e8ac2b"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/closeups/door-lock.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 350636,
+      "sha256": "6922255040addfce522143808df023c21d0aef6aee1f08ff16945670b77a857b"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/closeups/drain.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 137536,
+      "sha256": "8772734a905f281f693fb663eb46de6c8339262b26ff3bf9fe4df4d0321d1c72"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/closeups/echo-1.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 85760,
+      "sha256": "546f0ef0a33da2693ffddd2d9b221fba37fca9585f3d629df393159d95b795e7"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/closeups/mirror.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 118238,
+      "sha256": "7a27ce825200ea351ff9215a88b65d4ea26875475dbfd801b9682a50e82ce7af"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/closeups/pipes.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 592610,
+      "sha256": "21926859786449b6b362216e8e16f23f02cc5ae989cfe3ca81b1b57028f99fa7"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/closeups/r2-gauge.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 69536,
+      "sha256": "1f9b14aa191fb5940a4f57f534df5243db62108ae9b2c2d2fd8a027c2c12abb4"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/closeups/r2-wrench.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 85874,
+      "sha256": "ce5d644fd9f91c4aceffabdf5f41751095af2f067a277cfaa390d8ab77faa3e2"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/closeups/tanks.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 122464,
+      "sha256": "a471bce6401a06f655be87f1f384937ca72fc1e7408a35609b0e65d5d4ace939"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/states/floor-empty.webp",
+      "width": 439,
+      "height": 439,
+      "bytes": 57568,
+      "sha256": "6fcc0320184bf52857425088aeb9cca575d8b5abdb383e4de3f3dbcb05a804e0"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/states/wrench-taken.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 68110,
+      "sha256": "ee338dabd43a798cf6fea4fb30826a63def280105fee3f887409cdd62ad5943e"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/views/ceiling.webp",
+      "width": 441,
+      "height": 442,
+      "bytes": 53128,
+      "sha256": "78216f858c352ddb0e701e2c1d3fb13599f3cd00f6642c054853ce4f87a31f07"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/views/east.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 129898,
+      "sha256": "478c23e63c3bd7c697cfdf431d8cf9ea323b4266a17f78530aa464db31fa85ed"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/views/floor.webp",
+      "width": 441,
+      "height": 441,
+      "bytes": 64464,
+      "sha256": "13bc3a12fa81402f72492cf0c0cb5bdf737c7b0e727fa6ea4a8b66538d0fcd88"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/views/north.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 134254,
+      "sha256": "afa4585aa6852c09226464201551fcbf2532647d58eca66f1a7576a3fcd42fd4"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/views/south.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 133180,
+      "sha256": "47d8c8ad243786ec0502fac3c8c081b7924937f3cb4585a48e2516561fea043f"
+    },
+    {
+      "path": "public/images/rooms/02-washroom/views/west.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 131412,
+      "sha256": "22672850a51bae6ae4b103a3e011c38b087723a57bda4d05621bee216d1373aa"
+    },
+    {
+      "path": "public/images/rooms/03-projection/closeups/door-lock.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 122990,
+      "sha256": "a7e1bd550acd6cafb7d76da16290ef4b1c899be19c505fa78a15b2e268a9e595"
+    },
+    {
+      "path": "public/images/rooms/03-projection/closeups/echo-2.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 55094,
+      "sha256": "99b61a451146879e7437fc023a3fc259773fa98040115c60aed9a00552f35926"
+    },
+    {
+      "path": "public/images/rooms/03-projection/closeups/lightbox.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 99468,
+      "sha256": "6b421f35c1bd25d6eeec8cde1380a5780689ba514870353a2e0611392ec75b39"
+    },
+    {
+      "path": "public/images/rooms/03-projection/closeups/projector-keys.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 96892,
+      "sha256": "9d9ed35ce7ab4d4d1c689e5f0e121ad826541ae386596eed5e568a846ed00863"
+    },
+    {
+      "path": "public/images/rooms/03-projection/closeups/projector.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 79916,
+      "sha256": "4d76e4ebdf074ac7ec19301c3515d4bdccae884bdd99a317b33cb1f6a5a6eff8"
+    },
+    {
+      "path": "public/images/rooms/03-projection/closeups/r3-floor.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 119114,
+      "sha256": "2a047bbd7406dd2de677a305b344c556a4d7255f8eebef18a755dd9d3be16376"
+    },
+    {
+      "path": "public/images/rooms/03-projection/closeups/r3-plan.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 61638,
+      "sha256": "16ec1533015834afa5479bda893a0dc7f76aedc3e7ad9d0f3f37f56cc846a991"
+    },
+    {
+      "path": "public/images/rooms/03-projection/closeups/screen.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 65778,
+      "sha256": "ccd60eee5793c154f96dfb20128ac5cfdef9aae38c581b0445650ed8be0a69c0"
+    },
+    {
+      "path": "public/images/rooms/03-projection/closeups/tile-drawer.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 90458,
+      "sha256": "599e0e8bfe4fff5e3174479e72a29a824af7f773da85107a585c4741c9f9183f"
+    },
+    {
+      "path": "public/images/rooms/03-projection/views/ceiling.webp",
+      "width": 442,
+      "height": 442,
+      "bytes": 41078,
+      "sha256": "5d7875215bb2873591fc7c6df1937ad05d4f06e1246a2ec01e6780b5ea3d76c1"
+    },
+    {
+      "path": "public/images/rooms/03-projection/views/east.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 77378,
+      "sha256": "e1921eb16137470694aca9fa8055a81b36273d53625f1a6d6ac7ccab2f1b852f"
+    },
+    {
+      "path": "public/images/rooms/03-projection/views/floor.webp",
+      "width": 442,
+      "height": 441,
+      "bytes": 58102,
+      "sha256": "1bdb0596c23e62d7862c7a55cbfd109925a72d4f9c05fc47935b8319c831d5c9"
+    },
+    {
+      "path": "public/images/rooms/03-projection/views/north.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 97986,
+      "sha256": "bcf646cbcf6761634b84213f4f24b0a916550bf7d42119449fbc4944e4eab0dd"
+    },
+    {
+      "path": "public/images/rooms/03-projection/views/south.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 105228,
+      "sha256": "41ca9536cc4be50c68a734b4495fc1775987d4f27e54743c13c590a2e007d13e"
+    },
+    {
+      "path": "public/images/rooms/03-projection/views/west.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 95040,
+      "sha256": "2a4b20f4bcba152f6f32ff7e3e9701e17c415342f7809187972b339672e771c6"
+    },
+    {
+      "path": "public/images/rooms/04-return/closeups/box.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 99534,
+      "sha256": "684fa84502748ad0f3102d082cfc6c3f6e049f164aecd5309c4ac379646e523e"
+    },
+    {
+      "path": "public/images/rooms/04-return/closeups/cabinet.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 87954,
+      "sha256": "fd1f1c88d2653596998c78c1e5db874b6a99e7198f1e27d4d4d1126449a0878b"
+    },
+    {
+      "path": "public/images/rooms/04-return/closeups/desk-paper.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 69774,
+      "sha256": "d226cc2b9b99cb6ddf6a1b9792064339ca550fac9d6714adf759001f7fbe55ad"
+    },
+    {
+      "path": "public/images/rooms/04-return/closeups/door-lock.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 113718,
+      "sha256": "76b2cba89a903173432df52ade7e624a72b29616ae5fbe8cbb329af5f52c1bee"
+    },
+    {
+      "path": "public/images/rooms/04-return/closeups/echo-3.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 61718,
+      "sha256": "2ff23cdb6ede3233b0ffcd8917daa11777f2cb2702f5917bd25142d683721cb3"
+    },
+    {
+      "path": "public/images/rooms/04-return/closeups/gears.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 118102,
+      "sha256": "889764b566eb1510912d7a41afdc9637269888a905667feba65e9582a2c622e0"
+    },
+    {
+      "path": "public/images/rooms/04-return/closeups/r4-floor.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 121324,
+      "sha256": "13112458824b29fb87b60f9471cdafb47d1e4d8cf981f202b67b64073737bdce"
+    },
+    {
+      "path": "public/images/rooms/04-return/closeups/r4-print.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 87860,
+      "sha256": "112330e80085bd980b3643aaace0ceccb0c5afe68e02aac4ed9dced1f8530ca5"
+    },
+    {
+      "path": "public/images/rooms/04-return/closeups/telephone.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 426406,
+      "sha256": "b72f2ff8c003912deb5c237f8af1f12880cf39916f4344a4223eba36649b808c"
+    },
+    {
+      "path": "public/images/rooms/04-return/states/box-open.webp",
+      "width": 900,
+      "height": 900,
+      "bytes": 92990,
+      "sha256": "c9d75bba1ee5acdfbc40d15ace43ef6546da9be20ec9729e7019530e79131b09"
+    },
+    {
+      "path": "public/images/rooms/04-return/states/east-box-open.webp",
+      "width": 508,
+      "height": 508,
+      "bytes": 81322,
+      "sha256": "29dd4f57b3c641b64ec424c4ee412b10fe821f2185e757722c3a0a21b8d6f084"
+    },
+    {
+      "path": "public/images/rooms/04-return/views/ceiling.webp",
+      "width": 441,
+      "height": 442,
+      "bytes": 46972,
+      "sha256": "81806e1fdf5a0bfce0658c0810c01d18471079b54450881ed985e2e49cd202ad"
+    },
+    {
+      "path": "public/images/rooms/04-return/views/east.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 96434,
+      "sha256": "3ba1fc0745da24632fdc4fbf29ffbffdbf12f4e7171f4fb71bc6d4b8edb04655"
+    },
+    {
+      "path": "public/images/rooms/04-return/views/floor.webp",
+      "width": 441,
+      "height": 441,
+      "bytes": 60140,
+      "sha256": "f8b065bd47e04afce3685d68f75f68ec7f441ceab680a6055ac90e11b4f0745f"
+    },
+    {
+      "path": "public/images/rooms/04-return/views/north.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 105690,
+      "sha256": "0f22615e7dffdcac65c3ac7e1f5c2a958110838d05487262cfde339c5a0c0b3c"
+    },
+    {
+      "path": "public/images/rooms/04-return/views/south.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 100044,
+      "sha256": "f953742e9d77afd7830ef803ea872d3a71638977402e055060645068c751dab4"
+    },
+    {
+      "path": "public/images/rooms/04-return/views/west.webp",
+      "width": 625,
+      "height": 625,
+      "bytes": 99506,
+      "sha256": "18484718d274c7d6f1dcfc0b9a8ef5d6349c02e3bc8c0e3947cd48952d543286"
+    },
+    {
+      "path": "public/images/shared/wall-paper.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 617042,
+      "sha256": "2d33725f0f0e3b3cb47ee525057b61c3836206446b15a01acd488f4fdf6034fe"
+    }
+  ]
+}

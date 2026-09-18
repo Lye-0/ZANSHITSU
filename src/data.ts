@@ -430,7 +430,7 @@ export const ROOMS = [
   {
     name: '待合室',
     roman: 'Ⅰ',
-    image: '/assets/waiting.webp',
+    image: '/images/rooms/01-waiting/views/north.webp',
     tone: 'green',
     views: [
       [puzzle('r1-clock', '壁の時計', 17, 18, 21, 25), puzzle('r1-exit', '鉄扉', 40, 26, 23, 61)],
@@ -443,7 +443,7 @@ export const ROOMS = [
         clue('r1-equation', '棚の下の紙', 'balance', 72, 66, 17, 16),
         {
           id: 'r1-entry',
-          label: '閉ざされた入口',
+          label: '壁の点検蓋',
           kind: 'clue',
           clue: 'empty',
           x: 8,
@@ -467,7 +467,7 @@ export const ROOMS = [
   {
     name: '洗面室',
     roman: 'Ⅱ',
-    image: '/assets/washroom.webp',
+    image: '/images/rooms/02-washroom/views/north.webp',
     tone: 'blue',
     views: [
       [
@@ -502,7 +502,7 @@ export const ROOMS = [
   {
     name: '映写室',
     roman: 'Ⅲ',
-    image: '/assets/projection.webp',
+    image: '/images/rooms/03-projection/views/north.webp',
     tone: 'amber',
     views: [
       [puzzle('r3-exit', '映写室の扉', 37, 20, 29, 70)],
@@ -526,7 +526,7 @@ export const ROOMS = [
   {
     name: '帰室',
     roman: 'Ⅳ',
-    image: '/assets/return.webp',
+    image: '/images/rooms/04-return/views/north.webp',
     tone: 'green',
     views: [
       [

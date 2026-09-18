@@ -95,7 +95,7 @@ svg {
 .title-image {
   position: absolute;
   inset: 0;
-  background-image: url('/assets/waiting.webp');
+  background-image: url('/images/rooms/01-waiting/views/north.webp');
   background-size: max(180vh, 150vw) max(180vh, 150vw);
   background-position: 10% 7%;
   filter: brightness(0.43) saturate(0.6);
@@ -296,7 +296,7 @@ svg {
 }
 .room-stage.face-4 .room-picture,
 .room-stage.face-5 .room-picture {
-  background-image: url('/assets/vertical.webp');
+  background-image: var(--room-image);
   background-size: 400% 200%;
 }
 .room-vignette {

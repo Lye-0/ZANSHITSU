@@ -14,9 +14,9 @@ const FRAMES: Record<string, number[]> = {
   'r1-power': [31, 21, 48, 51],
   'r1-exit': [27, 43, 55, 23],
   'r2-pipes': [28, 27, 45, 44],
-  'r2-locker': [22, 82, 57, 12],
+  'r2-locker': [23, 74, 54, 6],
   'r2-water': [5, 23, 91, 47],
-  'r2-drain': [20, 22, 60, 60],
+  'r2-drain': [20, 17, 60, 60],
   'r2-exit': [16, 30, 70, 37],
   'r3-slide': [10, 20, 75, 51],
   'r3-order': [37, 20, 28, 53],
@@ -29,6 +29,51 @@ const FRAMES: Record<string, number[]> = {
   'r4-memory': [12, 30, 74, 32],
   'r4-exit': [9, 34, 82, 17],
 };
+// Coordinates belong to the photographed fitting, not to the screen corner.
+const FITTINGS: Record<string, number[]> = {
+  'r1-clock': [64, 63, 6, 6],
+  'r1-cabinet': [78, 75, 6, 6],
+  'r1-power': [81, 79, 6, 6],
+  'r2-pipes': [73, 72, 6, 6],
+  'r2-locker': [87, 72, 6, 6],
+  'r2-water': [78, 83, 7, 7],
+  'r2-drain': [48, 46, 5, 5],
+  'r3-order': [58, 87, 6, 6],
+  'r3-overlay': [83, 74, 6, 6],
+  'r3-score': [64, 72, 7, 7],
+};
+const RESETS: Record<string, number[]> = {
+  'r1-drawer': [81, 72, 5, 5],
+  'r2-exit': [11, 54, 5, 5],
+  'r3-slide': [77, 85, 5, 5],
+  'r4-power': [83, 75, 5, 5],
+  'r4-gears': [86, 82, 5, 5],
+  'r4-memory': [12, 58, 5, 5],
+};
+function SurfaceFilters() {
+  return (
+    <svg className="surface-filters" aria-hidden="true">
+      <defs>
+        <filter id="surface-ink" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.65"
+            numOctaves="3"
+            seed="17"
+            result="grain"
+          />
+          <feColorMatrix
+            in="grain"
+            type="matrix"
+            values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0.65"
+          />
+          <feComposite in="SourceGraphic" operator="in" />
+          <feGaussianBlur stdDeviation="0.22" />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
 function frameStyle(f: number[]): CSSProperties {
   return { left: `${f[0]}%`, top: `${f[1]}%`, width: `${f[2]}%`, height: `${f[3]}%` };
 }
@@ -87,6 +132,7 @@ export function Closeup({
       style={style}
       aria-label={`${node.label}の接写`}
     >
+      <SurfaceFilters />
       <div className="closeup-bleed" />
       <div className="closeup-plane">
         <img className="closeup-photo" src={photo} alt={`${node.label}を近くで見た写真`} />
@@ -95,10 +141,7 @@ export function Closeup({
             {allowed && p.kind !== 'dial' && (
               <button
                 className="physical-reset"
-                style={{
-                  left: `${Math.min(85, FRAMES[p.id][0] + FRAMES[p.id][2] - 5)}%`,
-                  top: `${Math.min(85, FRAMES[p.id][1] + FRAMES[p.id][3] + 5)}%`,
-                }}
+                style={frameStyle(RESETS[p.id] ?? FITTINGS[p.id] ?? [82, 80, 5, 5])}
                 aria-label="仕掛けを初期状態に戻す"
                 onClick={() => onReset(p.id)}
               />
@@ -211,6 +254,7 @@ export function Closeup({
             {missing && !gate && (
               <button
                 className={`physical-socket ${selected ? 'has-object' : ''}`}
+                style={frameStyle(FITTINGS[p.id])}
                 aria-label="差し込み口に持ち物を使う"
                 onClick={() => {
                   if (selected) onInsert(p.id, selected);
@@ -280,10 +324,11 @@ export function ItemCloseup({
   const photo = `/images/items/${id}/${flipped ? 'back' : 'front'}.webp`;
   return (
     <section
-      className="closeup-view item-photograph"
+      className={`closeup-view item-photograph item-${id}`}
       style={{ '--detail-photo': `url(${photo})` } as CSSProperties}
       aria-label={`${ITEMS[id].name}の接写`}
     >
+      <SurfaceFilters />
       <div className="closeup-bleed" />
       <div className="closeup-plane">
         <img
@@ -292,7 +337,25 @@ export function ItemCloseup({
           alt={`${ITEMS[id].name}の${flipped ? '裏' : '表'}`}
         />
         <button className="flip-in-photo" aria-label="持ち物を裏返す" onClick={onFlip} />
-        {flipped && <span className="object-engraving">{ITEMS[id].back}</span>}
+        {flipped &&
+          (id === 'float' ? (
+            <svg
+              className="object-ring-engraving"
+              viewBox="0 0 100 100"
+              aria-label={ITEMS[id].back}
+            >
+              <defs>
+                <path id="float-inscription" d="M19 49 A30 30 0 0 1 79 49" />
+              </defs>
+              <text textAnchor="middle">
+                <textPath href="#float-inscription" startOffset="50%">
+                  {ITEMS[id].back}
+                </textPath>
+              </text>
+            </svg>
+          ) : (
+            <span className="object-engraving">{ITEMS[id].back}</span>
+          ))}
       </div>
       <button
         className="direction down closeup-return"

@@ -356,6 +356,9 @@ export default function App() {
               <div className="room-vignette" />
               <div className="dust" />
               {game.face === 4 && <div className="ceiling-light" />}
+              {game.face === 3 && game.room === 2 && (
+                <div className="scene-plan-paper" aria-hidden="true" />
+              )}
               {game.face === 2 && game.room === 0 && (
                 <div className="scene-paper first-equation" aria-hidden="true">
                   △＋△
@@ -365,25 +368,37 @@ export default function App() {
                   □−○
                 </div>
               )}
-              {game.face === 2 && game.room === 3 && game.solved.includes('r4-gears') && (
+              {game.face === 2 && game.room === 3 && (
                 <div className="scene-paper last-equation" aria-hidden="true">
-                  ○−△
-                  <br />
-                  □＝○＋△
-                  <br />
-                  ◇＋△
+                  {game.solved.includes('r4-gears') && (
+                    <>
+                      ○−△
+                      <br />
+                      □＝○＋△
+                      <br />
+                      ◇＋△
+                    </>
+                  )}
                 </div>
               )}
               {game.face === 0 && game.solved.includes(`r${game.room + 1}-exit`) && (
                 <div className="door-light" />
               )}
               {game.face === 4 && game.solved.includes('r4-power') && (
-                <div className="ceiling-echo" aria-hidden="true">
+                <div
+                  className="ceiling-echo"
+                  style={{
+                    left: `${[68, 71, 71, 26][game.room]}%`,
+                    top: `${[67, 68, 68, 63][game.room]}%`,
+                  }}
+                  aria-hidden="true"
+                >
                   ⌾
                 </div>
               )}
               <Hotspots
                 nodes={nodes}
+                solved={game.solved}
                 open={openNode}
                 hover={setHover}
                 marks={marks}

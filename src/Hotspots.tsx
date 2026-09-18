@@ -6,12 +6,14 @@ export function Hotspots({
   hover,
   taken,
   marks,
+  solved,
 }: {
   nodes: readonly SceneNode[];
   open: (n: SceneNode) => void;
   hover: (label: string) => void;
   taken: (n: SceneNode) => boolean;
   marks: boolean;
+  solved: readonly string[];
 }) {
   return (
     <svg
@@ -22,12 +24,12 @@ export function Hotspots({
       {nodes
         .filter((n) => !taken(n))
         .sort((a, b) => {
-          const x = outline(a),
-            y = outline(b);
+          const x = outline(a, solved),
+            y = outline(b, solved);
           return y.w * y.h - x.w * x.h;
         })
         .map((n) => {
-          const s = outline(n);
+          const s = outline(n, solved);
           const props = {
             role: 'button',
             tabIndex: 0,
@@ -45,7 +47,14 @@ export function Hotspots({
             onBlur: () => hover(''),
             className: 'object-outline',
           };
-          return s.ellipse ? (
+          return s.path ? (
+            <path
+              key={n.id}
+              {...props}
+              d={s.path}
+              transform={`translate(${s.x} ${s.y}) scale(${s.w / 100} ${s.h / 100})`}
+            />
+          ) : s.ellipse ? (
             <ellipse
               key={n.id}
               {...props}

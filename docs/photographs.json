@@ -2,7 +2,7 @@
   "version": 1,
   "updated": "2026-09-18",
   "count": 100,
-  "bytes": 9311574,
+  "bytes": 9585830,
   "photos": [
     {
       "path": "public/images/items/crank/back.webp",
@@ -517,10 +517,10 @@
     },
     {
       "path": "public/images/rooms/03-projection/closeups/r3-plan.webp",
-      "width": 900,
-      "height": 900,
-      "bytes": 61638,
-      "sha256": "16ec1533015834afa5479bda893a0dc7f76aedc3e7ad9d0f3f37f56cc846a991"
+      "width": 1254,
+      "height": 1254,
+      "bytes": 335894,
+      "sha256": "341c1924f25e4f3f5710d91cb23ab5a8798c2d1d3c9355b8e2701c08eeeb5bd0"
     },
     {
       "path": "public/images/rooms/03-projection/closeups/screen.webp",

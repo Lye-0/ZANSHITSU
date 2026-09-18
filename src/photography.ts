@@ -26,6 +26,7 @@ export type Shape = {
   bounds: [number, number, number, number];
   points?: string;
   ellipse?: boolean;
+  path?: string;
 };
 export const SHAPES: Record<string, Shape> = {
   'r1-clock': { bounds: [14, 17, 12, 13], ellipse: true },
@@ -39,48 +40,61 @@ export const SHAPES: Record<string, Shape> = {
   'r1-cabinet': { bounds: [23, 18, 42, 63] },
   'r1-equation': { bounds: [74, 67, 13, 14], points: '0,2 96,0 100,98 2,100' },
   'r1-entry': { bounds: [72, 60, 18, 14] },
-  'r1-drawer': { bounds: [46, 55, 14, 7] },
-  'r1-note': { bounds: [46, 51, 16, 2.8], points: '12,0 94,0 100,100 0,100' },
+  'r1-drawer': { bounds: [40.5, 55, 16.5, 4.3] },
+  'r1-note': { bounds: [44.6, 51.2, 8.5, 1.5], points: '7,0 94,0 100,100 0,100' },
   'r1-power': { bounds: [21, 20, 13, 17] },
-  'r1-ceiling': { bounds: [21, 35, 40, 20] },
-  'echo-0': { bounds: [43, 70, 14, 14] },
+  'r1-ceiling': { bounds: [10, 35, 29, 26], points: '8,0 94,5 100,89 89,100 0,93 3,15' },
+  'echo-0': { bounds: [63, 64, 15, 15], ellipse: true },
   'r1-floor': { bounds: [29, 41, 25, 28], points: '20,0 80,2 100,87 70,100 0,18' },
   'r2-exit': { bounds: [32, 16, 36, 67] },
   'r2-gauge': { bounds: [75, 30, 10, 12], ellipse: true },
-  'r2-locker': { bounds: [29, 45, 43, 6] },
-  'r2-mirror': { bounds: [31, 16, 38, 28], points: '0,0 100,0 100,100 0,100' },
-  'r2-water': { bounds: [23, 15, 52, 34] },
-  'r2-pipes': { bounds: [24, 52, 51, 30] },
-  'r2-tub': { bounds: [16, 55, 73, 27], points: '0,0 100,0 91,86 85,100 15,100 8,89' },
-  'echo-1': { bounds: [36, 37, 23, 22] },
+  'r2-locker': { bounds: [27.5, 48, 45, 2.8] },
+  'r2-mirror': { bounds: [28, 13.5, 44, 34.5] },
+  'r2-water': {
+    bounds: [22.5, 14, 54, 34],
+    points:
+      '0,24 3,13 12,7 18,7 26,13 30,25 34,25 37,12 44,7 52,7 61,14 65,25 69,25 72,13 80,7 87,7 97,15 100,26 100,100 0,100',
+  },
+  'r2-pipes': { bounds: [22, 49, 55, 11.5] },
+  'r2-tub': {
+    bounds: [16.5, 57, 68.5, 25],
+    points: '4,0 96,0 100,5 97,21 96,64 92,87 86,96 14,96 8,87 4,65 3,21 0,6',
+  },
+  'echo-1': { bounds: [66, 65, 15, 15], ellipse: true },
   'r2-wrench': {
     bounds: [80, 37, 13, 25],
     points: '57,0 92,2 100,15 76,25 43,72 51,81 41,100 6,97 0,81 22,71 59,22 45,12',
   },
-  'r2-drain': { bounds: [42, 61, 21, 21], ellipse: true },
+  'r2-drain': { bounds: [40.5, 62.5, 19, 19], ellipse: true },
   'r3-exit': { bounds: [32, 18, 37, 62] },
-  'r3-screen': { bounds: [19, 20, 63, 36] },
-  'r3-film-clue': { bounds: [22, 56, 57, 3] },
+  'r3-screen': { bounds: [18, 18, 64, 39] },
+  'r3-film-clue': { bounds: [18, 56.5, 64, 2.7] },
   'r3-order': {
-    bounds: [31, 31, 32, 22],
-    points: '0,12 25,0 55,0 65,12 77,13 78,34 100,50 92,97 37,100 36,66 0,60',
+    bounds: [35.5, 23.2, 33.7, 32],
+    path: 'M34 53 A17 18 0 1 1 0 53 A17 18 0 1 1 34 53 Z M100 22 A19 21 0 1 1 62 22 A19 21 0 1 1 100 22 Z M38 28 H59 V34 H62 V49 H74 V60 H64 V72 H79 V79 H65 L68 91 H74 V100 H28 V94 L37 91 L40 82 H34 V71 H38 Z',
   },
-  'r3-score': { bounds: [49, 50, 15, 5] },
-  'r3-overlay': { bounds: [28, 46, 32, 7], points: '10,0 93,0 100,100 0,100' },
+  'r3-score': { bounds: [49.8, 35, 6.2, 9.5] },
+  'r3-overlay': { bounds: [28, 49.5, 30, 5.3], points: '7,0 96,0 100,100 0,100' },
   'r3-slide': { bounds: [77, 23, 20, 60], points: '0,0 90,0 100,100 0,100' },
-  'r3-plan': { bounds: [13, 45, 13, 7] },
-  'echo-2': { bounds: [38, 39, 20, 20] },
-  'r3-floor': { bounds: [57, 18, 42, 60], points: '40,0 100,10 100,100 27,83 0,26' },
-  'r4-exit': { bounds: [26, 22, 38, 53] },
+  'r3-plan': { bounds: [13, 51.5, 10, 2], points: '7,0 94,0 100,100 0,100' },
+  'echo-2': { bounds: [66, 65, 15, 15], ellipse: true },
+  'r3-floor': {
+    bounds: [0, 0, 100, 100],
+    path: 'M59 41 C60 36 67 37 72 39 L77 40 L79 42 L75 43 L69 42 C63 39 60 40 62 44 C64 49 72 55 77 57 L77 60 C68 56 59 48 59 41 Z M76 40 C75 31 76 23 81 19 L87 16 L92 22 L90 24 L86 19 C78 21 78 29 79 37 L100 34 L100 37 L80 42 L80 52 C80 61 75 70 70 74 C64 72 64 65 66 60 L69 53 L71 56 C66 65 67 69 69 71 C73 66 77 59 77 52 Z M100 56 A9.5 9.5 0 1 1 81 56 A9.5 9.5 0 1 1 100 56 Z',
+  },
+  'r4-exit': { bounds: [26, 21, 40.5, 55] },
   'r4-sockets': { bounds: [69, 37, 23, 5] },
-  'r4-memory': { bounds: [77, 56, 12, 6] },
+  'r4-memory': { bounds: [77.1, 56.8, 9.5, 5.2] },
   'r4-print': { bounds: [37, 23, 25, 24] },
-  'r4-balance': { bounds: [33, 21, 27, 56] },
+  'r4-balance': { bounds: [33, 21, 33.5, 56] },
   'r4-equations': { bounds: [72, 61, 13, 14], points: '0,2 96,0 100,98 2,100' },
-  'r4-gears': { bounds: [35, 19, 27, 31] },
-  'r4-paper': { bounds: [66, 58, 10, 7] },
-  'r4-power': { bounds: [27, 48, 17, 7], points: '3,13 16,0 87,0 100,70 99,100 0,100' },
-  'echo-3': { bounds: [37, 38, 22, 22] },
+  'r4-gears': { bounds: [34.3, 18.6, 28.7, 26.3] },
+  'r4-paper': { bounds: [58.8, 56.8, 14.7, 4.2] },
+  'r4-power': {
+    bounds: [24.4, 48.1, 12, 6.3],
+    points: '0,80 14,47 21,18 40,2 86,0 97,17 100,40 88,46 77,29 88,91 87,100 14,100 15,84',
+  },
+  'echo-3': { bounds: [21, 60, 15, 15], ellipse: true },
   'r4-floor': { bounds: [27, 34, 50, 52], points: '7,0 90,2 100,100 0,92' },
 };
 export const CLOSEUP_FILES: Record<string, string> = {
@@ -116,8 +130,20 @@ export const detailPhoto = (room: number, node: SceneNode) =>
   ['r1-equation', 'r4-equations'].includes(node.id)
     ? '/images/shared/wall-paper.webp'
     : `/images/rooms/${ROOM_FOLDERS[room]}/closeups/${CLOSEUP_FILES[node.id] ?? node.id}.webp`;
-export function outline(node: SceneNode) {
-  const s = SHAPES[node.id] ?? { bounds: [node.x, node.y, node.w, node.h] };
+const OPEN_SHAPES: Record<string, Shape> = {
+  'r1-drawer': { bounds: [41, 55, 19, 9], points: '9,0 91,0 100,48 100,100 0,100 0,48' },
+  'r1-cabinet': {
+    bounds: [23.4, 17, 50, 64],
+    points: '0,0 14,3 14,0 83,0 83,4 100,0 100,93 85,85 83,100 13,100 13,96 0,100',
+  },
+  'r4-memory': {
+    bounds: [74.1, 48.5, 9, 10.2],
+    points: '0,0 100,0 96,45 100,55 98,100 0,100 4,53',
+  },
+};
+export function outline(node: SceneNode, solved: readonly string[] = []) {
+  const s = (solved.includes(node.id) && OPEN_SHAPES[node.id]) ||
+    SHAPES[node.id] || { bounds: [node.x, node.y, node.w, node.h] };
   const [x, y, w, h] = s.bounds;
   const points = s.points
     ?.split(' ')

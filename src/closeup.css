@@ -84,6 +84,7 @@
   height: min(100vw, 100dvh);
   container-type: inline-size;
   isolation: isolate;
+  filter: brightness(var(--brightness));
   animation: approach 0.38s ease-out;
 }
 .closeup-photo {
@@ -93,7 +94,6 @@
   height: 100%;
   object-fit: cover;
   pointer-events: none;
-  filter: brightness(var(--brightness));
   mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
 }
 .closeup-return {
@@ -542,10 +542,14 @@
   font-size: 2.5cqw;
 }
 .physical-writing .clock-sketch {
-  width: 65%;
-  height: 85%;
+  width: 92%;
+  height: auto;
+  aspect-ratio: 1;
+  flex: none;
 }
 .physical-writing .clock-sketch svg {
+  display: block;
+  width: 100%;
   height: 100%;
 }
 .physical-writing .echo-clue {
@@ -805,4 +809,412 @@
   background-image: url(/images/shared/wall-paper.webp);
   background-size: 130% 130%;
   background-position: center;
+}
+
+/* Worn markings share the light and surface texture of their photograph. */
+.surface-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.physical-writing,
+.object-engraving,
+.mirror-engraving {
+  filter: url(#surface-ink);
+  opacity: 0.95;
+}
+.physical-writing .clue-art {
+  color: #302b20;
+}
+.physical-clock svg {
+  filter: url(#surface-ink);
+  opacity: 0.85;
+}
+.physical-writing .scratch-rule {
+  margin-top: 1.5cqw;
+}
+.detail-r1-note .physical-writing {
+  left: 26%;
+  top: 21%;
+  width: 48%;
+  height: 55%;
+  transform: rotate(-2deg);
+}
+.physical-writing .clock-sketch svg path {
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+.physical-writing .clock-sketch svg circle:first-child {
+  stroke-width: 0.65;
+}
+.detail-r1-print .physical-writing {
+  left: 32%;
+  top: 30%;
+  width: 37%;
+  height: 29%;
+}
+.detail-r1-ceiling .physical-writing {
+  left: 10%;
+  top: 35%;
+  width: 29%;
+  height: 31%;
+}
+.detail-r1-ceiling .scratch-numbers {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2cqw;
+}
+.detail-r1-ceiling .scratch-numbers strong {
+  font-size: 5.5cqw;
+}
+.detail-r1-ceiling .scratch-numbers small {
+  font-size: 2cqw;
+}
+.writing-echo {
+  width: 27%;
+  height: 31%;
+  top: 57%;
+  left: 63%;
+  transform: rotate(-3deg);
+}
+.detail-echo-0 .writing-echo {
+  left: 64%;
+  top: 49%;
+}
+.detail-echo-3 .writing-echo {
+  left: 15%;
+  top: 45%;
+}
+.physical-writing .echo-clue {
+  gap: 0.6cqw;
+}
+.physical-writing .echo-clue > small {
+  font-size: 2.5cqw;
+}
+.physical-writing .echo-mark {
+  font-size: 5cqw;
+}
+.physical-writing .echo-clue strong {
+  font-size: 6cqw;
+}
+.physical-writing .echo-clue > span {
+  font-size: 1.5cqw;
+  margin-top: 1cqw;
+  white-space: nowrap;
+}
+.writing-wiring {
+  left: 31%;
+  top: 28%;
+  width: 37%;
+  height: 35%;
+  transform: rotate(-9deg);
+}
+.writing-wiring,
+.writing-echo,
+.writing-ceiling {
+  mix-blend-mode: screen;
+}
+.writing-wiring .clue-art,
+.writing-echo .clue-art,
+.writing-ceiling .clue-art {
+  color: #aea18a;
+}
+.writing-mirror .clue-art {
+  color: #b3b7a0;
+}
+.writing-mirror {
+  left: 25%;
+  top: 32%;
+  width: 50%;
+  height: 25%;
+}
+.mirror-engraving {
+  left: 31%;
+  top: 39%;
+  color: #afb39e;
+  font-size: 8cqw;
+}
+.detail-r3-plan .physical-writing {
+  left: 27%;
+  top: 24%;
+  width: 46%;
+  height: 49%;
+  transform: perspective(800px) rotateX(6deg);
+}
+.physical-writing .tile-plan {
+  width: 100%;
+  height: 100%;
+  gap: 0;
+}
+.physical-writing .tile-plan span {
+  background: transparent;
+  border: 0.5px solid #514632;
+  font:
+    5cqw Georgia,
+    serif;
+}
+.writing-score {
+  left: 17%;
+  top: 23%;
+  width: 66%;
+  height: 53%;
+}
+.writing-frames {
+  left: 16%;
+  top: 60%;
+  width: 68%;
+  height: 17%;
+}
+.physical-writing .frame-clues {
+  gap: 3cqw;
+}
+.physical-writing .frame-clues > div {
+  width: 20%;
+  padding: 1cqw;
+  gap: 1.5cqw;
+  background: transparent;
+}
+.physical-writing .frame-clues strong {
+  font-size: 5cqw;
+}
+.physical-writing .frame-clues small {
+  font-size: 1.8cqw;
+  letter-spacing: 0.3cqw;
+}
+.writing-seals {
+  top: 34%;
+  height: 17%;
+}
+.writing-seals .seal-sockets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8%;
+  height: 100%;
+}
+.writing-seals .seal-sockets > span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+.physical-dials button {
+  box-shadow: none;
+  background: linear-gradient(#0002, transparent 45%, #0003);
+  color: #b7a888;
+  text-shadow: 0 1px 2px #0009;
+}
+.physical-dials button > span,
+.dial-etch-label {
+  filter: url(#surface-ink);
+}
+.physical-dials.round-dials button {
+  background: radial-gradient(#22201915, #17140c55);
+  outline: none;
+  border: 0.5px solid #9a865238;
+}
+.physical-controls .pipe-grid {
+  background: transparent;
+}
+.physical-controls .pipe-grid button {
+  background: #18130e28;
+  border-color: #64533d25;
+  color: #987b50;
+}
+.physical-controls .pipe-grid svg {
+  filter: url(#surface-ink) drop-shadow(0 1px 1px #000a);
+}
+.physical-controls .ring,
+.physical-controls .ring-1,
+.physical-controls .ring-2 {
+  background: radial-gradient(transparent 55%, #7c694429 66%, #221b1266 70%, transparent 72%);
+  border: 1px solid #8c795355;
+  box-shadow:
+    inset 0 1px 2px #d4c28b22,
+    0 1px 3px #0005;
+}
+.physical-controls .ring-rotor i {
+  background: #a99b71;
+  box-shadow: none;
+  filter: url(#surface-ink);
+  width: 1.5%;
+  left: 49.25%;
+}
+.physical-controls .glass-rings .ring {
+  background: transparent;
+  border-color: #74664777;
+  box-shadow: 0 1px 2px #55401e44;
+}
+.physical-controls .slide-grid button {
+  background: linear-gradient(140deg, #614b2433, #18120766);
+  color: #ad9975;
+  box-shadow: inset 0 1px 3px #0008;
+  border-color: #92754644;
+  text-shadow: 0 1px 1px #000;
+}
+.physical-controls .film-strip button {
+  background: #211b1480;
+  color: #b9ab7c;
+}
+.physical-controls .film-center,
+.physical-controls .music-keys small,
+.physical-controls .vessel output {
+  filter: url(#surface-ink);
+}
+.physical-controls .lights-grid button {
+  background: radial-gradient(#25251966, #111109a8);
+  border-color: #81734f33;
+  box-shadow: inset 0 2px 4px #0008;
+}
+.physical-controls .lights-grid button span {
+  opacity: 0.78;
+}
+.physical-socket {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.physical-socket span {
+  inset: 31%;
+  background: #14120bb3;
+  box-shadow: inset 0 1px 2px #000b;
+  filter: blur(0.035cqw);
+}
+.physical-socket i {
+  color: #a19374;
+  font-size: 3cqw;
+  filter: url(#surface-ink);
+}
+.physical-socket:hover {
+  background: #cab9830b;
+}
+.physical-reset {
+  background: transparent;
+  box-shadow: none;
+  color: #c0af80;
+}
+.physical-reset:after {
+  display: none;
+}
+.physical-reset:before {
+  content: '↺';
+  inset: 12%;
+  font:
+    3cqw Georgia,
+    serif;
+  color: inherit;
+  text-shadow: none;
+  filter: url(#surface-ink);
+}
+.physical-reset:focus-visible,
+.physical-socket:focus-visible {
+  outline: 1px solid #c6b78a;
+  outline-offset: 2px;
+}
+.clock-winders button {
+  min-width: 0;
+  min-height: 0;
+  background: #54472c22;
+  border-color: #594d2c55;
+  color: #564931;
+  box-shadow: none;
+}
+.scene-paper {
+  transform: none;
+}
+.ceiling-echo {
+  font-size: 3cqw;
+  color: #b0a17d88;
+  mix-blend-mode: screen;
+}
+.scene-plan-paper {
+  position: absolute;
+  left: 13%;
+  top: 51.5%;
+  width: 10%;
+  height: 2%;
+  z-index: 2;
+  pointer-events: none;
+  clip-path: polygon(7% 0, 94% 0, 100% 100%, 0 100%);
+  background: url('/images/rooms/03-projection/closeups/r3-plan.webp') center / 145% 140%;
+  filter: brightness(0.7);
+  box-shadow: 0 1px 2px #0008;
+}
+.object-engraving {
+  font-size: 4.2cqw;
+  color: #3e3020;
+  font-weight: 400;
+}
+.item-crank .object-engraving {
+  top: 45%;
+  font-size: 3.6cqw;
+}
+.item-key .object-engraving {
+  left: 44%;
+  top: 47%;
+  width: 16%;
+  transform: rotate(41deg);
+}
+.item-fuse .object-engraving {
+  left: 22%;
+  top: 60%;
+  width: 14%;
+  transform: rotate(-34deg);
+}
+.item-wrench .object-engraving {
+  left: 42%;
+  top: 47%;
+  width: 17%;
+  color: #d1c7aa;
+  mix-blend-mode: screen;
+  transform: rotate(-42deg);
+}
+.item-shard .object-engraving,
+.item-lens .object-engraving,
+.item-glass .object-engraving {
+  color: #c5baa0;
+  mix-blend-mode: screen;
+}
+.item-glass .object-engraving {
+  left: 28%;
+  top: 42%;
+  width: 44%;
+  transform: rotate(12deg);
+  font-size: 3.8cqw;
+}
+.item-vessel .object-engraving {
+  left: 31%;
+  top: 44%;
+  width: 40%;
+  font-size: 3.6cqw;
+  transform: rotate(-2deg);
+}
+.item-handle .object-engraving {
+  top: 46%;
+  font-size: 4.5cqw;
+}
+.item-seal1 .object-engraving,
+.item-seal2 .object-engraving,
+.item-seal3 .object-engraving,
+.item-seal4 .object-engraving {
+  font-size: 7cqw;
+  top: 42%;
+}
+.object-ring-engraving {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  fill: #3e3020;
+  mix-blend-mode: multiply;
+  filter: url(#surface-ink);
+}
+.object-ring-engraving text {
+  font:
+    4px Georgia,
+    serif;
+  letter-spacing: 0.25px;
 }

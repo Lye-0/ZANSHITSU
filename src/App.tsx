@@ -491,7 +491,13 @@ export default function App() {
                   aria-pressed={selected === id}
                   onClick={() => inventoryClick(id)}
                 >
-                  {ITEMS[id].icon}
+                  <img
+                    src={`/images/items/${id}/front.webp`}
+                    alt=""
+                    draggable={false}
+                    width={47}
+                    height={47}
+                  />
                 </button>
               ))}
               {Array.from({ length: Math.max(0, 5 - game.inventory.length) }, (_, i) => (

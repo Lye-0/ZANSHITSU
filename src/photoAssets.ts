@@ -51,5 +51,7 @@ export function photographPaths() {
     paths.add('/images/rooms/' + path);
   paths.add('/images/clues/bathtub-full.webp');
   paths.add('/images/components/markings/mirror-number.webp');
+  paths.add('/images/clues/r3-film-clue.webp');
+  paths.add('/images/rooms/04-return/states/ceiling-unlit.webp');
   return [...paths].sort();
 }

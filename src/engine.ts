@@ -183,11 +183,16 @@ export function install(s: GameState, id: string, item: string): GameState {
 export function solve(s: GameState, id: string, values: number[]): GameState {
   const p = PUZZLES[id];
   if (!p || !canAccess(s, p) || s.solved.includes(id) || !isAnswer(p, values)) return s;
-  return {
+  const next = {
     ...s,
     solved: [...s.solved, id],
     values: { ...s.values, [id]: values },
   };
+  return id === 'r4-power' ? revealCeilingPower(next) : next;
+}
+export function revealCeilingPower(s: GameState): GameState {
+  if (s.room !== 3 || !s.solved.includes('r4-power') || s.seen.includes('echo-3')) return s;
+  return { ...s, face: 4, wallFace: s.face < 4 ? s.face : s.wallFace };
 }
 export function openContainer(s: GameState, id: string): GameState {
   const p = PUZZLES[id];

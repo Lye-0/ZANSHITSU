@@ -404,7 +404,38 @@
   font-size: 11px;
   color: #a6ab98;
 }
+.has-projection-choice {
+  grid-template-rows: minmax(0, 1fr) auto 56px;
+}
+.has-projection-choice .closeup-plane {
+  grid-row: 1;
+  width: min(100vw, calc(100dvh - 112px - 106px));
+  height: min(100vw, calc(100dvh - 112px - 106px));
+}
+.projection-choice {
+  grid-row: 2;
+  z-index: 5;
+  display: flex;
+  gap: 12px;
+  padding: 6px 12px;
+  background: #101510ed;
+}
+.projection-choice button {
+  min-width: 64px;
+  padding: 8px 16px;
+  color: #bbbba2;
+  border: 1px solid #8b906355;
+}
+.projection-choice button[aria-pressed='true'] {
+  color: #efe1bb;
+  border-color: #b8aa75;
+  background: #7a794126;
+}
 @media (max-width: 480px) {
+  .has-projection-choice .closeup-plane {
+    width: min(100vw, calc(100dvh - 98px - 106px));
+    height: min(100vw, calc(100dvh - 98px - 106px));
+  }
   .detail-r3-slide .closeup-plane,
   .detail-r3-plan .closeup-plane {
     width: min(100vw, calc(100dvh - 98px - 106px));

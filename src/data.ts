@@ -407,6 +407,7 @@ export type SceneNode = {
   clue?: ClueKind;
   gate?: string;
   room?: number;
+  projection?: 'score' | 'frames';
 };
 const puzzle = (
   id: string,
@@ -426,6 +427,10 @@ const clue = (
   h: number,
   gate?: string,
 ): SceneNode => ({ id, label, x, y, w, h, kind: 'clue', clue: type, gate });
+export const SCREEN_FRAME_CLUE: SceneNode = {
+  ...clue('r3-film-clue', 'スクリーンの数字', 'frames', 17, 18, 70, 49, 'r3-score'),
+  projection: 'frames',
+};
 export const ROOMS = [
   {
     name: '待合室',
@@ -503,18 +508,15 @@ export const ROOMS = [
     tone: 'amber',
     views: [
       [puzzle('r3-exit', '映写室の扉', 37, 20, 29, 70)],
-      [
-        clue('r3-screen', 'スクリーン', 'score', 17, 18, 70, 49, 'r3-overlay'),
-        clue('r3-film-clue', 'スクリーンの下端', 'frames', 23, 68, 58, 17, 'r3-score'),
-      ],
-      [
-        puzzle('r3-order', '映写機', 34, 39, 38, 32),
-        puzzle('r3-score', '映写機の側面', 65, 57, 21, 22),
-      ],
+      [clue('r3-screen', 'スクリーン', 'score', 17, 18, 70, 49, 'r3-overlay')],
       [
         puzzle('r3-overlay', '透過板の台', 19, 45, 38, 22),
         puzzle('r3-slide', '小引き出し', 70, 31, 20, 49),
         clue('r3-plan', '机の端の紙', 'slide', 16, 72, 37, 17),
+      ],
+      [
+        puzzle('r3-order', '映写機', 34, 39, 38, 32),
+        puzzle('r3-score', '映写機の側面', 65, 57, 21, 22),
       ],
       [clue('echo-2', '天井の刻印', 'echo', 35, 36, 30, 25, 'r4-power')],
       [clue('r3-floor', 'フィルムの切れ端', 'empty', 26, 49, 48, 30)],

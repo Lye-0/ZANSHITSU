@@ -312,3 +312,22 @@ Production photographic triptych of these THREE references, exactly THREE equal 
 ### mirror-digits
 
 Photorealistic asset of just four large hand-scratched chalk-white digits reading EXACTLY '2715' in normal left-to-right readable orientation. 2 first, 7 second, 1 third, 5 fourth. TRUE TRANSPARENT BACKGROUND. Four separated digits equally sized and equally spaced, a slightly irregular human incised mark texture with tiny chipped edges, pale ivory scratches and extremely subtle grey edge shadows, matching marks scraped on old cloudy mirror glass. No mirror, no object, no black background, no box, no extra marks. The shape of 7 must have a CLEAR LONG HORIZONTAL TOP BAR and diagonal stem. 1 a straight vertical stem with small serif. Wide 4:1 canvas, digits fill central 80% width and 80% height. This is a photographic scratch decal, NOT clean vector font.
+
+
+## スクリーン統合・対面配置・照明（2026-09-18）
+
+### projector-facing
+
+Edit this exact room photograph. Keep identical room wall, wooden table, shelves, film cans, stool, lighting, floor and fixed camera. Rotate ONLY the central antique projector on the table so its lens points DIRECTLY TOWARD THE VIEWER, out of the image. Camera stands at room center facing WEST wall, projection screen is on EAST wall BEHIND camera. Therefore lens must face viewer, not sideways. Front-on black lens clearly visible at center x50%,y44%, two film reels visible in upper silhouette on both sides. Keep projector overall bounds x35-69%, y23-55%. Expose a small distinct brass crank/key mechanism on its right flank around x58%,y47%. It remains the same old black projector, photorealistic sepia grime. No beam, no screen on this wall, no text.
+
+### screen-numbers
+
+Edit FIRST image only. Preserve the exact front-on stained projection screen, square framing, roller bars, canvas edges, camera and texture of FIRST image. Replace its five illuminated lines and dots and arrow with the FOUR projected film frames from SECOND image, but NO projector, NO surrounding room furniture from second image. Four equally sized glowing film rectangles in a horizontal row across center y40-65%. They read left to right exactly: frame ONE numeral 1 with THREE small circular perforations above it; frame TWO numeral 6 with FOUR perforations; frame THREE numeral 3 with ONE perforation; frame FOUR numeral 8 with TWO perforations. Correctly count 3,4,1,2 holes; digits 1,6,3,8. Dusty amber optical light cast onto actual canvas, aged shadows, soft photographic projection, no UI. All four frames are inside the same original screen.
+
+### ceiling-unlit
+
+Edit this ceiling photograph with absolutely identical framing, camera, vent, conduit, concrete cracks and fluorescent fixture. The fluorescent tubes are OFF: dirty grey unlit glass, no emitted light, no halo. Retain enough dim ambient reflected green-brown light from below to see the fixture and weathered ceiling, about one stop darker than reference. No added marks, no text, no new objects. Realistic dark room before electrical power restoration.
+
+### ceiling-restored
+
+Edit this lit ceiling photograph. Preserve EXACT camera, fluorescent light already ON, vent, concrete slabs, framing and soft green-brown illumination. Add a small physically scratched clue into the concrete at x28% y67%, entirely inside x21-35%, y60-75%. It consists of tiny Roman numeral IV at top, a concentric double-circle with central dot in the middle, and the digit 3 underneath. Readable worn charcoal-gray incised lines with naturally chipped concrete, not glowing, not a label or plaque, no rectangle or patch edge. Only this little marking changes. The clue must be part of the wall material, unobtrusive but visible under restored light.

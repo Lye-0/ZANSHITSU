@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { ITEMS, PUZZLES } from './data';
 import type { SceneNode } from './data';
 import { canAccess } from './engine';
@@ -7,6 +7,7 @@ import { detailPhoto } from './photography';
 import { PHOTO_MECHANISMS, STATE_PHOTO_IDS, statePhoto } from './mechanismPhotos';
 import type { Rect } from './mechanismPhotos';
 import { PhotoControls } from './PhotoControls';
+import { availableProjection, projectionPhoto } from './projection';
 export const photoRect = ([x, y, w, h]: Rect): CSSProperties => ({
   left: `${x}%`,
   top: `${y}%`,
@@ -28,6 +29,7 @@ export function Closeup({
   onNote,
   onInspect,
   onReference,
+  onObserve,
 }: {
   node: SceneNode;
   room: number;
@@ -43,7 +45,13 @@ export function Closeup({
   onNote: (n: number) => void;
   onInspect: (id: string) => void;
   onReference: (id: string) => void;
+  onObserve: (id: string) => void;
 }) {
+  const isScreen = ['r3-screen', 'r3-film-clue'].includes(node.id);
+  const available = availableProjection(game.solved);
+  const [projection, setProjection] = useState<'score' | 'frames'>(
+    node.projection ?? (available === 'frames' ? 'frames' : 'score'),
+  );
   const p =
     node.kind === 'puzzle'
       ? PUZZLES[node.target!]
@@ -81,12 +89,16 @@ export function Closeup({
     photo = '/images/clues/bathtub-full.webp';
   if (node.kind === 'take' && game.collected.includes(node.target!))
     photo = '/images/rooms/02-washroom/states/wrench-taken.webp';
+  if (isScreen)
+    photo = projectionPhoto(
+      available === 'blank' ? 'blank' : available === 'frames' ? projection : 'score',
+    );
   const use = (id: string) => {
     if (selected) onInsert(id, selected);
   };
   return (
     <section
-      className={`closeup-view photo-closeup detail-${node.id} ${opened ? 'container-open' : ''} ${installed ? 'part-installed' : ''}`}
+      className={`closeup-view photo-closeup detail-${node.id} ${isScreen && available === 'frames' ? 'has-projection-choice' : ''} ${opened ? 'container-open' : ''} ${installed ? 'part-installed' : ''}`}
       aria-label={`${node.label}の接写`}
       style={{ '--detail-photo': `url(${photo})` } as CSSProperties}
     >
@@ -216,6 +228,28 @@ export function Closeup({
           />
         )}
       </div>
+      {isScreen && available === 'frames' && (
+        <nav className="projection-choice" aria-label="スクリーンの投影">
+          <button
+            aria-pressed={projection === 'score'}
+            onClick={() => {
+              setProjection('score');
+              onObserve('r3-screen');
+            }}
+          >
+            光点
+          </button>
+          <button
+            aria-pressed={projection === 'frames'}
+            onClick={() => {
+              setProjection('frames');
+              onObserve('r3-film-clue');
+            }}
+          >
+            数字
+          </button>
+        </nav>
+      )}
       {p?.id === 'r3-slide' && (
         <div className="slide-guide">
           <span>{solved ? '解錠済み' : '空きの隣の板を動かす'}</span>

@@ -9,6 +9,8 @@ export const viewPhoto = (
   state?: { solved: string[]; inventory: string[]; installed: string[]; opened?: string[] },
 ) => {
   const base = `/images/rooms/${ROOM_FOLDERS[room]}`;
+  if (room === 3 && face === 4 && state && !state.solved.includes('r4-power'))
+    return base + '/states/ceiling-unlit.webp';
   if (room === 0 && face === 3 && state?.opened?.includes('r1-drawer'))
     return base + '/states/west-drawer-open.webp';
   if (room === 0 && face === 2 && state?.opened?.includes('r1-cabinet'))
@@ -67,13 +69,13 @@ export const SHAPES: Record<string, Shape> = {
   },
   'r2-drain': { bounds: [40.5, 62.5, 19, 19], ellipse: true },
   'r3-exit': { bounds: [32, 18, 37, 62] },
-  'r3-screen': { bounds: [18, 18, 64, 39] },
-  'r3-film-clue': { bounds: [18, 56.5, 64, 2.7] },
+  'r3-screen': { bounds: [17, 17.5, 66, 42] },
   'r3-order': {
-    bounds: [35.5, 23.2, 33.7, 32],
-    path: 'M34 53 A17 18 0 1 1 0 53 A17 18 0 1 1 34 53 Z M100 22 A19 21 0 1 1 62 22 A19 21 0 1 1 100 22 Z M38 28 H59 V34 H62 V49 H74 V60 H64 V72 H79 V79 H65 L68 91 H74 V100 H28 V94 L37 91 L40 82 H34 V71 H38 Z',
+    bounds: [38.5, 25, 24, 30],
+    points:
+      '0,0 20,0 27,20 30,34 66,34 72,20 78,0 98,0 100,32 83,43 73,40 73,84 79,94 79,100 18,100 18,94 28,84 28,40 17,44 1,34',
   },
-  'r3-score': { bounds: [49.8, 35, 6.2, 9.5] },
+  'r3-score': { bounds: [54.5, 42.5, 4.5, 7] },
   'r3-overlay': { bounds: [28, 49.5, 30, 5.3], points: '7,0 96,0 100,100 0,100' },
   'r3-slide': { bounds: [77, 23, 20, 60], points: '0,0 90,0 100,100 0,100' },
   'r3-plan': { bounds: [13, 51.5, 10, 2], points: '7,0 94,0 100,100 0,100' },

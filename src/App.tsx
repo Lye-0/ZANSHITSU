@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
-import { FACE_NAMES, ITEMS, PUZZLES, ROOMS } from './data';
+import { FACE_NAMES, ITEMS, PUZZLES, ROOMS, SCREEN_FRAME_CLUE } from './data';
 import type { SceneNode } from './data';
 import {
   freshGame,
@@ -12,6 +12,7 @@ import {
   openContainer,
   leaveRoom,
   beginPuzzle,
+  revealCeilingPower,
 } from './engine';
 import type { GameState } from './engine';
 import { audioEnabled, sound } from './audio';
@@ -22,6 +23,7 @@ import { viewPhoto } from './photography';
 import { turnView } from './navigation';
 import { Inventory } from './Inventory';
 import { HintContent } from './HintContent';
+import { availableProjection } from './projection';
 
 type Panel =
   | { type: 'node'; node: SceneNode; room: number }
@@ -112,10 +114,10 @@ export default function App() {
     setSelected(null);
     setFlipped(false);
   };
-  const notify = (msg: string) => {
+  const notify = (msg: string, duration = 2800) => {
     setToast(msg);
     if (toastTimer.current) clearTimeout(toastTimer.current);
-    toastTimer.current = setTimeout(() => setToast(''), 2800);
+    toastTimer.current = setTimeout(() => setToast(''), duration);
   };
   useEffect(
     () => () => {
@@ -190,7 +192,10 @@ export default function App() {
   });
   function begin() {
     setPlaying(true);
-    setGame((g) => ({ ...g, started: true }));
+    const returningPower =
+      game.room === 3 && game.solved.includes('r4-power') && !game.seen.includes('echo-3');
+    setGame((g) => revealCeilingPower({ ...g, started: true }));
+    if (returningPower) notify('天井の灯りが戻った。', 6500);
     if (!game.started) setIntro(true);
     void audioEnabled(game.sound).catch(() => {});
   }
@@ -214,7 +219,17 @@ export default function App() {
     setSelected(null);
     if (node.kind === 'puzzle') setGame((g) => beginPuzzle(g, node.target!));
     if (node.kind === 'clue' && (!node.gate || game.solved.includes(node.gate)))
-      setGame((g) => ({ ...g, seen: [...new Set([...g.seen, node.id])] }));
+      setGame((g) => ({
+        ...g,
+        seen: [
+          ...new Set([
+            ...g.seen,
+            node.id === 'r3-screen' && availableProjection(g.solved) === 'frames'
+              ? 'r3-film-clue'
+              : node.id,
+          ]),
+        ],
+      }));
     setPanel({ type: 'node', node, room: game.room });
   }
   function updatePuzzle(id: string, values: number[]) {
@@ -224,7 +239,10 @@ export default function App() {
     setGame(next);
     if (next.solved.length > game.solved.length) {
       sound('open', game.sound);
-      notify('かちり。');
+      if (id === 'r4-power') {
+        close();
+        notify('天井の灯りが戻った。', 6500);
+      } else notify(id === 'r3-score' ? 'スクリーンの光が変わった。' : 'かちり。');
       if (next.finished) close();
     } else sound('tap', game.sound);
   }
@@ -261,7 +279,7 @@ export default function App() {
         .filter((n) => n.kind === 'clue' && game.seen.includes(n.id) && n.clue !== 'empty')
         .map((n) => ({ node: n, room: i })),
     ),
-  );
+  ).concat(game.seen.includes('r3-film-clue') ? [{ node: SCREEN_FRAME_CLUE, room: 2 }] : []);
   return (
     <div
       className={`app ${game.motion ? '' : 'reduced-motion'} tone-${room.tone} ${panel?.type === 'node' || panel?.type === 'item' ? 'has-closeup' : ''}`}
@@ -382,8 +400,10 @@ export default function App() {
               />
               <div className="room-vignette" />
               <div className="dust" />
-              {game.face === 4 && <div className="ceiling-light" />}
-              {game.face === 3 && game.room === 2 && (
+              {game.face === 4 && (game.room !== 3 || game.solved.includes('r4-power')) && (
+                <div className="ceiling-light" />
+              )}
+              {game.face === 2 && game.room === 2 && (
                 <div className="scene-plan-paper" aria-hidden="true" />
               )}
               {game.face === 2 && game.room === 0 && (
@@ -407,7 +427,7 @@ export default function App() {
               {game.face === 0 && game.solved.includes(`r${game.room + 1}-exit`) && (
                 <div className="door-light" />
               )}
-              {game.face === 4 && game.solved.includes('r4-power') && (
+              {game.face === 4 && game.room !== 3 && game.solved.includes('r4-power') && (
                 <div
                   className="ceiling-echo"
                   style={{
@@ -545,6 +565,7 @@ export default function App() {
           onNote={(i) => sound('note', game.sound, i)}
           onInspect={showItem}
           onReference={showReference}
+          onObserve={(id) => setGame((g) => ({ ...g, seen: [...new Set([...g.seen, id])] }))}
         />
       )}
       {playing && panel?.type === 'item' && (
@@ -632,7 +653,11 @@ export default function App() {
                         key={node.id}
                         onClick={() => {
                           setSelected(null);
-                          setPanel({ type: 'node', node, room: ri });
+                          setPanel({
+                            type: 'node',
+                            node: node.id === 'r3-screen' ? { ...node, projection: 'score' } : node,
+                            room: ri,
+                          });
                         }}
                       >
                         <img

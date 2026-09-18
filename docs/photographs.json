@@ -1,8 +1,8 @@
 {
   "version": 2,
   "updated": "2026-09-18",
-  "count": 214,
-  "bytes": 27397886,
+  "count": 215,
+  "bytes": 27800444,
   "photos": [
     {
       "path": "public/images/clues/bathtub-full.webp",
@@ -83,10 +83,10 @@
     },
     {
       "path": "public/images/clues/r3-film-clue.webp",
-      "width": 623,
-      "height": 623,
-      "bytes": 57400,
-      "sha256": "5b0dc5507c255d143cf1bd9707849b390e4bd5121301bcfa88c35a9f7b6e3481"
+      "width": 1254,
+      "height": 1254,
+      "bytes": 171322,
+      "sha256": "c76e3d94309aaeb3f9bfdd806c41b09007553fddb059f61d8ee7cd24fc944928"
     },
     {
       "path": "public/images/clues/r3-plan.webp",
@@ -1380,15 +1380,15 @@
       "path": "public/images/rooms/03-projection/views/south.webp",
       "width": 625,
       "height": 625,
-      "bytes": 105228,
-      "sha256": "41ca9536cc4be50c68a734b4495fc1775987d4f27e54743c13c590a2e007d13e"
+      "bytes": 95040,
+      "sha256": "2a4b20f4bcba152f6f32ff7e3e9701e17c415342f7809187972b339672e771c6"
     },
     {
       "path": "public/images/rooms/03-projection/views/west.webp",
-      "width": 625,
-      "height": 625,
-      "bytes": 95040,
-      "sha256": "2a4b20f4bcba152f6f32ff7e3e9701e17c415342f7809187972b339672e771c6"
+      "width": 1254,
+      "height": 1254,
+      "bytes": 192622,
+      "sha256": "21acb4d8261f6d94292a03eba847bdbe18be7ea4eae06e82eee5a13b037120ef"
     },
     {
       "path": "public/images/rooms/04-return/closeups/box.webp",
@@ -1447,6 +1447,13 @@
       "sha256": "c9d75bba1ee5acdfbc40d15ace43ef6546da9be20ec9729e7019530e79131b09"
     },
     {
+      "path": "public/images/rooms/04-return/states/ceiling-unlit.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 131968,
+      "sha256": "4080203c46f9cdda1b8cfe902f373101e4118cf040b3fd5471a7d9821dfafbc5"
+    },
+    {
       "path": "public/images/rooms/04-return/states/east-box-open.webp",
       "width": 508,
       "height": 508,
@@ -1455,10 +1462,10 @@
     },
     {
       "path": "public/images/rooms/04-return/views/ceiling.webp",
-      "width": 441,
-      "height": 442,
-      "bytes": 46972,
-      "sha256": "81806e1fdf5a0bfce0658c0810c01d18471079b54450881ed985e2e49cd202ad"
+      "width": 1254,
+      "height": 1254,
+      "bytes": 116246,
+      "sha256": "39a63960ce62f02f522c7efb45d0eb06def4e0a79fc26ff75c850f9525af72e7"
     },
     {
       "path": "public/images/rooms/04-return/views/east.webp",
